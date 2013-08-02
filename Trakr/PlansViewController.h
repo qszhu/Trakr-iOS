@@ -1,5 +1,5 @@
 //
-//  FirstViewController.h
+//  PlansViewController.h
 //  Trakr
 //
 //  Created by Qinsi ZHU on 8/1/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstViewController : UIViewController
+@interface PlansViewController : UIViewController
 
 @end

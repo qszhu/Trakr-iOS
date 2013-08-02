@@ -8,9 +8,19 @@
 
 
 @interface IUtils : NSObject
++ (NSError *)errorWithCode:(NSInteger)errorCode message:(NSString *)errorMessage;
+
++ (NSString *)stringFromDate:(NSDate *)date;
+
++ (void)showViewController:(NSString *)viewControllerName in:(UIViewController *)viewController;
+
++ (void)setRightBarAddButton:(UIViewController *)viewController action:(SEL)action;
+
 + (void)dismissView:(UIViewController *)viewController;
 
 + (void)showDialogWithTitle:(NSString *)title message:(NSString *)message;
+
++ (void)showErrorDialogWithTitle:(NSString *)title error:(NSError *)error;
 
 + (void)showValidationErrorDialog;
 
