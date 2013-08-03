@@ -6,24 +6,38 @@
 
 #import "SelectPlanViewController.h"
 #import "IUtils.h"
+#import "CreatePlanViewController.h"
 
 
 @implementation SelectPlanViewController {
 
 }
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        self.title = @"Select a Plan";
 
-        [IUtils setRightBarAddButton:self action:@selector(createPlanPressed)];
-    }
+- (void)viewDidLoad {
+    [super viewDidLoad];
 
-    return self;
+    self.title = @"Select Plan";
+
+    [IUtils setRightBarAddButton:self action:@selector(createPlanPressed)];
 }
 
 - (void)createPlanPressed {
-    [IUtils showViewController:@"CreatePlanViewController" in:self];
+    UIViewController *createPlanVC = [[CreatePlanViewController alloc] init];
+    [self.navigationController pushViewController:createPlanVC animated:YES];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 5;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellIdentifier = @"cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell.textLabel.text = [NSString stringWithFormat:@"Plan %d", indexPath.row];
+    }
+    return cell;
 }
 
 @end

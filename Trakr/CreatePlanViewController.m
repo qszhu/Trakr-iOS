@@ -7,6 +7,7 @@
 #import "CreatePlanViewController.h"
 #import "Constants.h"
 #import "IUtils.h"
+#import "SelectTargetViewController.h"
 
 @interface CreatePlanViewController ()
 @property(strong, nonatomic) NSArray *textFields;
@@ -15,23 +16,13 @@
 @implementation CreatePlanViewController {
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-
-    if (self) {
-        self.title = @"Create a Plan";
-    }
-
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.title = @"Create Plan";
+
     self.textFields = [[NSArray alloc]
             initWithObjects:self.totalField, self.unitField, self.nameField, self.startDateField, self.repeatField, nil];
-
-    self.scrollView.delegate = self;
 
     UIPickerView *unitPicker = [[UIPickerView alloc] init];
     unitPicker.dataSource = self;
@@ -57,11 +48,22 @@
     repeatPicker.showsSelectionIndicator = YES;
     self.repeatField.inputView = repeatPicker;
     self.repeatField.text = [Constants REPEAT][0];
+
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+            initWithTarget:self
+                    action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+}
+
+- (void)dismissKeyboard {
+    for (UITextField *field in self.textFields) {
+        [field resignFirstResponder];
+    }
 }
 
 - (void)selectTarget:(id)sender {
-    UIViewController *selectTargetVC = [[UIViewController alloc] init];
-    [self presentViewController:selectTargetVC animated:YES completion:nil];
+    UIViewController *selectTargetVC = [[SelectTargetViewController alloc] init];
+    [self.navigationController pushViewController:selectTargetVC animated:YES];
 }
 
 - (NSError *)getValidationError {
@@ -91,12 +93,6 @@
 
 - (void)totalChanged:(id)sender {
     self.onceStepper.maximumValue = self.totalField.text.intValue;
-}
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    for (UITextField *textField in self.textFields) {
-        [textField resignFirstResponder];
-    }
 }
 
 - (void)switchCreateTask:(id)sender {

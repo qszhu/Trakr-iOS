@@ -23,12 +23,6 @@
                                           timeStyle:NSDateFormatterNoStyle];
 }
 
-+ (void)showViewController:(NSString *)viewControllerName in:(UIViewController *)viewController {
-    Class className = NSClassFromString(viewControllerName);
-    UIViewController *newVC = [[className alloc] init];
-    [viewController.navigationController pushViewController:newVC animated:YES];
-}
-
 + (void)setRightBarAddButton:(UIViewController *)viewController action:(SEL)action {
     UIBarButtonItem *btn = [[UIBarButtonItem alloc]
             initWithBarButtonSystemItem:UIBarButtonSystemItemAdd

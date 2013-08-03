@@ -12,8 +12,6 @@
 
 + (NSString *)stringFromDate:(NSDate *)date;
 
-+ (void)showViewController:(NSString *)viewControllerName in:(UIViewController *)viewController;
-
 + (void)setRightBarAddButton:(UIViewController *)viewController action:(SEL)action;
 
 + (void)dismissView:(UIViewController *)viewController;

@@ -7,5 +7,5 @@
 #import <Foundation/Foundation.h>
 
 
-@interface SelectTargetViewController : NSObject
+@interface SelectTargetViewController : UITableViewController
 @end

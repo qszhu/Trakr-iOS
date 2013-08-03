@@ -7,9 +7,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface CreatePlanViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UIScrollViewDelegate>
-@property(strong, nonatomic) IBOutlet UIScrollView *scrollView;
-
+@interface CreatePlanViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
 @property(strong, nonatomic) IBOutlet UIButton *targetButton;
 @property(strong, nonatomic) NSObject *target;
 

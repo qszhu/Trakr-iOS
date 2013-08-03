@@ -16,23 +16,30 @@
 
 @implementation PlansViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        self.title = @"Plans";
+- (void)viewDidLoad {
+    [super viewDidLoad];
 
-        [IUtils setRightBarAddButton:self action:@selector(newPlanPressed)];
-    }
+    self.title = @"Plans";
 
-    return self;
+    [IUtils setRightBarAddButton:self action:@selector(newPlanPressed)];
 }
 
 - (void)newPlanPressed {
-    [IUtils showViewController:@"SelectPlanViewController" in:self];
+    UIViewController *selectPlanVC = [[SelectPlanViewController alloc] init];
+    [self.navigationController pushViewController:selectPlanVC animated:YES];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 5;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellIdentifier = @"cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell.textLabel.text = [NSString stringWithFormat:@"My Plan %d", indexPath.row];
+    }
+    return cell;
+}
 @end

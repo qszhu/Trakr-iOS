@@ -7,5 +7,5 @@
 #import <Foundation/Foundation.h>
 
 
-@interface SelectPlanViewController : UIViewController
+@interface SelectPlanViewController : UITableViewController
 @end

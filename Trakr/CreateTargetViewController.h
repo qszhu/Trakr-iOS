@@ -7,5 +7,10 @@
 #import <Foundation/Foundation.h>
 
 
-@interface CreateTargetViewController : NSObject
+@interface CreateTargetViewController : UIViewController
+@property(strong, nonatomic) IBOutlet UITextField *nameField;
+@property(strong, nonatomic) IBOutlet UITextView *descriptionText;
+@property(strong, nonatomic) IBOutlet UIButton *createButton;
+
+- (IBAction)createPressed:(id)sender;
 @end
