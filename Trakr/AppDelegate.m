@@ -7,20 +7,29 @@
 //
 
 #import "AppDelegate.h"
-#import "PlansViewController.h"
+#import "Plan/PlansViewController.h"
 #import "SecondViewController.h"
 #import "MainViewController.h"
 #import <Parse/Parse.h>
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    // Override point for customization after application launch.
+- (void)parseInit:(NSDictionary *)launchOptions {
     [Parse setApplicationId:@"vWqZkcSCvOlkcGltPDBYwy9Gt5k1cZyBMI32WVpl"
                   clientKey:@"bligFq7ajuGKzzM17eTRUp5PQRd8aUv6frJ8rAU0"];
+
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+
 //    [PFUser logOut];
+
+    PFACL *defaultACL = [PFACL ACL];
+    [defaultACL setPublicReadAccess:YES];
+    [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
+}
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // Override point for customization after application launch.
+    [self parseInit:launchOptions];
 
     PlansViewController *plansVC = [[PlansViewController alloc] init];
     UINavigationController *plansNav = [[UINavigationController alloc] initWithRootViewController:plansVC];

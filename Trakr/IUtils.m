@@ -11,8 +11,12 @@
 
 }
 
++ (NSString *)trim:(NSString *)aString {
+    return [aString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+}
+
 + (NSError *)errorWithCode:(NSInteger)errorCode message:(NSString *)errorMessage {
-    NSMutableDictionary* details = [NSMutableDictionary dictionary];
+    NSMutableDictionary *details = [NSMutableDictionary dictionary];
     [details setValue:errorMessage forKey:NSLocalizedDescriptionKey];
     return [NSError errorWithDomain:@"world" code:errorCode userInfo:details];
 }

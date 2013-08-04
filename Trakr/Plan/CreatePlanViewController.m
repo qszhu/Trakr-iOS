@@ -8,6 +8,8 @@
 #import "Constants.h"
 #import "IUtils.h"
 #import "SelectTargetViewController.h"
+#import "Plan.h"
+#import "Target.h"
 
 @interface CreatePlanViewController ()
 @property(strong, nonatomic) NSArray *textFields;
@@ -16,20 +18,34 @@
 @implementation CreatePlanViewController {
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    if (self.plan.target != nil) {
+        [self.targetButton setTitle:self.plan.target.name forState:UIControlStateNormal];
+    }
+
+    self.unitField.text = [Constants getUnitNameAtIndex:0];
+    self.startDateField.text = [IUtils stringFromDate:self.plan.startDate];
+
+//    self.repeatField.text = [[[Constants REPEAT] allKeys] objectAtIndex:0];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     self.title = @"Create Plan";
 
     self.textFields = [[NSArray alloc]
-            initWithObjects:self.totalField, self.unitField, self.nameField, self.startDateField, self.repeatField, nil];
+            initWithObjects:self.totalField, self.unitField, self.startDateField, self.numberOfTasksField, self.repeatField, nil];
+
+    self.plan = [[Plan alloc] init];
 
     UIPickerView *unitPicker = [[UIPickerView alloc] init];
     unitPicker.dataSource = self;
     unitPicker.delegate = self;
     unitPicker.showsSelectionIndicator = YES;
     self.unitField.inputView = unitPicker;
-    self.unitField.text = [Constants UNITS][0];
 
     UIDatePicker *startDatePicker = [[UIDatePicker alloc] init];
     [startDatePicker addTarget:self
@@ -37,17 +53,13 @@
               forControlEvents:UIControlEventValueChanged];
     startDatePicker.datePickerMode = UIDatePickerModeDate;
     self.startDateField.inputView = startDatePicker;
-    self.startDate = [[NSDate alloc] init];
-    self.startDateField.text = [IUtils stringFromDate:self.startDate];
-
-    [self updateOnceLabel];
 
     UIPickerView *repeatPicker = [[UIPickerView alloc] init];
     repeatPicker.dataSource = self;
     repeatPicker.delegate = self;
     repeatPicker.showsSelectionIndicator = YES;
     self.repeatField.inputView = repeatPicker;
-    self.repeatField.text = [Constants REPEAT][0];
+//    self.repeatField.text = [[[Constants REPEAT] allKeys] objectAtIndex:0];
 
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
             initWithTarget:self
@@ -62,37 +74,28 @@
 }
 
 - (void)selectTarget:(id)sender {
-    UIViewController *selectTargetVC = [[SelectTargetViewController alloc] init];
+    SelectTargetViewController *selectTargetVC = [[SelectTargetViewController alloc] init];
+    selectTargetVC.createPlanVC = self;
     [self.navigationController pushViewController:selectTargetVC animated:YES];
 }
 
-- (NSError *)getValidationError {
-    if (!self.target) {
-        return [IUtils errorWithCode:400 message:@"Plan must have a target"];
-    }
-    // TODO: more validations
-    return nil;
-}
-
 - (void)createPressed:(id)sender {
-    NSError *error = [self getValidationError];
+    [self.plan setTotal:[NSNumber numberWithInt:[self.totalField.text intValue]]];
+    NSError *error = [self.plan getValidationError];
     if (error) {
         [IUtils showErrorDialogWithTitle:@"Missing Information" error:error];
     } else {
-
+        [self.plan saveWithTarget:self selector:@selector(savePlanWithResult:error:)];
     }
 }
 
-- (void)onceChanged:(id)sender {
-    [self updateOnceLabel];
-}
-
-- (void)updateOnceLabel {
-    self.onceLabel.text = [NSString stringWithFormat:@"%d %@", (int) self.onceStepper.value, self.unitField.text];
-}
-
-- (void)totalChanged:(id)sender {
-    self.onceStepper.maximumValue = self.totalField.text.intValue;
+- (void)savePlanWithResult:(NSNumber *)result error:(NSError *)error {
+    if ([result boolValue]) {
+//        [self.createPlanVC.plan setTarget:self.target];
+//        [self.navigationController popToViewController:self.createPlanVC animated:YES];
+    } else {
+        [IUtils showErrorDialogWithTitle:@"Cannot create plan" error:error];
+    }
 }
 
 - (void)switchCreateTask:(id)sender {
@@ -100,8 +103,8 @@
 }
 
 - (void)startDateChanged:(UIDatePicker *)datePicker {
-    self.startDate = datePicker.date;
-    self.startDateField.text = [IUtils stringFromDate:self.startDate];
+    self.plan.startDate = datePicker.date;
+    self.startDateField.text = [IUtils stringFromDate:datePicker.date];
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
@@ -110,24 +113,28 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     if ([pickerView isEqual:self.unitField.inputView]) {
-        return [Constants UNITS].count;
+        return [Constants UNIT].count;
     }
-    return [Constants REPEAT].count;
+    return 0;
+//    return [Constants REPEAT].count;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     if ([pickerView isEqual:self.unitField.inputView]) {
-        return [Constants UNITS][row];
+        return [Constants getUnitNameAtIndex:row];
     }
-    return [Constants REPEAT][row];
+    return nil;
+//    return [[[Constants REPEAT] allKeys] objectAtIndex:row];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if ([pickerView isEqual:self.unitField.inputView]) {
-        self.unitField.text = [Constants UNITS][row];
-        [self updateOnceLabel];
+        NSString *unitName = [Constants getUnitNameAtIndex:row];
+        self.unitField.text = unitName;
+        self.plan.unit = [Constants getUnitForName:unitName];
     } else {
-        self.repeatField.text = [Constants REPEAT][row];
+//        NSString *repeatName = [[[Constants REPEAT] allKeys] objectAtIndex:row];
+//        self.repeatField.text = repeatName;
     }
 }
 

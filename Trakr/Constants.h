@@ -9,7 +9,14 @@
 
 @interface Constants : NSObject
 
-+ (NSArray *)UNITS;
-+ (NSArray *)REPEAT;
++ (NSDictionary *)UNIT;
+
++ (NSNumber *)getUnitForName:(NSString *)name;
+
++ (NSString *)getNameForUnit:(NSNumber *)unit;
+
++ (NSString *)getUnitNameAtIndex:(NSUInteger)index;
+
++ (NSDictionary *)REPEAT;
 
 @end

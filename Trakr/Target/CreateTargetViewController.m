@@ -6,7 +6,9 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "CreateTargetViewController.h"
-
+#import "IUtils.h"
+#import "Target.h"
+#import "Plan.h"
 
 @implementation CreateTargetViewController {
 
@@ -17,16 +19,20 @@
 
     self.title = @"Create Target";
 
+    // border around text view
     [self.descriptionText.layer setBackgroundColor:[[UIColor whiteColor] CGColor]];
     [self.descriptionText.layer setBorderColor:[[UIColor grayColor] CGColor]];
     [self.descriptionText.layer setBorderWidth:1.0];
     [self.descriptionText.layer setCornerRadius:8.0f];
     [self.descriptionText.layer setMasksToBounds:YES];
 
+    // tab to dismiss keyboard
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
             initWithTarget:self
                     action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
+
+    self.target = [[Target alloc] init];
 }
 
 - (void)dismissKeyboard {
@@ -35,6 +41,23 @@
 }
 
 - (void)createPressed:(id)sender {
-
+    self.target.name = self.nameField.text;
+    self.target.desc = self.descriptionText.text;
+    NSError *error = [self.target getValidationError];
+    if (error) {
+        [IUtils showErrorDialogWithTitle:@"Missing Information" error:error];
+    } else {
+        [self.target saveWithTarget:self selector:@selector(saveTargetWithResult:error:)];
+    }
 }
+
+- (void)saveTargetWithResult:(NSNumber *)result error:(NSError *)error {
+    if ([result boolValue]) {
+        [self.createPlanVC.plan setTarget:self.target];
+        [self.navigationController popToViewController:self.createPlanVC animated:YES];
+    } else {
+        [IUtils showErrorDialogWithTitle:@"Cannot create target" error:error];
+    }
+}
+
 @end

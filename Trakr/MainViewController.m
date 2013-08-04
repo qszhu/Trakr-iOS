@@ -5,15 +5,15 @@
 
 
 #import "MainViewController.h"
-#import "SignUpViewController.h"
 #import "LogInViewController.h"
+#import "SignUpViewController.h"
 
 @implementation MainViewController {
 
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 
     if (![PFUser currentUser]) {
         LogInViewController *logInViewController = [[LogInViewController alloc] init];

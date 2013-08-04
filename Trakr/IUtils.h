@@ -8,6 +8,8 @@
 
 
 @interface IUtils : NSObject
++ (NSString *)trim:(NSString *)aString;
+
 + (NSError *)errorWithCode:(NSInteger)errorCode message:(NSString *)errorMessage;
 
 + (NSString *)stringFromDate:(NSDate *)date;

@@ -5,7 +5,8 @@
 
 
 #import <Foundation/Foundation.h>
+#import <Parse/Parse.h>
 
 
-@interface SelectTargetViewController : UITableViewController
+@interface SelectPlanViewController : PFQueryTableViewController
 @end
