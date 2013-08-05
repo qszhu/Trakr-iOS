@@ -37,7 +37,7 @@
 + (NSString *)getUnitNameAtIndex:(NSUInteger)index {
     return [[[Constants UNIT] allKeys] objectAtIndex:index];
 }
-
+/*
 + (NSDictionary *)REPEAT {
     static NSDictionary *aDict;
     if (!aDict) {
@@ -52,5 +52,5 @@
     }
     return aDict;
 }
-
+*/
 @end

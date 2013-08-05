@@ -7,6 +7,9 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 
+@class ProgressViewController;
+
 
 @interface SelectPlanViewController : PFQueryTableViewController
+@property(strong, nonatomic) ProgressViewController *progressVC;
 @end

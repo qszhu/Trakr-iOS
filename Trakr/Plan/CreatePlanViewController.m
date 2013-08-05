@@ -10,6 +10,8 @@
 #import "SelectTargetViewController.h"
 #import "Plan.h"
 #import "Target.h"
+#import "ProgressViewController.h"
+#import "Progress.h"
 
 @interface CreatePlanViewController ()
 @property(strong, nonatomic) NSArray *textFields;
@@ -54,11 +56,11 @@
     startDatePicker.datePickerMode = UIDatePickerModeDate;
     self.startDateField.inputView = startDatePicker;
 
-    UIPickerView *repeatPicker = [[UIPickerView alloc] init];
-    repeatPicker.dataSource = self;
-    repeatPicker.delegate = self;
-    repeatPicker.showsSelectionIndicator = YES;
-    self.repeatField.inputView = repeatPicker;
+//    UIPickerView *repeatPicker = [[UIPickerView alloc] init];
+//    repeatPicker.dataSource = self;
+//    repeatPicker.delegate = self;
+//    repeatPicker.showsSelectionIndicator = YES;
+//    self.repeatField.inputView = repeatPicker;
 //    self.repeatField.text = [[[Constants REPEAT] allKeys] objectAtIndex:0];
 
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
@@ -80,7 +82,7 @@
 }
 
 - (void)createPressed:(id)sender {
-    [self.plan setTotal:[NSNumber numberWithInt:[self.totalField.text intValue]]];
+    self.plan.total = [NSNumber numberWithInt:[self.totalField.text intValue]];
     NSError *error = [self.plan getValidationError];
     if (error) {
         [IUtils showErrorDialogWithTitle:@"Missing Information" error:error];
@@ -91,10 +93,19 @@
 
 - (void)savePlanWithResult:(NSNumber *)result error:(NSError *)error {
     if ([result boolValue]) {
-//        [self.createPlanVC.plan setTarget:self.target];
-//        [self.navigationController popToViewController:self.createPlanVC animated:YES];
+        Progress *progress = [[Progress alloc] init];
+        progress.plan = self.plan;
+        [progress saveWithTarget:self selector:@selector(saveProgressWithResult:error:)];
     } else {
         [IUtils showErrorDialogWithTitle:@"Cannot create plan" error:error];
+    }
+}
+
+- (void)saveProgressWithResult:(NSNumber *)result error:(NSError *)error {
+    if ([result boolValue]) {
+        [self.navigationController popToViewController:self.progressVC animated:YES];
+    } else {
+        [IUtils showErrorDialogWithTitle:@"Cannot create progress" error:error];
     }
 }
 

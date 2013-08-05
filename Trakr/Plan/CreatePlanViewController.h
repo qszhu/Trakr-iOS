@@ -7,6 +7,7 @@
 #import <Foundation/Foundation.h>
 
 @class Plan;
+@class ProgressViewController;
 
 
 @interface CreatePlanViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
@@ -24,6 +25,8 @@
 
 @property(strong, nonatomic) IBOutlet UITextField *numberOfTasksField;
 @property(strong, nonatomic) IBOutlet UITextField *repeatField;
+
+@property(strong, nonatomic) ProgressViewController *progressVC;
 
 - (IBAction)selectTarget:(id)sender;
 

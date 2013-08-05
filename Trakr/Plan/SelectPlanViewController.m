@@ -9,6 +9,9 @@
 #import "CreatePlanViewController.h"
 #import "Plan.h"
 #import "Constants.h"
+#import "Target.h"
+#import "Progress.h"
+#import "ProgressViewController.h"
 
 
 @implementation SelectPlanViewController {
@@ -18,7 +21,7 @@
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
-        self.parseClassName = @"Plan";
+        self.parseClassName = NSStringFromClass([Plan class]);
         self.pullToRefreshEnabled = YES;
         self.paginationEnabled = YES;
         self.objectsPerPage = 25;
@@ -35,8 +38,15 @@
 }
 
 - (void)createPlanPressed {
-    UIViewController *createPlanVC = [[CreatePlanViewController alloc] init];
+    CreatePlanViewController *createPlanVC = [[CreatePlanViewController alloc] init];
+    createPlanVC.progressVC = self.progressVC;
     [self.navigationController pushViewController:createPlanVC animated:YES];
+}
+
+- (PFQuery *)queryForTable {
+    PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+    [query includeKey:@"target"];
+    return query;
 }
 
 - (PFTableViewCell *)tableView:(UITableView *)tableView
@@ -50,11 +60,27 @@
                                       reuseIdentifier:cellIdentifier];
     }
 
-    Plan *plan = [Plan fromPFObject:object];
-    cell.textLabel.text = plan.name;
+    Plan *plan = [[Plan alloc] initWithParseObject:object];
+    cell.textLabel.text = plan.target.name;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@s", plan.total, [Constants getNameForUnit:plan.unit]];
 
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Progress *progress = [[Progress alloc] init];
+    Plan *plan = [[Plan alloc] initWithParseObject:[self.objects objectAtIndex:indexPath.row]];
+    progress.plan = plan;
+    [progress saveWithTarget:self selector:@selector(saveProgressWithResult:error:)];
+}
+
+- (void)saveProgressWithResult:(NSNumber *)result error:(NSError *)error {
+    if ([result boolValue]) {
+        [self.navigationController popViewControllerAnimated:YES];
+        [self.progressVC loadObjects];
+    } else {
+        [IUtils showErrorDialogWithTitle:@"Cannot create progress" error:error];
+    }
 }
 
 @end

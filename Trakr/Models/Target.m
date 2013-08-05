@@ -8,26 +8,52 @@
 #import "Target.h"
 #import "IUtils.h"
 
+static NSString *const kNameKey = @"name";
+static NSString *const kSummaryKey = @"summary";
+static NSString *const kCreatorKey = @"creator";
+
+@interface Target ()
+@property(strong, nonatomic) PFObject *parseObject;
+@end
 
 @implementation Target {
-
 }
 
-- (NSString *)description {
-    NSMutableString *description = [NSMutableString stringWithFormat:@"<%@: ", NSStringFromClass([self class])];
-    [description appendFormat:@" name: %@ ", self.name];
-    [description appendFormat:@" description: %@ ", self.desc];
-    [description appendFormat:@" pfObject: %@ ", self.pfObject];
-    [description appendString:@">"];
-    return description;
+- (id)init {
+    self = [self initWithParseObject:[PFObject objectWithClassName:NSStringFromClass([self class])]];
+    return self;
 }
 
-+ (Target *)fromPFObject:(PFObject *)object {
-    Target *theTarget = [[Target alloc] init];
-    theTarget.name = [object objectForKey:@"name"];
-    theTarget.desc = [object objectForKey:@"description"];
-    theTarget.pfObject = object;
-    return theTarget;
+- (id)initWithParseObject:(PFObject *)object {
+    self = [super init];
+    if (self) {
+        self.parseObject = object;
+    }
+    return self;
+}
+
+- (PFObject *)getParseObject {
+    return self.parseObject;
+}
+
+- (NSString *)name {
+    return [self.parseObject objectForKey:kNameKey];
+}
+
+- (void)setName:(NSString *)name {
+    [self.parseObject setObject:name forKey:kNameKey];
+}
+
+- (NSString *)summary {
+    return [self.parseObject objectForKey:kSummaryKey];
+}
+
+- (void)setSummary:(NSString *)summary {
+    [self.parseObject setObject:summary forKey:kSummaryKey];
+}
+
+- (NSString *)creator {
+    return [[self.parseObject objectForKey:kCreatorKey] username];
 }
 
 - (NSError *)getValidationError {
@@ -38,18 +64,9 @@
     return nil;
 }
 
-- (PFObject *)toPFObject {
-    PFObject *obj = self.pfObject == nil ? [PFObject objectWithClassName:@"Target"] : self.pfObject;
-    [obj setObject:self.name forKey:@"name"];
-    if (self.desc) {
-        [obj setObject:self.desc forKey:@"description"];
-    }
-    return obj;
-}
-
 - (void)saveWithTarget:(id)target selector:(SEL)selector {
-    self.pfObject = [self toPFObject];
-    [self.pfObject saveInBackgroundWithTarget:target selector:selector];
+    [self.parseObject setObject:[PFUser currentUser] forKey:kCreatorKey];
+    [self.parseObject saveInBackgroundWithTarget:target selector:selector];
 }
 
 @end

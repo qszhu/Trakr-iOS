@@ -17,6 +17,6 @@
 
 + (NSString *)getUnitNameAtIndex:(NSUInteger)index;
 
-+ (NSDictionary *)REPEAT;
+//+ (NSDictionary *)REPEAT;
 
 @end

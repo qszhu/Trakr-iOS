@@ -19,7 +19,7 @@
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
-        self.parseClassName = @"Target";
+        self.parseClassName = NSStringFromClass([Target class]);
         self.textKey = @"name";
         self.pullToRefreshEnabled = YES;
         self.paginationEnabled = YES;
@@ -43,7 +43,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.createPlanVC.plan.target = [Target fromPFObject:[self.objects objectAtIndex:indexPath.row]];
+    self.createPlanVC.plan.target = [[Target alloc] initWithParseObject:[self.objects objectAtIndex:indexPath.row]];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

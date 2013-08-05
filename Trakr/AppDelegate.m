@@ -7,10 +7,9 @@
 //
 
 #import "AppDelegate.h"
-#import "Plan/PlansViewController.h"
+#import "ProgressViewController.h"
 #import "SecondViewController.h"
 #import "MainViewController.h"
-#import <Parse/Parse.h>
 
 @implementation AppDelegate
 
@@ -31,17 +30,17 @@
     // Override point for customization after application launch.
     [self parseInit:launchOptions];
 
-    PlansViewController *plansVC = [[PlansViewController alloc] init];
-    UINavigationController *plansNav = [[UINavigationController alloc] initWithRootViewController:plansVC];
-    plansNav.tabBarItem.title = @"Plans";
-    plansNav.tabBarItem.image = [UIImage imageNamed:@"first.png"];
+    ProgressViewController *progressVC = [[ProgressViewController alloc] init];
+    UINavigationController *progressNav = [[UINavigationController alloc] initWithRootViewController:progressVC];
+    progressNav.tabBarItem.title = @"Progress";
+    progressNav.tabBarItem.image = [UIImage imageNamed:@"first.png"];
 
     SecondViewController *secondVC = [[SecondViewController alloc] init];
     secondVC.tabBarItem.title = @"Second";
     secondVC.tabBarItem.image = [UIImage imageNamed:@"second.png"];
 
     MainViewController *mainVC = [[MainViewController alloc] init];
-    [mainVC setViewControllers:@[plansNav, secondVC] animated:NO];
+    [mainVC setViewControllers:@[progressNav, secondVC] animated:NO];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = mainVC;

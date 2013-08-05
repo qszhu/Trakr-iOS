@@ -14,12 +14,13 @@
 @property(strong, nonatomic) Target *target;
 @property(strong, nonatomic) NSNumber *total;
 @property(strong, nonatomic) NSNumber *unit;
-@property(strong, nonatomic) NSString *name;
 @property(strong, nonatomic) NSDate *startDate;
-@property(strong, nonatomic) NSArray *tasks;
-@property(strong, nonatomic) PFObject *pfObject;
+@property(strong, nonatomic) NSString *creator;
+//@property(strong, nonatomic) NSArray *tasks;
 
-+ (Plan *)fromPFObject:(PFObject *)object;
+- (id)initWithParseObject:(PFObject *)object;
+
+- (PFObject *)getParseObject;
 
 - (NSError *)getValidationError;
 

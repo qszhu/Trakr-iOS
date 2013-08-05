@@ -10,41 +10,77 @@
 #import "Constants.h"
 #import "Target.h"
 
+static NSString *const kTargetKey = @"target";
+static NSString *const kTotalKey = @"total";
+static NSString *const kUnitKey = @"unit";
+static NSString *const kStartDateKey = @"startDate";
+static NSString *const kCreatorKey = @"creator";
+//static NSString * const kTasksKey = @"tasks";
+
+@interface Plan ()
+@property(strong, nonatomic) PFObject *parseObject;
+@end
 
 @implementation Plan {
-
 }
 
 - (id)init {
-    self = [super init];
-    self.unit = [[Constants UNIT] objectForKey:[[[Constants UNIT] allKeys] objectAtIndex:0]];
+    self = [self initWithParseObject:[PFObject objectWithClassName:NSStringFromClass([self class])]];
+    self.unit = [Constants getUnitForName:[Constants getUnitNameAtIndex:0]];
     self.startDate = [[NSDate alloc] init];
     return self;
 }
 
-- (NSString *)description {
-    NSMutableString *description = [NSMutableString stringWithFormat:@"<%@: ", NSStringFromClass([self class])];
-    [description appendFormat:@" target: %@ ", self.target];
-    [description appendFormat:@" total: %@ ", self.total];
-    [description appendFormat:@" unit: %@ ", self.unit];
-    [description appendFormat:@" name: %@ ", self.name];
-    [description appendFormat:@" startDate: %@ ", self.startDate];
-    [description appendFormat:@" tasks: %@ ", self.tasks];
-    [description appendFormat:@" pfObject: %@ ", self.pfObject];
-    [description appendString:@">"];
-    return description;
+- (id)initWithParseObject:(PFObject *)object {
+    self = [super init];
+    if (self) {
+        self.parseObject = object;
+    }
+    return self;
 }
 
-+ (Plan *)fromPFObject:(PFObject *)object {
-    Plan *thePlan = [[Plan alloc] init];
-    thePlan.target = [object objectForKey:@"target"];
-    thePlan.total = [object objectForKey:@"total"];
-    thePlan.unit = [object objectForKey:@"unit"];
-    thePlan.name = [object objectForKey:@"name"];
-    thePlan.startDate = [object objectForKey:@"startDate"];
-    thePlan.target = [object objectForKey:@"tasks"];
-    thePlan.pfObject = object;
-    return thePlan;
+- (PFObject *)getParseObject {
+    return self.parseObject;
+}
+
+- (Target *)target {
+    PFObject *target = [self.parseObject objectForKey:kTargetKey];
+    if (target != nil) {
+        return [[Target alloc] initWithParseObject:target];
+    }
+    return nil;
+}
+
+- (void)setTarget:(Target *)target {
+    [self.parseObject setObject:[target getParseObject] forKey:kTargetKey];
+}
+
+- (NSNumber *)total {
+    return [self.parseObject objectForKey:kTotalKey];
+}
+
+- (void)setTotal:(NSNumber *)total {
+    [self.parseObject setObject:total forKey:kTotalKey];
+}
+
+- (NSNumber *)unit {
+    return [self.parseObject objectForKey:kUnitKey];
+}
+
+- (void)setUnit:(NSNumber *)unit {
+    [self.parseObject setObject:unit forKey:kUnitKey];
+}
+
+- (NSDate *)startDate {
+    return [self.parseObject objectForKey:kStartDateKey];
+}
+
+- (void)setStartDate:(NSDate *)startDate {
+    [self.parseObject setObject:startDate forKey:kStartDateKey];
+}
+
+- (NSString *)creator {
+    return [[self.parseObject objectForKey:kCreatorKey] username];
 }
 
 - (NSError *)getValidationError {
@@ -59,28 +95,15 @@
         return [IUtils errorWithCode:400 message:@"Invalid unit"];
     }
 
-    // TODO: tasks
     return nil;
 }
 
-- (PFObject *)toPFObject {
-    PFObject *obj = self.pfObject == nil ? [PFObject objectWithClassName:@"Plan"] : self.pfObject;
-    [obj setObject:self.target.pfObject forKey:@"target"];
-    [obj setObject:self.total forKey:@"total"];
-    [obj setObject:self.unit forKey:@"unit"];
-    // optional fields
-    if (self.name == nil) {
-        [obj setObject:self.target.name forKey:@"name"];
-    }
-    if (self.startDate == nil) {
-        [obj setObject:[[NSDate alloc] init] forKey:@"startDate"];
-    }
-    return obj;
-}
-
 - (void)saveWithTarget:(id)target selector:(SEL)selector {
-    self.pfObject = [self toPFObject];
-    [self.pfObject saveInBackgroundWithTarget:target selector:selector];
+    if (self.startDate == nil) {
+        self.startDate = [[NSDate alloc] init];
+    }
+    [self.parseObject setObject:[PFUser currentUser] forKey:kCreatorKey];
+    [self.parseObject saveInBackgroundWithTarget:target selector:selector];
 }
 
 @end

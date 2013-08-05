@@ -42,7 +42,7 @@
 
 - (void)createPressed:(id)sender {
     self.target.name = self.nameField.text;
-    self.target.desc = self.descriptionText.text;
+    self.target.summary = self.descriptionText.text;
     NSError *error = [self.target getValidationError];
     if (error) {
         [IUtils showErrorDialogWithTitle:@"Missing Information" error:error];
@@ -53,7 +53,7 @@
 
 - (void)saveTargetWithResult:(NSNumber *)result error:(NSError *)error {
     if ([result boolValue]) {
-        [self.createPlanVC.plan setTarget:self.target];
+        self.createPlanVC.plan.target = self.target;
         [self.navigationController popToViewController:self.createPlanVC animated:YES];
     } else {
         [IUtils showErrorDialogWithTitle:@"Cannot create target" error:error];

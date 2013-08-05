@@ -1,5 +1,5 @@
 //
-//  PlansViewController.h
+//  ProgressViewController.h
 //  Trakr
 //
 //  Created by Qinsi ZHU on 8/1/13.
@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
-@interface PlansViewController : UITableViewController
+@interface ProgressViewController : PFQueryTableViewController
 
 @end

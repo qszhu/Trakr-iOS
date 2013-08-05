@@ -7,12 +7,15 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 
+
 @interface Target : NSObject
 @property(strong, nonatomic) NSString *name;
-@property(strong, nonatomic) NSString *desc;
-@property(strong, nonatomic) PFObject *pfObject;
+@property(strong, nonatomic) NSString *summary;
+@property(strong, nonatomic) NSString *creator;
 
-+ (Target *)fromPFObject:(PFObject *)object;
+- (id)initWithParseObject:(PFObject *)object;
+
+- (PFObject *)getParseObject;
 
 - (NSError *)getValidationError;
 
