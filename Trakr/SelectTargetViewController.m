@@ -43,7 +43,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.createPlanVC.plan.target = [[Target alloc] initWithParseObject:[self.objects objectAtIndex:indexPath.row]];
+    self.createPlanVC.plan.target = [[Target alloc] initWithParseObject:[self.objects objectAtIndex:(NSUInteger) indexPath.row]];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

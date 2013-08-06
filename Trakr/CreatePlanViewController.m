@@ -5,13 +5,16 @@
 
 
 #import "CreatePlanViewController.h"
-#import "Constants.h"
 #import "IUtils.h"
 #import "SelectTargetViewController.h"
 #import "Plan.h"
 #import "Target.h"
 #import "ProgressViewController.h"
 #import "Progress.h"
+#import "Unit.h"
+#import "Repeat.h"
+#import "AutoTask.h"
+#import "SVProgressHUD.h"
 
 @interface CreatePlanViewController ()
 @property(strong, nonatomic) NSArray *textFields;
@@ -27,10 +30,10 @@
         [self.targetButton setTitle:self.plan.target.name forState:UIControlStateNormal];
     }
 
-    self.unitField.text = [Constants getUnitNameAtIndex:0];
+    self.unitField.text = [Unit getNameForValue:self.plan.unit];
     self.startDateField.text = [IUtils stringFromDate:self.plan.startDate];
 
-//    self.repeatField.text = [[[Constants REPEAT] allKeys] objectAtIndex:0];
+    self.repeatField.text = [Repeat getNameForValue:self.autoTask.repeat];
 }
 
 - (void)viewDidLoad {
@@ -42,6 +45,7 @@
             initWithObjects:self.totalField, self.unitField, self.startDateField, self.numberOfTasksField, self.repeatField, nil];
 
     self.plan = [[Plan alloc] init];
+    self.autoTask = [[AutoTask alloc] init];
 
     UIPickerView *unitPicker = [[UIPickerView alloc] init];
     unitPicker.dataSource = self;
@@ -56,12 +60,11 @@
     startDatePicker.datePickerMode = UIDatePickerModeDate;
     self.startDateField.inputView = startDatePicker;
 
-//    UIPickerView *repeatPicker = [[UIPickerView alloc] init];
-//    repeatPicker.dataSource = self;
-//    repeatPicker.delegate = self;
-//    repeatPicker.showsSelectionIndicator = YES;
-//    self.repeatField.inputView = repeatPicker;
-//    self.repeatField.text = [[[Constants REPEAT] allKeys] objectAtIndex:0];
+    UIPickerView *repeatPicker = [[UIPickerView alloc] init];
+    repeatPicker.dataSource = self;
+    repeatPicker.delegate = self;
+    repeatPicker.showsSelectionIndicator = YES;
+    self.repeatField.inputView = repeatPicker;
 
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
             initWithTarget:self
@@ -82,31 +85,40 @@
 }
 
 - (void)createPressed:(id)sender {
-    self.plan.total = [NSNumber numberWithInt:[self.totalField.text intValue]];
-    NSError *error = [self.plan getValidationError];
-    if (error) {
-        [IUtils showErrorDialogWithTitle:@"Missing Information" error:error];
-    } else {
-        [self.plan saveWithTarget:self selector:@selector(savePlanWithResult:error:)];
+    self.plan.total = [self.totalField.text intValue];
+    if ([self.createTaskSwitch isOn]) {
+        self.autoTask.taskCount = [self.numberOfTasksField.text integerValue];
+        NSError *error = [self.autoTask getValidationError];
+        if (error) {
+            [IUtils showErrorDialogWithTitle:@"Missing Information" error:error];
+            return;
+        }
+        [self.autoTask createTasksForPlan:self.plan];
     }
+    [SVProgressHUD showWithStatus:@"Creating plan..." maskType:SVProgressHUDMaskTypeGradient];
+    [self.plan saveWithTarget:self selector:@selector(savePlanWithResult:error:)];
 }
 
 - (void)savePlanWithResult:(NSNumber *)result error:(NSError *)error {
-    if ([result boolValue]) {
-        Progress *progress = [[Progress alloc] init];
-        progress.plan = self.plan;
-        [progress saveWithTarget:self selector:@selector(saveProgressWithResult:error:)];
-    } else {
+    [SVProgressHUD dismiss];
+    if (![result boolValue]) {
         [IUtils showErrorDialogWithTitle:@"Cannot create plan" error:error];
+        return;
     }
+    Progress *progress = [[Progress alloc] init];
+    progress.plan = self.plan;
+    [SVProgressHUD showWithStatus:@"Creating progress..." maskType:SVProgressHUDMaskTypeGradient];
+    [progress saveWithTarget:self selector:@selector(saveProgressWithResult:error:)];
 }
 
 - (void)saveProgressWithResult:(NSNumber *)result error:(NSError *)error {
-    if ([result boolValue]) {
-        [self.navigationController popToViewController:self.progressVC animated:YES];
-    } else {
+    [SVProgressHUD dismiss];
+    if (![result boolValue]) {
         [IUtils showErrorDialogWithTitle:@"Cannot create progress" error:error];
+        return;
     }
+    [self.navigationController popToViewController:self.progressVC animated:YES];
+    [self.progressVC loadObjects];
 }
 
 - (void)switchCreateTask:(id)sender {
@@ -124,28 +136,27 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     if ([pickerView isEqual:self.unitField.inputView]) {
-        return [Constants UNIT].count;
+        return [Unit count];
     }
-    return 0;
-//    return [Constants REPEAT].count;
+    return [Repeat count];
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     if ([pickerView isEqual:self.unitField.inputView]) {
-        return [Constants getUnitNameAtIndex:row];
+        return [Unit getNameAtIndex:(NSUInteger) row];
     }
-    return nil;
-//    return [[[Constants REPEAT] allKeys] objectAtIndex:row];
+    return [Repeat getNameAtIndex:(NSUInteger) row];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if ([pickerView isEqual:self.unitField.inputView]) {
-        NSString *unitName = [Constants getUnitNameAtIndex:row];
+        NSString *unitName = [Unit getNameAtIndex:(NSUInteger) row];
         self.unitField.text = unitName;
-        self.plan.unit = [Constants getUnitForName:unitName];
+        self.plan.unit = [Unit getValueForName:unitName];
     } else {
-//        NSString *repeatName = [[[Constants REPEAT] allKeys] objectAtIndex:row];
-//        self.repeatField.text = repeatName;
+        NSString *repeatName = [Repeat getNameAtIndex:(NSUInteger) row];
+        self.repeatField.text = repeatName;
+        self.autoTask.repeat = [Repeat getValueForName:repeatName];
     }
 }
 

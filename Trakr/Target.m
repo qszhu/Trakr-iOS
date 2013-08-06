@@ -65,6 +65,13 @@ static NSString *const kCreatorKey = @"creator";
 }
 
 - (void)saveWithTarget:(id)target selector:(SEL)selector {
+    NSError *error = [self getValidationError];
+    if (error) {
+        SuppressPerformSelectorLeakWarning(
+        [target performSelector:selector withObject:[NSNumber numberWithBool:NO] withObject:error];
+        );
+        return;
+    }
     [self.parseObject setObject:[PFUser currentUser] forKey:kCreatorKey];
     [self.parseObject saveInBackgroundWithTarget:target selector:selector];
 }

@@ -8,10 +8,11 @@
 #import "IUtils.h"
 #import "CreatePlanViewController.h"
 #import "Plan.h"
-#import "Constants.h"
 #import "Target.h"
 #import "Progress.h"
 #import "ProgressViewController.h"
+#import "Unit.h"
+#import "SVProgressHUD.h"
 
 
 @implementation SelectPlanViewController {
@@ -62,19 +63,21 @@
 
     Plan *plan = [[Plan alloc] initWithParseObject:object];
     cell.textLabel.text = plan.target.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@s", plan.total, [Constants getNameForUnit:plan.unit]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d %@s", plan.total, [Unit getNameForValue:plan.unit]];
 
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Progress *progress = [[Progress alloc] init];
-    Plan *plan = [[Plan alloc] initWithParseObject:[self.objects objectAtIndex:indexPath.row]];
+    Plan *plan = [[Plan alloc] initWithParseObject:[self.objects objectAtIndex:(NSUInteger) indexPath.row]];
     progress.plan = plan;
+    [SVProgressHUD showWithStatus:@"Creating progress..." maskType:SVProgressHUDMaskTypeGradient];
     [progress saveWithTarget:self selector:@selector(saveProgressWithResult:error:)];
 }
 
 - (void)saveProgressWithResult:(NSNumber *)result error:(NSError *)error {
+    [SVProgressHUD dismiss];
     if ([result boolValue]) {
         [self.navigationController popViewControllerAnimated:YES];
         [self.progressVC loadObjects];

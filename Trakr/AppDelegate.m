@@ -43,7 +43,7 @@
     [mainVC setViewControllers:@[progressNav, secondVC] animated:NO];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = mainVC;
+    [self.window setRootViewController:mainVC];
     [self.window makeKeyAndVisible];
 
     return YES;

@@ -7,15 +7,16 @@
 #import <Parse/Parse.h>
 #import "Plan.h"
 #import "IUtils.h"
-#import "Constants.h"
 #import "Target.h"
+#import "Unit.h"
+#import "Task.h"
 
 static NSString *const kTargetKey = @"target";
 static NSString *const kTotalKey = @"total";
 static NSString *const kUnitKey = @"unit";
 static NSString *const kStartDateKey = @"startDate";
 static NSString *const kCreatorKey = @"creator";
-//static NSString * const kTasksKey = @"tasks";
+static NSString *const kTasksKey = @"tasks";
 
 @interface Plan ()
 @property(strong, nonatomic) PFObject *parseObject;
@@ -26,8 +27,8 @@ static NSString *const kCreatorKey = @"creator";
 
 - (id)init {
     self = [self initWithParseObject:[PFObject objectWithClassName:NSStringFromClass([self class])]];
-    self.unit = [Constants getUnitForName:[Constants getUnitNameAtIndex:0]];
-    self.startDate = [[NSDate alloc] init];
+    self.unit = [Unit getValueForName:kUnitChapter];
+    self.startDate = [NSDate date];
     return self;
 }
 
@@ -55,12 +56,12 @@ static NSString *const kCreatorKey = @"creator";
     [self.parseObject setObject:[target getParseObject] forKey:kTargetKey];
 }
 
-- (NSNumber *)total {
-    return [self.parseObject objectForKey:kTotalKey];
+- (NSInteger)total {
+    return [[self.parseObject objectForKey:kTotalKey] integerValue];
 }
 
-- (void)setTotal:(NSNumber *)total {
-    [self.parseObject setObject:total forKey:kTotalKey];
+- (void)setTotal:(NSInteger)total {
+    [self.parseObject setObject:[NSNumber numberWithInteger:total] forKey:kTotalKey];
 }
 
 - (NSNumber *)unit {
@@ -79,6 +80,23 @@ static NSString *const kCreatorKey = @"creator";
     [self.parseObject setObject:startDate forKey:kStartDateKey];
 }
 
+- (NSArray *)tasks {
+    NSArray *tasks = [self.parseObject objectForKey:kTasksKey];
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (PFObject *object in tasks) {
+        [array addObject:[[Task alloc] initWithParseObject:object]];
+    }
+    return [[NSArray alloc] initWithArray:array];
+}
+
+- (void)setTasks:(NSArray *)tasks {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (Task *task in tasks) {
+        [array addObject:[task getParseObject]];
+    }
+    [self.parseObject setObject:[[NSArray alloc] initWithArray:array] forKey:kTasksKey];
+}
+
 - (NSString *)creator {
     return [[self.parseObject objectForKey:kCreatorKey] username];
 }
@@ -88,7 +106,7 @@ static NSString *const kCreatorKey = @"creator";
     if (self.target == nil) {
         return [IUtils errorWithCode:400 message:@"Target is required"];
     }
-    if (self.total == nil || [self.total intValue] <= 0) {
+    if (self.total <= 0) {
         return [IUtils errorWithCode:400 message:@"Total must be positive"];
     }
     if (self.unit == nil) {
@@ -101,6 +119,13 @@ static NSString *const kCreatorKey = @"creator";
 - (void)saveWithTarget:(id)target selector:(SEL)selector {
     if (self.startDate == nil) {
         self.startDate = [[NSDate alloc] init];
+    }
+    NSError *error = [self getValidationError];
+    if (error) {
+        SuppressPerformSelectorLeakWarning(
+        [target performSelector:selector withObject:[NSNumber numberWithBool:NO] withObject:error];
+        );
+        return;
     }
     [self.parseObject setObject:[PFUser currentUser] forKey:kCreatorKey];
     [self.parseObject saveInBackgroundWithTarget:target selector:selector];

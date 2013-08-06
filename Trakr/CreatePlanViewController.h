@@ -8,6 +8,7 @@
 
 @class Plan;
 @class ProgressViewController;
+@class AutoTask;
 
 
 @interface CreatePlanViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
@@ -25,6 +26,7 @@
 
 @property(strong, nonatomic) IBOutlet UITextField *numberOfTasksField;
 @property(strong, nonatomic) IBOutlet UITextField *repeatField;
+@property(strong, nonatomic) AutoTask *autoTask;
 
 @property(strong, nonatomic) ProgressViewController *progressVC;
 

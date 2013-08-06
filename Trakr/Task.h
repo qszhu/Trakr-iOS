@@ -1,5 +1,5 @@
 //
-// Created by Qinsi ZHU on 8/4/13.
+// Created by Qinsi ZHU on 8/6/13.
 // Copyright (c) 2013 Qinsi ZHU. All rights reserved.
 //
 
@@ -7,14 +7,11 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 
-@class Plan;
-
-
-@interface Progress : NSObject
-@property(strong, nonatomic) Plan *plan;
-@property(strong, nonatomic) NSDate *startDate;
-@property(strong, nonatomic) NSArray *completions;
-@property(strong, nonatomic, readonly) NSString *creator;
+@interface Task : NSObject
+@property(nonatomic) NSInteger offset;
+@property(nonatomic) NSInteger step;
+@property(strong, nonatomic) NSString *name;
+//@property (strong, nonatomic) NSDate *deadline;
 
 - (id)initWithParseObject:(PFObject *)object;
 

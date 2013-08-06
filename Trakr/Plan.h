@@ -12,11 +12,11 @@
 
 @interface Plan : NSObject
 @property(strong, nonatomic) Target *target;
-@property(strong, nonatomic) NSNumber *total;
+@property(nonatomic) NSInteger total;
 @property(strong, nonatomic) NSNumber *unit;
 @property(strong, nonatomic) NSDate *startDate;
 @property(strong, nonatomic) NSString *creator;
-//@property(strong, nonatomic) NSArray *tasks;
+@property(strong, nonatomic) NSArray *tasks;
 
 - (id)initWithParseObject:(PFObject *)object;
 

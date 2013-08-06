@@ -9,6 +9,7 @@
 #import "IUtils.h"
 #import "Target.h"
 #import "Plan.h"
+#import "SVProgressHUD.h"
 
 @implementation CreateTargetViewController {
 
@@ -43,15 +44,12 @@
 - (void)createPressed:(id)sender {
     self.target.name = self.nameField.text;
     self.target.summary = self.descriptionText.text;
-    NSError *error = [self.target getValidationError];
-    if (error) {
-        [IUtils showErrorDialogWithTitle:@"Missing Information" error:error];
-    } else {
-        [self.target saveWithTarget:self selector:@selector(saveTargetWithResult:error:)];
-    }
+    [SVProgressHUD showWithStatus:@"Creating target..." maskType:SVProgressHUDMaskTypeGradient];
+    [self.target saveWithTarget:self selector:@selector(saveTargetWithResult:error:)];
 }
 
 - (void)saveTargetWithResult:(NSNumber *)result error:(NSError *)error {
+    [SVProgressHUD dismiss];
     if ([result boolValue]) {
         self.createPlanVC.plan.target = self.target;
         [self.navigationController popToViewController:self.createPlanVC animated:YES];

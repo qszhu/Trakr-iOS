@@ -7,9 +7,10 @@
 //
 
 #import "ProgressViewController.h"
+#import "ProgressDetailViewController.h"
+#import "Progress.h"
 #import "IUtils.h"
 #import "SelectPlanViewController.h"
-#import "Progress.h"
 #import "Plan.h"
 #import "Target.h"
 
@@ -64,8 +65,15 @@
 
     Progress *progress = [[Progress alloc] initWithParseObject:object];
     cell.textLabel.text = progress.plan.target.name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d/%d tasks", progress.completions.count, progress.plan.tasks.count];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    ProgressDetailViewController *progressDetailVC = [[ProgressDetailViewController alloc] init];
+    [self.navigationController pushViewController:progressDetailVC animated:YES];
 }
 
 @end
