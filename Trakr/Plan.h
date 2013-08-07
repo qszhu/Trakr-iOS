@@ -9,7 +9,6 @@
 
 @class Target;
 
-
 @interface Plan : NSObject
 @property(strong, nonatomic) Target *target;
 @property(nonatomic) NSInteger total;

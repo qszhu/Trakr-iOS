@@ -8,6 +8,7 @@
 #import "Plan.h"
 #import "IUtils.h"
 #import "Completion.h"
+#import "Task.h"
 
 static NSString *const kPlanKey = @"plan";
 static NSString *const kStartDateKey = @"startDate";
@@ -100,6 +101,27 @@ static NSString *const kCreatorKey = @"creator";
     }
     [self.parseObject setObject:[PFUser currentUser] forKey:kCreatorKey];
     [self.parseObject saveInBackgroundWithTarget:target selector:selector];
+}
+
+- (BOOL)task:(Task *)task matchesType:(TaskType)taskType {
+    NSDate *taskDate = [IUtils dateByOffset:task.offset fromDate:self.startDate];
+    NSDate *today = [NSDate date];
+    NSInteger dayDiff = [IUtils daysBetween:today and:taskDate];
+    if (taskType == TaskTypeLate && dayDiff < 0) return YES;
+    if (taskType == TaskTypeToday && dayDiff == 0) return YES;
+    if (taskType == TaskTypeTomorrow && dayDiff == 1) return YES;
+    if (taskType == TaskTypeFuture && dayDiff > 1 && dayDiff < 7) return YES;
+    return NO;
+}
+
+- (NSArray *)getTasksForType:(TaskType)taskType {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (Task *task in self.plan.tasks) {
+        if ([self task:task matchesType:taskType]) {
+            [array addObject:task];
+        }
+    }
+    return [[NSArray alloc] initWithArray:array];
 }
 
 @end

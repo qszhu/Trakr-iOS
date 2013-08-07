@@ -16,17 +16,6 @@
 
 @implementation ProgressViewController
 
-- (id)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithStyle:style];
-    if (self) {
-        self.parseClassName = NSStringFromClass([Progress class]);
-        self.pullToRefreshEnabled = YES;
-        self.paginationEnabled = YES;
-        self.objectsPerPage = 25;
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -42,10 +31,10 @@
 }
 
 - (PFQuery *)queryForTable {
-    PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+    PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([Progress class])];
     PFUser *user = [PFUser currentUser];
     if (user != nil) {
-        [query whereKey:@"creator" equalTo:[PFUser currentUser]];
+        [query whereKey:@"creator" equalTo:user];
     }
     [query includeKey:@"plan"];
     [query includeKey:@"plan.target"];
@@ -73,6 +62,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ProgressDetailViewController *progressDetailVC = [[ProgressDetailViewController alloc] init];
+    PFObject *progress = [self.objects objectAtIndex:indexPath.row];
+    progressDetailVC.progressId = progress.objectId;
     [self.navigationController pushViewController:progressDetailVC animated:YES];
 }
 

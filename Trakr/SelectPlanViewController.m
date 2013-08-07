@@ -19,17 +19,6 @@
 
 }
 
-- (id)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithStyle:style];
-    if (self) {
-        self.parseClassName = NSStringFromClass([Plan class]);
-        self.pullToRefreshEnabled = YES;
-        self.paginationEnabled = YES;
-        self.objectsPerPage = 25;
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -45,7 +34,7 @@
 }
 
 - (PFQuery *)queryForTable {
-    PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+    PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([Plan class])];
     [query includeKey:@"target"];
     return query;
 }

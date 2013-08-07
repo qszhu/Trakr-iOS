@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ProgressViewController.h"
-#import "SecondViewController.h"
+#import "TaskViewController.h"
 #import "MainViewController.h"
 
 @implementation AppDelegate
@@ -17,7 +17,7 @@
     [Parse setApplicationId:@"vWqZkcSCvOlkcGltPDBYwy9Gt5k1cZyBMI32WVpl"
                   clientKey:@"bligFq7ajuGKzzM17eTRUp5PQRd8aUv6frJ8rAU0"];
 
-    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+//    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
 
 //    [PFUser logOut];
 
@@ -35,12 +35,13 @@
     progressNav.tabBarItem.title = @"Progress";
     progressNav.tabBarItem.image = [UIImage imageNamed:@"first.png"];
 
-    SecondViewController *secondVC = [[SecondViewController alloc] init];
-    secondVC.tabBarItem.title = @"Second";
-    secondVC.tabBarItem.image = [UIImage imageNamed:@"second.png"];
+    TaskViewController *taskVC = [[TaskViewController alloc] init];
+    UINavigationController *taskNav = [[UINavigationController alloc] initWithRootViewController:taskVC];
+    taskVC.tabBarItem.title = @"Task";
+    taskVC.tabBarItem.image = [UIImage imageNamed:@"second.png"];
 
     MainViewController *mainVC = [[MainViewController alloc] init];
-    [mainVC setViewControllers:@[progressNav, secondVC] animated:NO];
+    [mainVC setViewControllers:@[taskNav, progressNav] animated:NO];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setRootViewController:mainVC];

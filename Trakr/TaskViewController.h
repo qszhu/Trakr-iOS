@@ -1,5 +1,5 @@
 //
-//  SecondViewController.h
+//  TaskViewController.h
 //  Trakr
 //
 //  Created by Qinsi ZHU on 8/1/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SecondViewController : UIViewController
+@interface TaskViewController : UITableViewController
 
 @end

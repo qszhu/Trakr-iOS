@@ -21,6 +21,23 @@
     return [NSError errorWithDomain:@"world" code:errorCode userInfo:details];
 }
 
++ (NSInteger)daysBetween:(NSDate *)startDate and:(NSDate *)endDate {
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSInteger startDay = [calendar ordinalityOfUnit:NSDayCalendarUnit
+                                             inUnit:NSEraCalendarUnit forDate:startDate];
+    NSInteger endDay = [calendar ordinalityOfUnit:NSDayCalendarUnit
+                                           inUnit:NSEraCalendarUnit forDate:endDate];
+    return endDay - startDay;
+}
+
++ (NSDate *)dateByOffset:(NSInteger)offset fromDate:(NSDate *)date {
+    NSDateComponents *components = [[NSDateComponents alloc] init];
+    components.day = offset;
+
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    return [calendar dateByAddingComponents:components toDate:date options:0];
+}
+
 + (NSString *)stringFromDate:(NSDate *)date {
     return [NSDateFormatter localizedStringFromDate:date
                                           dateStyle:NSDateFormatterLongStyle

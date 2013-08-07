@@ -19,7 +19,11 @@
 
 + (NSError *)errorWithCode:(NSInteger)errorCode message:(NSString *)errorMessage;
 
++ (NSInteger)daysBetween:(NSDate *)date1 and:(NSDate *)date2;
+
 + (NSString *)stringFromDate:(NSDate *)date;
+
++ (NSDate *)dateByOffset:(NSInteger)offset fromDate:(NSDate *)date;
 
 + (void)setRightBarAddButton:(UIViewController *)viewController action:(SEL)action;
 

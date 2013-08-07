@@ -6,6 +6,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class Progress;
 
-@interface ProgressDetailViewController : UIViewController
+
+@interface ProgressDetailViewController : UITableViewController
+@property (strong, nonatomic) NSString *progressId;
+@property (strong, nonatomic) Progress *progress;
 @end

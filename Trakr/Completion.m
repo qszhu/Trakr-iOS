@@ -51,7 +51,7 @@ static NSString *const kTaskKey = @"task";
 }
 
 - (Task *)task {
-    return [self.parseObject objectForKey:kTaskKey];
+    return [[Task alloc] initWithParseObject:[self.parseObject objectForKey:kTaskKey]];
 }
 
 - (void)setTask:(Task *)task {
@@ -70,6 +70,9 @@ static NSString *const kTaskKey = @"task";
 }
 
 - (void)saveWithTarget:(id)target selector:(SEL)selector {
+    if (self.date == nil) {
+        self.date = [[NSDate alloc] init];
+    }
     NSError *error = [self getValidationError];
     if (error) {
         SuppressPerformSelectorLeakWarning(

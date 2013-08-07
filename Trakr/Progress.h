@@ -9,6 +9,12 @@
 
 @class Plan;
 
+typedef enum _TaskType : NSUInteger {
+    TaskTypeLate,
+    TaskTypeToday,
+    TaskTypeTomorrow,
+    TaskTypeFuture
+} TaskType;
 
 @interface Progress : NSObject
 @property(strong, nonatomic) Plan *plan;
@@ -23,5 +29,7 @@
 - (NSError *)getValidationError;
 
 - (void)saveWithTarget:(id)target selector:(SEL)selector;
+
+- (NSArray *)getTasksForType:(TaskType)taskType;
 
 @end
