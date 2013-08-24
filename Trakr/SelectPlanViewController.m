@@ -13,7 +13,7 @@
 #import "ProgressViewController.h"
 #import "Unit.h"
 #import "SVProgressHUD.h"
-
+#import "TestFlight.h"
 
 @implementation SelectPlanViewController {
 
@@ -21,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [TestFlight passCheckpoint:@"select plan view load"];
 
     self.title = @"Select Plan";
 
@@ -28,6 +29,8 @@
 }
 
 - (void)createPlanPressed {
+    [TestFlight passCheckpoint:@"create plan pressed"];
+
     CreatePlanViewController *createPlanVC = [[CreatePlanViewController alloc] init];
     createPlanVC.progressVC = self.progressVC;
     [self.navigationController pushViewController:createPlanVC animated:YES];
@@ -58,6 +61,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [TestFlight passCheckpoint:@"select plan"];
+
     Progress *progress = [[Progress alloc] init];
     Plan *plan = [[Plan alloc] initWithParseObject:[self.objects objectAtIndex:(NSUInteger) indexPath.row]];
     progress.plan = plan;

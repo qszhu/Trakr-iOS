@@ -13,6 +13,7 @@
 #import "Completion.h"
 #import "SVProgressHUD.h"
 #import "IUtils.h"
+#import "TestFlight.h"
 
 @interface CompleteTaskViewController ()
 @property(nonatomic) NSInteger seconds;
@@ -25,6 +26,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [TestFlight passCheckpoint:@"complete task view load"];
 
     [self.navigationItem setTitle:@"Task"];
 
@@ -48,6 +50,8 @@
 }
 
 - (IBAction)cancelPressed:(id)sender {
+    [TestFlight passCheckpoint:@"cancel pressed"];
+
     if (self.timer != nil) {
         [self.timer invalidate];
     }
@@ -55,6 +59,8 @@
 }
 
 - (IBAction)finishPressed:(id)sender {
+    [TestFlight passCheckpoint:@"finish pressed"];
+
     if (self.timer != nil) {
         [self.timer invalidate];
     }
@@ -77,6 +83,8 @@
 }
 
 - (IBAction)timerPressed:(id)sender {
+    [TestFlight passCheckpoint:@"timer pressed"];
+
     self.timerRunning = !self.timerRunning;
     NSString *title = self.timerRunning ? @"Stop" : @"Start";
     [self.timerButton setTitle:title forState:UIControlStateNormal];

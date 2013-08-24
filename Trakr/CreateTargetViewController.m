@@ -10,6 +10,7 @@
 #import "Target.h"
 #import "Plan.h"
 #import "SVProgressHUD.h"
+#import "TestFlight.h"
 
 @implementation CreateTargetViewController {
 
@@ -17,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [TestFlight passCheckpoint:@"create target view pressed"];
 
     self.title = @"Create Target";
 
@@ -42,6 +44,8 @@
 }
 
 - (void)createPressed:(id)sender {
+    [TestFlight passCheckpoint:@"create pressed"];
+
     self.target.name = self.nameField.text;
     self.target.summary = self.descriptionText.text;
     [SVProgressHUD showWithStatus:@"Creating target..." maskType:SVProgressHUDMaskTypeGradient];

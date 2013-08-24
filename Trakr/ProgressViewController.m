@@ -13,11 +13,13 @@
 #import "SelectPlanViewController.h"
 #import "Plan.h"
 #import "Target.h"
+#import "TestFlight.h"
 
 @implementation ProgressViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [TestFlight passCheckpoint:@"progress view load"];
 
     [self.navigationItem setTitle:@"My Progress"];
 
@@ -25,6 +27,8 @@
 }
 
 - (void)newPlanPressed {
+    [TestFlight passCheckpoint:@"new plan pressed"];
+
     SelectPlanViewController *selectPlanVC = [[SelectPlanViewController alloc] init];
     selectPlanVC.progressVC = self;
     [self.navigationController pushViewController:selectPlanVC animated:YES];
@@ -61,6 +65,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [TestFlight passCheckpoint:@"select progress"];
+
     ProgressDetailViewController *progressDetailVC = [[ProgressDetailViewController alloc] init];
     PFObject *progress = [self.objects objectAtIndex:indexPath.row];
     progressDetailVC.progressId = progress.objectId;

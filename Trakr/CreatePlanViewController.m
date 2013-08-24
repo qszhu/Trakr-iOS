@@ -15,6 +15,7 @@
 #import "Repeat.h"
 #import "AutoTask.h"
 #import "SVProgressHUD.h"
+#import "TestFlight.h"
 
 @interface CreatePlanViewController ()
 @property(strong, nonatomic) NSArray *textFields;
@@ -38,6 +39,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [TestFlight passCheckpoint:@"create plan view load"];
 
     self.title = @"Create Plan";
 
@@ -79,12 +81,16 @@
 }
 
 - (void)selectTarget:(id)sender {
+    [TestFlight passCheckpoint:@"select target pressed"];
+
     SelectTargetViewController *selectTargetVC = [[SelectTargetViewController alloc] init];
     selectTargetVC.createPlanVC = self;
     [self.navigationController pushViewController:selectTargetVC animated:YES];
 }
 
 - (void)createPressed:(id)sender {
+    [TestFlight passCheckpoint:@"create pressed"];
+
     self.plan.total = [self.totalField.text intValue];
     if ([self.createTaskSwitch isOn]) {
         self.autoTask.taskCount = [self.numberOfTasksField.text integerValue];
@@ -122,10 +128,14 @@
 }
 
 - (void)switchCreateTask:(id)sender {
+    [TestFlight passCheckpoint:@"switch create task"];
+
     self.taskView.hidden = !self.createTaskSwitch.isOn;
 }
 
 - (void)startDateChanged:(UIDatePicker *)datePicker {
+    [TestFlight passCheckpoint:@"picked start date"];
+
     self.plan.startDate = datePicker.date;
     self.startDateField.text = [IUtils stringFromDate:datePicker.date];
 }
@@ -150,10 +160,14 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if ([pickerView isEqual:self.unitField.inputView]) {
+        [TestFlight passCheckpoint:@"picked unit"];
+
         NSString *unitName = [Unit getNameAtIndex:(NSUInteger) row];
         self.unitField.text = unitName;
         self.plan.unit = [Unit getValueForName:unitName];
     } else {
+        [TestFlight passCheckpoint:@"picked repeat"];
+
         NSString *repeatName = [Repeat getNameAtIndex:(NSUInteger) row];
         self.repeatField.text = repeatName;
         self.autoTask.repeat = [Repeat getValueForName:repeatName];

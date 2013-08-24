@@ -60,6 +60,10 @@
 		669C6F80A113378493FA8056 /* error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 669C6345C160394495EDFE82 /* error@2x.png */; };
 		669C6F8AD53ACF07F6EF415E /* Todo.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C60425EEBD36669DBB83F /* Todo.m */; };
 		669C6FED50B7522055BC1065 /* success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 669C67656EA5FE320050AAA0 /* success@2x.png */; };
+		AC46F4C917C864B100988C9E /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC46F4C317C864B100988C9E /* libTestFlight.a */; };
+		AC46F4CA17C864B100988C9E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AC46F4C417C864B100988C9E /* README.md */; };
+		AC46F4CB17C864B100988C9E /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = AC46F4C517C864B100988C9E /* release_notes.md */; };
+		AC46F4CD17C8650800988C9E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AC46F4CC17C8650800988C9E /* libz.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -142,6 +146,13 @@
 		669C6F9D61151C496519022D /* Progress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Progress.m; sourceTree = "<group>"; };
 		669C6FB679E148EAF374E83B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		669C6FC1C059418CC0CEEF86 /* CompleteTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompleteTaskViewController.m; sourceTree = "<group>"; };
+		AC46F4C317C864B100988C9E /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		AC46F4C417C864B100988C9E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		AC46F4C517C864B100988C9E /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
+		AC46F4C617C864B100988C9E /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
+		AC46F4C717C864B100988C9E /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
+		AC46F4C817C864B100988C9E /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		AC46F4CC17C8650800988C9E /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC46F4CD17C8650800988C9E /* libz.dylib in Frameworks */,
 				669C601792FE5564581951AD /* UIKit.framework in Frameworks */,
 				669C66075EBAC1C290D61358 /* Foundation.framework in Frameworks */,
 				669C62B2F87C4BA148EB28A9 /* CoreGraphics.framework in Frameworks */,
@@ -162,6 +174,7 @@
 				669C6D368FD4BA3775372E74 /* Security.framework in Frameworks */,
 				669C63948119BCA1EBFFEBFA /* StoreKit.framework in Frameworks */,
 				669C6B00083CEF4F0F3E2A45 /* SystemConfiguration.framework in Frameworks */,
+				AC46F4C917C864B100988C9E /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +184,7 @@
 		669C6009E476F1F59F63B382 = {
 			isa = PBXGroup;
 			children = (
+				AC46F4CC17C8650800988C9E /* libz.dylib */,
 				669C637C38F806E04EF0C8D9 /* Products */,
 				669C6CF9BE6284EB9AD32FF2 /* Frameworks */,
 				669C640A841024947F611A93 /* Trakr */,
@@ -225,6 +239,7 @@
 		669C640A841024947F611A93 /* Trakr */ = {
 			isa = PBXGroup;
 			children = (
+				AC46F4C217C864B100988C9E /* TestFlightSDK2.0.0 */,
 				669C68B336BA5DDE39935C6D /* Supporting Files */,
 				669C6FB679E148EAF374E83B /* AppDelegate.h */,
 				669C6E7E41A41B507DDE1747 /* AppDelegate.m */,
@@ -349,6 +364,19 @@
 			name = Task;
 			sourceTree = "<group>";
 		};
+		AC46F4C217C864B100988C9E /* TestFlightSDK2.0.0 */ = {
+			isa = PBXGroup;
+			children = (
+				AC46F4C317C864B100988C9E /* libTestFlight.a */,
+				AC46F4C417C864B100988C9E /* README.md */,
+				AC46F4C517C864B100988C9E /* release_notes.md */,
+				AC46F4C617C864B100988C9E /* TestFlight+AsyncLogging.h */,
+				AC46F4C717C864B100988C9E /* TestFlight+ManualSessions.h */,
+				AC46F4C817C864B100988C9E /* TestFlight.h */,
+			);
+			path = TestFlightSDK2.0.0;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -416,6 +444,8 @@
 				669C60EB9FDD627DBDCE4EA6 /* CreatePlanView.xib in Resources */,
 				669C6EA97EC4A0CB533AB439 /* CreateTargetView.xib in Resources */,
 				669C634531222F197207D528 /* CompleteTaskView.xib in Resources */,
+				AC46F4CA17C864B100988C9E /* README.md in Resources */,
+				AC46F4CB17C864B100988C9E /* release_notes.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,12 +531,17 @@
 		669C65B521AFFE996802C305 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = "\"${PROJECT_DIR}/\"/**";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Trakr/Trakr-Prefix.pch";
 				INFOPLIST_FILE = "Trakr/Trakr-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Trakr/TestFlightSDK2.0.0\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -547,6 +582,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Trakr/Trakr-Prefix.pch";
 				INFOPLIST_FILE = "Trakr/Trakr-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Trakr/TestFlightSDK2.0.0\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;

@@ -6,12 +6,14 @@
 
 #import "SignUpViewController.h"
 #import "IUtils.h"
+#import "TestFlight.h"
 
 @implementation SignUpViewController {
 
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [TestFlight passCheckpoint:@"sign up view load"];
 
     UILabel *label = [[UILabel alloc] init];
     label.text = @"Trakr";

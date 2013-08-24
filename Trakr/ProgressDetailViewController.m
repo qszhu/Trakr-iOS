@@ -9,6 +9,7 @@
 #import "IUtils.h"
 #import "Plan.h"
 #import "Task.h"
+#import "TestFlight.h"
 
 @implementation ProgressDetailViewController {
 
@@ -16,6 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [TestFlight passCheckpoint:@"progress detail view load"];
 
     [self.navigationItem setTitle:@"Tasks"];
 

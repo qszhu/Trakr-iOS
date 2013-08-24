@@ -16,6 +16,7 @@
 #import "Target.h"
 #import "CompleteTaskViewController.h"
 #import "Completion.h"
+#import "TestFlight.h"
 
 @interface TaskViewController ()
 @property(strong, nonatomic) NSArray *progresses;
@@ -34,6 +35,7 @@ static NSString *const kSectionFuture = @"This Week";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [TestFlight passCheckpoint:@"task view load"];
 
     [self.navigationItem setTitle:@"My Tasks"];
 }
@@ -172,6 +174,8 @@ static NSString *const kSectionFuture = @"This Week";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [TestFlight passCheckpoint:@"select todo"];
+
     Todo *todo = [[self todosAtSection:indexPath.section] objectAtIndex:(NSUInteger) indexPath.row];
     if (!todo.isCompleted) {
         CompleteTaskViewController *completeTaskVC = [[CompleteTaskViewController alloc] init];

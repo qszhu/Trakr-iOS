@@ -10,7 +10,7 @@
 #import "CreateTargetViewController.h"
 #import "Plan.h"
 #import "Target.h"
-
+#import "TestFlight.h"
 
 @implementation SelectTargetViewController {
 
@@ -30,6 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [TestFlight passCheckpoint:@"select target view load"];
 
     self.title = @"Select Target";
 
@@ -37,12 +38,16 @@
 }
 
 - (void)createTargetPressed {
+    [TestFlight passCheckpoint:@"create target pressed"];
+
     CreateTargetViewController *createTargetVC = [[CreateTargetViewController alloc] init];
     createTargetVC.createPlanVC = self.createPlanVC;
     [self.navigationController pushViewController:createTargetVC animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [TestFlight passCheckpoint:@"select target"];
+
     self.createPlanVC.plan.target = [[Target alloc] initWithParseObject:[self.objects objectAtIndex:(NSUInteger) indexPath.row]];
     [self.navigationController popViewControllerAnimated:YES];
 }

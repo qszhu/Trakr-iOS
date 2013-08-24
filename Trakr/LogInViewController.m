@@ -6,12 +6,14 @@
 
 #import "LogInViewController.h"
 #import "IUtils.h"
+#import "TestFlight.h"
 
 @implementation LogInViewController {
 
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [TestFlight passCheckpoint:@"log in view load"];
 
     UILabel *label = [[UILabel alloc] init];
     label.text = @"Trakr";
