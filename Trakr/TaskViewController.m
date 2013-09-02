@@ -35,10 +35,14 @@ static NSString *const kSectionFuture = @"This Week";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [TestFlight passCheckpoint:@"task view load"];
 
     [self.navigationItem setTitle:@"My Tasks"];
     [self refresh];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [TestFlight passCheckpoint:@"task view appear"];
 }
 
 - (void)refresh {

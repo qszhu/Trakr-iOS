@@ -26,7 +26,6 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [TestFlight passCheckpoint:@"complete task view load"];
 
     [self.navigationItem setTitle:@"Task"];
 
@@ -35,6 +34,11 @@
 
     self.targetNameLabel.text = self.todo.progress.plan.target.name;
     self.taskNameLabel.text = self.todo.task.name;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [TestFlight passCheckpoint:@"complete task view appear"];
 }
 
 - (NSString *)timerText {

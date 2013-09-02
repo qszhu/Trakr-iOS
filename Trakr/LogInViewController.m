@@ -13,7 +13,6 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [TestFlight passCheckpoint:@"log in view load"];
 
     UILabel *label = [[UILabel alloc] init];
     label.text = @"Trakr";
@@ -24,6 +23,11 @@
     [self.logInView setLogo:label];
 
     [self setDelegate:self];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [TestFlight passCheckpoint:@"log in view appear"];
 }
 
 - (BOOL) logInViewController:(PFLogInViewController *)logInController

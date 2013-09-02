@@ -17,7 +17,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [TestFlight passCheckpoint:@"progress detail view load"];
 
     [self.navigationItem setTitle:@"Tasks"];
 
@@ -27,6 +26,11 @@
     [query getObjectInBackgroundWithId:self.progressId
                                 target:self
                               selector:@selector(getProgress:error:)];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [TestFlight passCheckpoint:@"progress detail view appear"];
 }
 
 - (void)getProgress:(PFObject *)progress error:(NSError *)error {

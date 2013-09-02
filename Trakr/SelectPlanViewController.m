@@ -21,11 +21,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [TestFlight passCheckpoint:@"select plan view load"];
 
     self.title = @"Select Plan";
 
     [IUtils setRightBarAddButton:self action:@selector(createPlanPressed)];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [TestFlight passCheckpoint:@"select plan view appear"];
 }
 
 - (void)createPlanPressed {

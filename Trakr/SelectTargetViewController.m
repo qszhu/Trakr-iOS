@@ -30,11 +30,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [TestFlight passCheckpoint:@"select target view load"];
 
     self.title = @"Select Target";
 
     [IUtils setRightBarAddButton:self action:@selector(createTargetPressed)];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [TestFlight passCheckpoint:@"select target view appear"];
 }
 
 - (void)createTargetPressed {

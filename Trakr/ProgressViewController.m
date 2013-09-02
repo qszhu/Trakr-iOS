@@ -19,11 +19,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [TestFlight passCheckpoint:@"progress view load"];
 
     [self.navigationItem setTitle:@"My Progress"];
 
     [IUtils setRightBarAddButton:self action:@selector(newPlanPressed)];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [TestFlight passCheckpoint:@"progress view appear"];
 }
 
 - (void)newPlanPressed {

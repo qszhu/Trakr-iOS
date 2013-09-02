@@ -13,7 +13,6 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [TestFlight passCheckpoint:@"sign up view load"];
 
     UILabel *label = [[UILabel alloc] init];
     label.text = @"Trakr";
@@ -24,6 +23,11 @@
     [self.signUpView setLogo:label];
 
     [self setDelegate:self];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [TestFlight passCheckpoint:@"sign up view appear"];
 }
 
 - (BOOL)signUpViewController:(PFSignUpViewController *)signUpController

@@ -39,7 +39,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [TestFlight passCheckpoint:@"create plan view load"];
 
     self.title = @"Create Plan";
 
@@ -72,6 +71,11 @@
             initWithTarget:self
                     action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [TestFlight passCheckpoint:@"create plan view appear"];
 }
 
 - (void)dismissKeyboard {

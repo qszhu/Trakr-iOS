@@ -18,7 +18,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [TestFlight passCheckpoint:@"create target view pressed"];
 
     self.title = @"Create Target";
 
@@ -36,6 +35,11 @@
     [self.view addGestureRecognizer:tap];
 
     self.target = [[Target alloc] init];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [TestFlight passCheckpoint:@"create target view appear"];
 }
 
 - (void)dismissKeyboard {
