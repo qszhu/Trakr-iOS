@@ -17,6 +17,7 @@
 #import "CompleteTaskViewController.h"
 #import "Completion.h"
 #import "TestFlight.h"
+#import "ODRefreshControl.h"
 
 @interface TaskViewController ()
 @property(strong, nonatomic) NSArray *progresses;
@@ -24,6 +25,7 @@
 @property(strong, nonatomic) NSArray *todayTodos;
 @property(strong, nonatomic) NSArray *tomorrowTodos;
 @property(strong, nonatomic) NSArray *futureTodos;
+@property(strong, nonatomic) ODRefreshControl *rc;
 @end
 
 static NSString *const kSectionLate = @"Late";
@@ -37,12 +39,18 @@ static NSString *const kSectionFuture = @"This Week";
     [super viewDidLoad];
 
     [self.navigationItem setTitle:@"My Tasks"];
+    self.rc = [[ODRefreshControl alloc] initInScrollView:self.tableView];
+    [self.rc addTarget:self action:@selector(pullToRefresh:) forControlEvents:UIControlEventValueChanged];
     [self refresh];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [TestFlight passCheckpoint:@"task view appear"];
+}
+
+- (void)pullToRefresh:(ODRefreshControl *)refreshControl {
+    [self refresh];
 }
 
 - (void)refresh {
@@ -75,6 +83,8 @@ static NSString *const kSectionFuture = @"This Week";
     [self reloadTasks];
 
     [self.tableView reloadData];
+    [self.rc endRefreshing];
+    [TestFlight passCheckpoint:@"task list reloaded"];
 }
 
 - (NSArray *)getTodoForType:(TaskType)taskType {

@@ -60,6 +60,7 @@
 		669C6F80A113378493FA8056 /* error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 669C6345C160394495EDFE82 /* error@2x.png */; };
 		669C6F8AD53ACF07F6EF415E /* Todo.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C60425EEBD36669DBB83F /* Todo.m */; };
 		669C6FED50B7522055BC1065 /* success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 669C67656EA5FE320050AAA0 /* success@2x.png */; };
+		AC46D95F17D630980070F5A9 /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = AC46D95E17D630980070F5A9 /* ODRefreshControl.m */; };
 		AC46F4C917C864B100988C9E /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC46F4C317C864B100988C9E /* libTestFlight.a */; };
 		AC46F4CA17C864B100988C9E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AC46F4C417C864B100988C9E /* README.md */; };
 		AC46F4CB17C864B100988C9E /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = AC46F4C517C864B100988C9E /* release_notes.md */; };
@@ -146,6 +147,8 @@
 		669C6F9D61151C496519022D /* Progress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Progress.m; sourceTree = "<group>"; };
 		669C6FB679E148EAF374E83B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		669C6FC1C059418CC0CEEF86 /* CompleteTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompleteTaskViewController.m; sourceTree = "<group>"; };
+		AC46D95D17D630980070F5A9 /* ODRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRefreshControl.h; sourceTree = "<group>"; };
+		AC46D95E17D630980070F5A9 /* ODRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRefreshControl.m; sourceTree = "<group>"; };
 		AC46F4C317C864B100988C9E /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		AC46F4C417C864B100988C9E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		AC46F4C517C864B100988C9E /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
@@ -239,6 +242,7 @@
 		669C640A841024947F611A93 /* Trakr */ = {
 			isa = PBXGroup;
 			children = (
+				AC46D95C17D630980070F5A9 /* ODRefreshControl */,
 				AC46F4C217C864B100988C9E /* TestFlightSDK2.0.0 */,
 				669C68B336BA5DDE39935C6D /* Supporting Files */,
 				669C6FB679E148EAF374E83B /* AppDelegate.h */,
@@ -364,6 +368,15 @@
 			name = Task;
 			sourceTree = "<group>";
 		};
+		AC46D95C17D630980070F5A9 /* ODRefreshControl */ = {
+			isa = PBXGroup;
+			children = (
+				AC46D95D17D630980070F5A9 /* ODRefreshControl.h */,
+				AC46D95E17D630980070F5A9 /* ODRefreshControl.m */,
+			);
+			path = ODRefreshControl;
+			sourceTree = "<group>";
+		};
 		AC46F4C217C864B100988C9E /* TestFlightSDK2.0.0 */ = {
 			isa = PBXGroup;
 			children = (
@@ -480,6 +493,7 @@
 				669C6F8AD53ACF07F6EF415E /* Todo.m in Sources */,
 				669C67DED70B2FB99B1493CD /* TaskViewController.m in Sources */,
 				669C608BEBCC8FA23DC54901 /* CompleteTaskViewController.m in Sources */,
+				AC46D95F17D630980070F5A9 /* ODRefreshControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
