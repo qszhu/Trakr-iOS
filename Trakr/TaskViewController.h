@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TaskViewController : UITableViewController
+@interface TaskViewController : UITableViewController <UIAlertViewDelegate>
 
 @end

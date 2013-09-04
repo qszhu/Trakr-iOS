@@ -18,6 +18,7 @@
 #import "Completion.h"
 #import "TestFlight.h"
 #import "ODRefreshControl.h"
+#import "Setting.h"
 
 @interface TaskViewController ()
 @property(strong, nonatomic) NSArray *progresses;
@@ -26,6 +27,7 @@
 @property(strong, nonatomic) NSArray *tomorrowTodos;
 @property(strong, nonatomic) NSArray *futureTodos;
 @property(strong, nonatomic) ODRefreshControl *rc;
+@property(strong, nonatomic) Todo *todo;
 @end
 
 static NSString *const kSectionLate = @"Late";
@@ -164,6 +166,7 @@ static NSString *const kSectionFuture = @"This Week";
     NSArray *todos = [self todosAtSection:indexPath.section];
     Todo *todo = [todos objectAtIndex:(NSUInteger) indexPath.row];
     cell.textLabel.text = todo.progress.plan.target.name;
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     if (!todo.isCompleted) {
         NSDate *taskDate = [IUtils dateByOffset:todo.task.offset fromDate:todo.progress.startDate];
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ : %@",
@@ -187,10 +190,49 @@ static NSString *const kSectionFuture = @"This Week";
     [TestFlight passCheckpoint:@"select todo"];
 
     Todo *todo = [[self todosAtSection:indexPath.section] objectAtIndex:(NSUInteger) indexPath.row];
-    if (!todo.isCompleted) {
-        CompleteTaskViewController *completeTaskVC = [[CompleteTaskViewController alloc] init];
-        completeTaskVC.todo = todo;
-        [self presentViewController:completeTaskVC animated:YES completion:nil];
+    if (todo.isCompleted) {
+        return;
+    }
+    if ([Setting taskShouldShowTimer]) {
+        [self showCompleteTaskTimer:todo];
+    } else {
+        [self showCompleteTaskDialog:todo];
+    }
+}
+
+- (void)showCompleteTaskTimer:(Todo *)todo {
+    CompleteTaskViewController *completeTaskVC = [[CompleteTaskViewController alloc] init];
+    completeTaskVC.todo = todo;
+    [self presentViewController:completeTaskVC animated:YES completion:nil];
+}
+
+- (void)showCompleteTaskDialog:(Todo *)todo {
+    self.todo = todo;
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                    message:@"Complete this task?"
+                                                   delegate:self
+                                          cancelButtonTitle:@"No"
+                                          otherButtonTitles:@"Yes", nil];
+    [alert show];
+}
+
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex != alertView.cancelButtonIndex) {
+        // TODO: DRY
+        Completion *completion = [[Completion alloc] init];
+        completion.task = self.todo.task;
+        completion.cost = 0;
+        completion.date = [NSDate date];
+        self.todo.progress.completions = [self.todo.progress.completions arrayByAddingObject:completion];
+        [SVProgressHUD showWithStatus:@"Completing task..." maskType:SVProgressHUDMaskTypeGradient];
+        [self.todo.progress saveWithTarget:self selector:@selector(saveProgress:error:)];
+    }
+}
+
+- (void)saveProgress:(NSNumber *)result error:(NSError *)error {
+    [SVProgressHUD dismiss];
+    if (![result boolValue]) {
+        [IUtils showErrorDialogWithTitle:@"Cannot complete task" error:error];
     }
 }
 

@@ -60,6 +60,9 @@
 		669C6F80A113378493FA8056 /* error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 669C6345C160394495EDFE82 /* error@2x.png */; };
 		669C6F8AD53ACF07F6EF415E /* Todo.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C60425EEBD36669DBB83F /* Todo.m */; };
 		669C6FED50B7522055BC1065 /* success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 669C67656EA5FE320050AAA0 /* success@2x.png */; };
+		AC342F5F17D7833F007F2465 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC342F5E17D7833F007F2465 /* Settings.storyboard */; };
+		AC342F6217D78625007F2465 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC342F6117D78625007F2465 /* SettingsViewController.m */; };
+		AC342F6517D79208007F2465 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = AC342F6417D79208007F2465 /* Setting.m */; };
 		AC46D95F17D630980070F5A9 /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = AC46D95E17D630980070F5A9 /* ODRefreshControl.m */; };
 		AC46F4C917C864B100988C9E /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC46F4C317C864B100988C9E /* libTestFlight.a */; };
 		AC46F4CA17C864B100988C9E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AC46F4C417C864B100988C9E /* README.md */; };
@@ -147,6 +150,11 @@
 		669C6F9D61151C496519022D /* Progress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Progress.m; sourceTree = "<group>"; };
 		669C6FB679E148EAF374E83B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		669C6FC1C059418CC0CEEF86 /* CompleteTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompleteTaskViewController.m; sourceTree = "<group>"; };
+		AC342F5E17D7833F007F2465 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		AC342F6017D78625007F2465 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		AC342F6117D78625007F2465 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		AC342F6317D79208007F2465 /* Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Setting.h; sourceTree = "<group>"; };
+		AC342F6417D79208007F2465 /* Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Setting.m; sourceTree = "<group>"; };
 		AC46D95D17D630980070F5A9 /* ODRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRefreshControl.h; sourceTree = "<group>"; };
 		AC46D95E17D630980070F5A9 /* ODRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRefreshControl.m; sourceTree = "<group>"; };
 		AC46F4C317C864B100988C9E /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
@@ -197,6 +205,8 @@
 		669C6124F7CAD5489AE5A84E /* Target */ = {
 			isa = PBXGroup;
 			children = (
+				669C6E6F25CF97484E17C29A /* Target.h */,
+				669C68609C9121A0C518433D /* Target.m */,
 				669C67E26DC8A1DE183BCA2F /* CreateTargetView.xib */,
 				669C6E62172C6F19B042852A /* CreateTargetViewController.h */,
 				669C6689B8DF5798810990E9 /* CreateTargetViewController.m */,
@@ -204,31 +214,6 @@
 				669C690B1695AE42D802F2CD /* SelectTargetViewController.m */,
 			);
 			name = Target;
-			sourceTree = "<group>";
-		};
-		669C626E1B7D9F68F224AAAE /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				669C6759ACE59EBC9FEAD50F /* AutoTask.h */,
-				669C649B358C4B5C6ADCAE48 /* AutoTask.m */,
-				669C6D392BAB69945574A357 /* Completion.h */,
-				669C6A1ADD2FB97A51EA863E /* Completion.m */,
-				669C6C4DDF0CD5EFF4CA054C /* Plan.h */,
-				669C6B720A4E1A90CF9E1044 /* Plan.m */,
-				669C6D3E388182242553FB96 /* Progress.h */,
-				669C6F9D61151C496519022D /* Progress.m */,
-				669C6D7B7033006607CD5ADD /* Repeat.h */,
-				669C6DFBB902E7F81EC700E8 /* Repeat.m */,
-				669C6E6F25CF97484E17C29A /* Target.h */,
-				669C68609C9121A0C518433D /* Target.m */,
-				669C61B8AE5F0E83A346594E /* Task.h */,
-				669C652F84308E43F29207E3 /* Task.m */,
-				669C6C567F7DEB8C2DD0C6A4 /* Unit.h */,
-				669C668A797EF87FAF24E132 /* Unit.m */,
-				669C60425EEBD36669DBB83F /* Todo.m */,
-				669C64B0DA7D28D43AE11C5C /* Todo.h */,
-			);
-			name = Model;
 			sourceTree = "<group>";
 		};
 		669C637C38F806E04EF0C8D9 /* Products */ = {
@@ -242,6 +227,7 @@
 		669C640A841024947F611A93 /* Trakr */ = {
 			isa = PBXGroup;
 			children = (
+				AC342F5D17D78319007F2465 /* Setting */,
 				AC46D95C17D630980070F5A9 /* ODRefreshControl */,
 				AC46F4C217C864B100988C9E /* TestFlightSDK2.0.0 */,
 				669C68B336BA5DDE39935C6D /* Supporting Files */,
@@ -261,7 +247,6 @@
 				669C693DCCB83EC6E9848D8E /* Login */,
 				669C6B7CA27907A89900CBCE /* Plan */,
 				669C6124F7CAD5489AE5A84E /* Target */,
-				669C626E1B7D9F68F224AAAE /* Model */,
 				669C6E5E7F86EDDA8D82FF8E /* Task */,
 			);
 			path = Trakr;
@@ -316,6 +301,14 @@
 		669C6B7CA27907A89900CBCE /* Plan */ = {
 			isa = PBXGroup;
 			children = (
+				669C6759ACE59EBC9FEAD50F /* AutoTask.h */,
+				669C649B358C4B5C6ADCAE48 /* AutoTask.m */,
+				669C6D7B7033006607CD5ADD /* Repeat.h */,
+				669C6DFBB902E7F81EC700E8 /* Repeat.m */,
+				669C6C567F7DEB8C2DD0C6A4 /* Unit.h */,
+				669C668A797EF87FAF24E132 /* Unit.m */,
+				669C6C4DDF0CD5EFF4CA054C /* Plan.h */,
+				669C6B720A4E1A90CF9E1044 /* Plan.m */,
 				669C66A09B041099967AA86B /* SelectPlanViewController.h */,
 				669C68996E88CB9BB848EEB7 /* SelectPlanViewController.m */,
 				669C6F35AE2A37CC618A9021 /* CreatePlanView.xib */,
@@ -328,6 +321,8 @@
 		669C6BACA1A9EAE6A7DE467A /* Progress */ = {
 			isa = PBXGroup;
 			children = (
+				669C6D3E388182242553FB96 /* Progress.h */,
+				669C6F9D61151C496519022D /* Progress.m */,
 				669C6B65DC8C7ED739442409 /* ProgressDetailViewController.h */,
 				669C69D9355E5B2BD213AA10 /* ProgressDetailViewController.m */,
 				669C6BF46C68B9F510FAC4FF /* ProgressViewController.h */,
@@ -359,6 +354,12 @@
 		669C6E5E7F86EDDA8D82FF8E /* Task */ = {
 			isa = PBXGroup;
 			children = (
+				669C6D392BAB69945574A357 /* Completion.h */,
+				669C6A1ADD2FB97A51EA863E /* Completion.m */,
+				669C61B8AE5F0E83A346594E /* Task.h */,
+				669C652F84308E43F29207E3 /* Task.m */,
+				669C60425EEBD36669DBB83F /* Todo.m */,
+				669C64B0DA7D28D43AE11C5C /* Todo.h */,
 				669C6915A703FD74C75B8139 /* TaskViewController.h */,
 				669C66757621D01BABBA4283 /* TaskViewController.m */,
 				669C6FC1C059418CC0CEEF86 /* CompleteTaskViewController.m */,
@@ -366,6 +367,18 @@
 				669C652A5F120E91D407C357 /* CompleteTaskView.xib */,
 			);
 			name = Task;
+			sourceTree = "<group>";
+		};
+		AC342F5D17D78319007F2465 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				AC342F5E17D7833F007F2465 /* Settings.storyboard */,
+				AC342F6017D78625007F2465 /* SettingsViewController.h */,
+				AC342F6117D78625007F2465 /* SettingsViewController.m */,
+				AC342F6317D79208007F2465 /* Setting.h */,
+				AC342F6417D79208007F2465 /* Setting.m */,
+			);
+			name = Setting;
 			sourceTree = "<group>";
 		};
 		AC46D95C17D630980070F5A9 /* ODRefreshControl */ = {
@@ -459,6 +472,7 @@
 				669C634531222F197207D528 /* CompleteTaskView.xib in Resources */,
 				AC46F4CA17C864B100988C9E /* README.md in Resources */,
 				AC46F4CB17C864B100988C9E /* release_notes.md in Resources */,
+				AC342F5F17D7833F007F2465 /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,6 +508,8 @@
 				669C67DED70B2FB99B1493CD /* TaskViewController.m in Sources */,
 				669C608BEBCC8FA23DC54901 /* CompleteTaskViewController.m in Sources */,
 				AC46D95F17D630980070F5A9 /* ODRefreshControl.m in Sources */,
+				AC342F6217D78625007F2465 /* SettingsViewController.m in Sources */,
+				AC342F6517D79208007F2465 /* Setting.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
