@@ -63,6 +63,7 @@
 		AC342F5F17D7833F007F2465 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC342F5E17D7833F007F2465 /* Settings.storyboard */; };
 		AC342F6217D78625007F2465 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC342F6117D78625007F2465 /* SettingsViewController.m */; };
 		AC342F6517D79208007F2465 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = AC342F6417D79208007F2465 /* Setting.m */; };
+		AC43EE4C17D8DA7E00F950C6 /* TTTTimeIntervalFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = AC43EE4317D8DA7E00F950C6 /* TTTTimeIntervalFormatter.m */; };
 		AC46D95F17D630980070F5A9 /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = AC46D95E17D630980070F5A9 /* ODRefreshControl.m */; };
 		AC46F4C917C864B100988C9E /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC46F4C317C864B100988C9E /* libTestFlight.a */; };
 		AC46F4CA17C864B100988C9E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AC46F4C417C864B100988C9E /* README.md */; };
@@ -155,6 +156,8 @@
 		AC342F6117D78625007F2465 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		AC342F6317D79208007F2465 /* Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Setting.h; sourceTree = "<group>"; };
 		AC342F6417D79208007F2465 /* Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Setting.m; sourceTree = "<group>"; };
+		AC43EE4217D8DA7E00F950C6 /* TTTTimeIntervalFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTTimeIntervalFormatter.h; sourceTree = "<group>"; };
+		AC43EE4317D8DA7E00F950C6 /* TTTTimeIntervalFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTTimeIntervalFormatter.m; sourceTree = "<group>"; };
 		AC46D95D17D630980070F5A9 /* ODRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRefreshControl.h; sourceTree = "<group>"; };
 		AC46D95E17D630980070F5A9 /* ODRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRefreshControl.m; sourceTree = "<group>"; };
 		AC46F4C317C864B100988C9E /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
@@ -227,6 +230,7 @@
 		669C640A841024947F611A93 /* Trakr */ = {
 			isa = PBXGroup;
 			children = (
+				AC43EE3917D8DA7E00F950C6 /* FormatterKit */,
 				AC342F5D17D78319007F2465 /* Setting */,
 				AC46D95C17D630980070F5A9 /* ODRefreshControl */,
 				AC46F4C217C864B100988C9E /* TestFlightSDK2.0.0 */,
@@ -381,6 +385,15 @@
 			name = Setting;
 			sourceTree = "<group>";
 		};
+		AC43EE3917D8DA7E00F950C6 /* FormatterKit */ = {
+			isa = PBXGroup;
+			children = (
+				AC43EE4217D8DA7E00F950C6 /* TTTTimeIntervalFormatter.h */,
+				AC43EE4317D8DA7E00F950C6 /* TTTTimeIntervalFormatter.m */,
+			);
+			path = FormatterKit;
+			sourceTree = "<group>";
+		};
 		AC46D95C17D630980070F5A9 /* ODRefreshControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -510,6 +523,7 @@
 				AC46D95F17D630980070F5A9 /* ODRefreshControl.m in Sources */,
 				AC342F6217D78625007F2465 /* SettingsViewController.m in Sources */,
 				AC342F6517D79208007F2465 /* Setting.m in Sources */,
+				AC43EE4C17D8DA7E00F950C6 /* TTTTimeIntervalFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

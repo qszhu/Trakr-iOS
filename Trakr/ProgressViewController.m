@@ -14,6 +14,9 @@
 #import "Plan.h"
 #import "Target.h"
 #import "TestFlight.h"
+#import "TTTTimeIntervalFormatter.h"
+#import "Task.h"
+#import "Completion.h"
 
 @implementation ProgressViewController
 
@@ -46,7 +49,68 @@
     }
     [query includeKey:@"plan"];
     [query includeKey:@"plan.target"];
+    [query includeKey:@"plan.tasks"];
+    [query includeKey:@"completions.task"];
     return query;
+}
+
+- (NSDate *)getFinishDate:(Progress *)progress {
+    int offset = 0;
+    for (Task *task in progress.plan.tasks) {
+        if (task.offset > offset) {
+            offset = task.offset;
+        }
+    }
+    return [IUtils dateByOffset:offset fromDate:progress.startDate];
+}
+
+- (NSString *)formatFinishDate:(Progress *)progress {
+    NSDate *finishDate = [self getFinishDate:progress];
+    TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
+    NSTimeInterval interval = [finishDate timeIntervalSinceDate:[NSDate date]];
+    NSString *str = [timeIntervalFormatter stringForTimeInterval:interval];
+    if (interval <= 0) {
+        return [NSString stringWithFormat:@"finished %@", str];
+    }
+    return [NSString stringWithFormat:@"finishes in %@", str];
+}
+
+- (NSUInteger)getLateDays:(Progress *)progress {
+    int offset = 0;
+    for (Task *task in progress.plan.tasks) {
+        for (Completion *completion in progress.completions) {
+            if (completion.task.getParseObject.objectId == task.getParseObject.objectId) {
+                if (task.offset > offset) {
+                    offset = task.offset;
+                }
+            }
+        }
+    }
+    int nextOffset = NSIntegerMax;
+    for (Task *task in progress.plan.tasks) {
+        if (task.offset >= offset && task.offset < nextOffset) {
+            nextOffset = task.offset;
+        }
+    }
+    NSDate *nextCompleteDate = [IUtils dateByOffset:nextOffset fromDate:progress.startDate];
+    return [IUtils daysBetween:nextCompleteDate and:[NSDate date]];
+}
+
+- (NSString *)formatLateDays:(Progress *)progress {
+    NSUInteger lateDays = [self getLateDays:progress];
+    NSLog(@"late days: %d", lateDays);
+    if (lateDays <= 0) {
+        return @"";
+    }
+    return [NSString stringWithFormat:@"%d days late", lateDays];
+}
+
+- (NSString *)getProgressStatus:(Progress *)progress {
+    NSString *lateStr = [self formatLateDays:progress];
+    if ([lateStr isEqualToString:@""]) {
+        return [self formatFinishDate:progress];
+    }
+    return lateStr;
 }
 
 - (PFTableViewCell *)tableView:(UITableView *)tableView
@@ -62,7 +126,8 @@
 
     Progress *progress = [[Progress alloc] initWithParseObject:object];
     cell.textLabel.text = progress.plan.target.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d/%d tasks", progress.completions.count, progress.plan.tasks.count];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d/%d tasks, %@",
+                                 progress.completions.count, progress.plan.tasks.count, [self getProgressStatus:progress]];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;
