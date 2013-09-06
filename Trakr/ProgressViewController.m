@@ -98,7 +98,6 @@
 
 - (NSString *)formatLateDays:(Progress *)progress {
     NSUInteger lateDays = [self getLateDays:progress];
-    NSLog(@"late days: %d", lateDays);
     if (lateDays <= 0) {
         return @"";
     }

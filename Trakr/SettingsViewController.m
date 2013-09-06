@@ -8,6 +8,7 @@
 
 #import "SettingsViewController.h"
 #import "Setting.h"
+#import "TestFlight.h"
 
 @interface SettingsViewController ()
 
@@ -15,7 +16,20 @@
 
 @implementation SettingsViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    [self.navigationItem setTitle:@"Settings"];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [TestFlight passCheckpoint:@"settings view appear"];
+}
+
 - (IBAction)showTimerSwitched:(id)sender {
+    [TestFlight passCheckpoint:@"settings timer switched"];
+
     [Setting setTaskShouldShowTimer:[self.showTimerSwitch isOn]];
 }
 
