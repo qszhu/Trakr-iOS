@@ -9,6 +9,7 @@
 #import "IUtils.h"
 #import "Plan.h"
 #import "Task.h"
+#import "Completion.h"
 #import "TestFlight.h"
 
 @implementation ProgressDetailViewController {
@@ -22,7 +23,7 @@
 
     PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([Progress class])];
     [query includeKey:@"plan.tasks"];
-    [query includeKey:@"completions"];
+    [query includeKey:@"completions.task"];
     [query getObjectInBackgroundWithId:self.progressId
                                 target:self
                               selector:@selector(getProgress:error:)];
@@ -49,19 +50,36 @@
     return self.progress.plan.tasks.count;
 }
 
+- (NSString *)getTaskStatus:(Task *)task {
+    NSDate *taskDate = [task getDate:self.progress.startDate];
+    for (Completion *completion in self.progress.completions) {
+        if ([completion.task.getParseObject.objectId isEqualToString:task.getParseObject.objectId]) {
+            return [NSString stringWithFormat:@" / %@", [IUtils stringFromDate:taskDate]];
+        }
+    }
+    NSInteger lateDays = [IUtils daysBetween:taskDate and:[NSDate date]];
+    if (lateDays > 0) {
+        return [NSString stringWithFormat:@" / %d days late", lateDays];
+    }
+    return @"";
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.progress == nil) {
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];
     }
+
     static NSString *cellIdentifier = @"cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
+
     Task *task = [self.progress.plan.tasks objectAtIndex:(NSUInteger)indexPath.row];
     cell.textLabel.text = task.name;
-    NSDate *taskDate = [IUtils dateByOffset:task.offset fromDate:self.progress.startDate];
-    cell.detailTextLabel.text = [IUtils stringFromDate:taskDate];
+
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%@", [IUtils stringFromDate:[task getDate:self.progress.startDate]], [self getTaskStatus:task]];
+
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }

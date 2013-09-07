@@ -60,6 +60,10 @@ static NSString *const kNameKey = @"name";
     return self.parseObject;
 }
 
+- (NSDate *)getDate:(NSDate *)startDate {
+    return [IUtils dateByOffset:self.offset fromDate:startDate];
+}
+
 - (NSError *)getValidationError {
     if (self.step < 0) {
         return [IUtils errorWithCode:400 message:@"Task step cannot be negative"];

@@ -13,10 +13,10 @@
 #import "SelectPlanViewController.h"
 #import "Plan.h"
 #import "Target.h"
-#import "TestFlight.h"
 #import "TTTTimeIntervalFormatter.h"
 #import "Task.h"
 #import "Completion.h"
+#import "TestFlight.h"
 
 @implementation ProgressViewController
 
@@ -47,7 +47,6 @@
     if (user != nil) {
         [query whereKey:@"creator" equalTo:user];
     }
-    [query includeKey:@"plan"];
     [query includeKey:@"plan.target"];
     [query includeKey:@"plan.tasks"];
     [query includeKey:@"completions.task"];
@@ -79,7 +78,7 @@
     int offset = 0;
     for (Task *task in progress.plan.tasks) {
         for (Completion *completion in progress.completions) {
-            if (completion.task.getParseObject.objectId == task.getParseObject.objectId) {
+            if ([completion.task.getParseObject.objectId isEqualToString:task.getParseObject.objectId]) {
                 if (task.offset > offset) {
                     offset = task.offset;
                 }

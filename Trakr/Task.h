@@ -17,6 +17,8 @@
 
 - (PFObject *)getParseObject;
 
+- (NSDate *)getDate:(NSDate *)startDate;
+
 - (NSError *)getValidationError;
 
 - (void)saveWithTarget:(id)target selector:(SEL)selector;
