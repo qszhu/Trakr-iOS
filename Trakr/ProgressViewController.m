@@ -16,7 +16,13 @@
 #import "TTTTimeIntervalFormatter.h"
 #import "Task.h"
 #import "Completion.h"
+#import "SVProgressHUD.h"
 #import "TestFlight.h"
+
+
+@interface ProgressViewController()
+@property (strong, nonatomic) NSIndexPath *selectedIndex;
+@end
 
 @implementation ProgressViewController
 
@@ -138,6 +144,29 @@
     PFObject *progress = [self.objects objectAtIndex:indexPath.row];
     progressDetailVC.progressId = progress.objectId;
     [self.navigationController pushViewController:progressDetailVC animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        self.selectedIndex = indexPath;
+        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Are you sure to delete this progress?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete" otherButtonTitles:nil];
+        [sheet showFromTabBar:self.tabBarController.tabBar];
+    }
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex != actionSheet.cancelButtonIndex) {
+        [SVProgressHUD showWithStatus:@"Deleting progress..." maskType:SVProgressHUDMaskTypeGradient];
+        [[self.objects objectAtIndex:self.selectedIndex.row] deleteInBackgroundWithTarget:self selector:@selector(deleteProgressWithResult:error:)];
+    }
+}
+
+- (void)deleteProgressWithResult:(NSNumber *)result error:(NSError *)error {
+    [SVProgressHUD dismiss];
+    if (![result boolValue]) {
+        [IUtils showErrorDialogWithTitle:@"Cannot delete progress" error:error];
+    }
+    [self loadObjects];
 }
 
 @end

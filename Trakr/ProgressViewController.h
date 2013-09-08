@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface ProgressViewController : PFQueryTableViewController
+@interface ProgressViewController : PFQueryTableViewController <UIActionSheetDelegate>
 
 @end
