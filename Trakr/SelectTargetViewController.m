@@ -76,7 +76,7 @@
                                                   cancelButtonTitle:@"Cancel"
                                              destructiveButtonTitle:@"Delete"
                                                   otherButtonTitles:nil];
-        [sheet showFromTabBar:self.tabBarController.tabBar];
+        [sheet showInView:self.view];
     }
 }
 
@@ -93,6 +93,7 @@
     [SVProgressHUD dismiss];
     if (![result boolValue]) {
         [IUtils showErrorDialogWithTitle:@"Cannot delete target" error:error];
+        return;
     }
     [self loadObjects];
 }

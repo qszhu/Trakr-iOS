@@ -10,6 +10,6 @@
 @class ProgressViewController;
 
 
-@interface SelectPlanViewController : PFQueryTableViewController
+@interface SelectPlanViewController : PFQueryTableViewController <UIActionSheetDelegate>
 @property(strong, nonatomic) ProgressViewController *progressVC;
 @end

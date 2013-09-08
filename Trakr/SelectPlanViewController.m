@@ -16,6 +16,10 @@
 #import "Const.h"
 #import "TestFlight.h"
 
+@interface SelectPlanViewController()
+@property (strong, nonatomic) NSIndexPath *selectedIndex;
+@end
+
 @implementation SelectPlanViewController {
 
 }
@@ -89,5 +93,36 @@
         [IUtils showErrorDialogWithTitle:@"Cannot create progress" error:error];
     }
 }
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        self.selectedIndex = indexPath;
+        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Are you sure to delete this plan?"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                             destructiveButtonTitle:@"Delete"
+                                                  otherButtonTitles:nil];
+        [sheet showFromTabBar:self.tabBarController.tabBar];
+    }
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex != actionSheet.cancelButtonIndex) {
+        [TestFlight passCheckpoint:@"delete plan"];
+
+        [SVProgressHUD showWithStatus:@"Deleting plan..." maskType:SVProgressHUDMaskTypeGradient];
+        [[self.objects objectAtIndex:self.selectedIndex.row] deleteInBackgroundWithTarget:self selector:@selector(deletePlanWithResult:error:)];
+    }
+}
+
+- (void)deletePlanWithResult:(NSNumber *)result error:(NSError *)error {
+    [SVProgressHUD dismiss];
+    if (![result boolValue]) {
+        [IUtils showErrorDialogWithTitle:@"Cannot delete plan" error:error];
+        return;
+    }
+    [self loadObjects];
+}
+
 
 @end

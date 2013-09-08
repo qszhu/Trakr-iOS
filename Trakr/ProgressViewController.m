@@ -171,6 +171,7 @@
     [SVProgressHUD dismiss];
     if (![result boolValue]) {
         [IUtils showErrorDialogWithTitle:@"Cannot delete progress" error:error];
+        return;
     }
     [self loadObjects];
 }
