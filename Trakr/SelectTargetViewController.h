@@ -9,6 +9,6 @@
 
 @class CreatePlanViewController;
 
-@interface SelectTargetViewController : PFQueryTableViewController
+@interface SelectTargetViewController : PFQueryTableViewController <UIActionSheetDelegate>
 @property(strong, nonatomic) CreatePlanViewController *createPlanVC;
 @end

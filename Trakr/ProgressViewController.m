@@ -149,7 +149,11 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         self.selectedIndex = indexPath;
-        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Are you sure to delete this progress?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete" otherButtonTitles:nil];
+        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Are you sure to delete this progress?"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                             destructiveButtonTitle:@"Delete"
+                                                  otherButtonTitles:nil];
         [sheet showFromTabBar:self.tabBarController.tabBar];
     }
 }
