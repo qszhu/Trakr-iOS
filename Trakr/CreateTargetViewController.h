@@ -9,12 +9,13 @@
 
 @class Target;
 
-@interface CreateTargetViewController : UIViewController
-@property(strong, nonatomic) IBOutlet UITextField *nameField;
-@property(strong, nonatomic) IBOutlet UITextView *descriptionText;
-@property(strong, nonatomic) IBOutlet UIButton *createButton;
+@interface CreateTargetViewController : UITableViewController
+@property (strong, nonatomic) IBOutlet UITextField *nameField;
+@property (strong, nonatomic) IBOutlet UITextField *summaryField;
+
 @property(strong, nonatomic) Target *target;
 @property(strong, nonatomic) CreatePlanViewController *createPlanVC;
 
-- (IBAction)createPressed:(id)sender;
+- (IBAction)donePressed:(id)sender;
+- (IBAction)cancelPressed:(id)sender;
 @end

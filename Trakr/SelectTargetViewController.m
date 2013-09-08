@@ -10,6 +10,7 @@
 #import "CreateTargetViewController.h"
 #import "Plan.h"
 #import "Target.h"
+#import "Const.h"
 #import "TestFlight.h"
 
 @implementation SelectTargetViewController {
@@ -32,8 +33,13 @@
     [super viewDidLoad];
 
     self.title = @"Select Target";
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didCreateTarget:) name:kDidCreateTargetNotification object:nil];
 
     [IUtils setRightBarAddButton:self action:@selector(createTargetPressed)];
+}
+
+- (void)didCreateTarget:(NSNotification *)notification {
+    [self loadObjects];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -44,9 +50,9 @@
 - (void)createTargetPressed {
     [TestFlight passCheckpoint:@"create target pressed"];
 
-    CreateTargetViewController *createTargetVC = [[CreateTargetViewController alloc] init];
-    createTargetVC.createPlanVC = self.createPlanVC;
-    [self.navigationController pushViewController:createTargetVC animated:YES];
+    UIStoryboard *createTargetStoryboard = [UIStoryboard storyboardWithName:@"CreateTarget" bundle:nil];
+    UINavigationController *createTargetNav = [createTargetStoryboard instantiateInitialViewController];
+    [self presentViewController:createTargetNav animated:YES completion:nil];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

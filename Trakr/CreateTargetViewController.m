@@ -4,12 +4,12 @@
 //
 
 
-#import <QuartzCore/QuartzCore.h>
 #import "CreateTargetViewController.h"
 #import "IUtils.h"
 #import "Target.h"
 #import "Plan.h"
 #import "SVProgressHUD.h"
+#import "Const.h"
 #import "TestFlight.h"
 
 @implementation CreateTargetViewController {
@@ -20,13 +20,6 @@
     [super viewDidLoad];
 
     self.title = @"Create Target";
-
-    // border around text view
-    [self.descriptionText.layer setBackgroundColor:[[UIColor whiteColor] CGColor]];
-    [self.descriptionText.layer setBorderColor:[[UIColor grayColor] CGColor]];
-    [self.descriptionText.layer setBorderWidth:1.0];
-    [self.descriptionText.layer setCornerRadius:8.0f];
-    [self.descriptionText.layer setMasksToBounds:YES];
 
     // tab to dismiss keyboard
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
@@ -39,31 +32,40 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+
     [TestFlight passCheckpoint:@"create target view appear"];
 }
 
 - (void)dismissKeyboard {
     [self.nameField resignFirstResponder];
-    [self.descriptionText resignFirstResponder];
+    [self.summaryField resignFirstResponder];
 }
 
-- (void)createPressed:(id)sender {
-    [TestFlight passCheckpoint:@"create pressed"];
+- (IBAction)donePressed:(id)sender {
+    [TestFlight passCheckpoint:@"done pressed"];
 
     self.target.name = self.nameField.text;
-    self.target.summary = self.descriptionText.text;
+    self.target.summary = self.summaryField.text;
+
     [SVProgressHUD showWithStatus:@"Creating target..." maskType:SVProgressHUDMaskTypeGradient];
     [self.target saveWithTarget:self selector:@selector(saveTargetWithResult:error:)];
 }
 
 - (void)saveTargetWithResult:(NSNumber *)result error:(NSError *)error {
     [SVProgressHUD dismiss];
-    if ([result boolValue]) {
-        self.createPlanVC.plan.target = self.target;
-        [self.navigationController popToViewController:self.createPlanVC animated:YES];
-    } else {
+    if (![result boolValue]) {
         [IUtils showErrorDialogWithTitle:@"Cannot create target" error:error];
+        return;
     }
+    [self dismissViewControllerAnimated:YES completion:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:kDidCreateTargetNotification object:self];
+    }];
+}
+
+- (IBAction)cancelPressed:(id)sender {
+    [TestFlight passCheckpoint:@"cancel pressed"];
+
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

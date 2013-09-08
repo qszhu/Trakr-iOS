@@ -53,13 +53,13 @@
 		669C6DD6A0C3076321CB2FA8 /* SelectTargetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C690B1695AE42D802F2CD /* SelectTargetViewController.m */; };
 		669C6E695EA5178BB5871BD3 /* Progress.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C6F9D61151C496519022D /* Progress.m */; };
 		669C6E79C3DDF4323C5CF086 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C6A9DB536F58AC1EF502D /* main.m */; };
-		669C6EA97EC4A0CB533AB439 /* CreateTargetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 669C67E26DC8A1DE183BCA2F /* CreateTargetView.xib */; };
 		669C6F07CF023D542212390F /* AutoTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C649B358C4B5C6ADCAE48 /* AutoTask.m */; };
 		669C6F0ACB8BEAD1A3BA418E /* success.png in Resources */ = {isa = PBXBuildFile; fileRef = 669C6630515A9A205EF812F4 /* success.png */; };
 		669C6F25602525C50DD0F8A6 /* Target.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C68609C9121A0C518433D /* Target.m */; };
 		669C6F80A113378493FA8056 /* error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 669C6345C160394495EDFE82 /* error@2x.png */; };
 		669C6F8AD53ACF07F6EF415E /* Todo.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C60425EEBD36669DBB83F /* Todo.m */; };
 		669C6FED50B7522055BC1065 /* success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 669C67656EA5FE320050AAA0 /* success@2x.png */; };
+		AC2A1E9617DCA2BC00DB6091 /* CreateTarget.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC2A1E9517DCA2BC00DB6091 /* CreateTarget.storyboard */; };
 		AC342F5F17D7833F007F2465 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC342F5E17D7833F007F2465 /* Settings.storyboard */; };
 		AC342F6217D78625007F2465 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC342F6117D78625007F2465 /* SettingsViewController.m */; };
 		AC342F6517D79208007F2465 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = AC342F6417D79208007F2465 /* Setting.m */; };
@@ -119,7 +119,6 @@
 		669C66E62321A7F3CC94FD86 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		669C6759ACE59EBC9FEAD50F /* AutoTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoTask.h; sourceTree = "<group>"; };
 		669C67656EA5FE320050AAA0 /* success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "success@2x.png"; sourceTree = "<group>"; };
-		669C67E26DC8A1DE183BCA2F /* CreateTargetView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateTargetView.xib; sourceTree = "<group>"; };
 		669C67F2BCFDFA792BB147B4 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		669C68094FEE3E51CF1D414E /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		669C68513D016457048EBC60 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
@@ -161,6 +160,8 @@
 		669C6F9D61151C496519022D /* Progress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Progress.m; sourceTree = "<group>"; };
 		669C6FB679E148EAF374E83B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		669C6FC1C059418CC0CEEF86 /* CompleteTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompleteTaskViewController.m; sourceTree = "<group>"; };
+		AC2A1E9517DCA2BC00DB6091 /* CreateTarget.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateTarget.storyboard; sourceTree = "<group>"; };
+		AC2A1E9817DCAA8D00DB6091 /* Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
 		AC342F5E17D7833F007F2465 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		AC342F6017D78625007F2465 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		AC342F6117D78625007F2465 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
@@ -230,7 +231,7 @@
 			children = (
 				669C6E6F25CF97484E17C29A /* Target.h */,
 				669C68609C9121A0C518433D /* Target.m */,
-				669C67E26DC8A1DE183BCA2F /* CreateTargetView.xib */,
+				AC2A1E9517DCA2BC00DB6091 /* CreateTarget.storyboard */,
 				669C6E62172C6F19B042852A /* CreateTargetViewController.h */,
 				669C6689B8DF5798810990E9 /* CreateTargetViewController.m */,
 				669C605B96667214189F2E40 /* SelectTargetViewController.h */,
@@ -253,14 +254,11 @@
 				669C68B336BA5DDE39935C6D /* Supporting Files */,
 				669C6FB679E148EAF374E83B /* AppDelegate.h */,
 				669C6E7E41A41B507DDE1747 /* AppDelegate.m */,
-				669C640CA1F04CDC2827A5AF /* first.png */,
-				669C6064AFAD04DB2718F940 /* first@2x.png */,
-				669C651BC6A8BAB2197F1E47 /* second.png */,
-				669C66E62321A7F3CC94FD86 /* second@2x.png */,
+				AC2A1E9817DCAA8D00DB6091 /* Const.h */,
 				669C6D7311444283D08F9C75 /* MainViewController.m */,
 				669C6D59DDA2D99F333574DA /* MainViewController.h */,
-				669C634D6EAC57DCD49C030A /* IUtils.m */,
 				669C6F73EA5C4125B02ECB6C /* IUtils.h */,
+				669C634D6EAC57DCD49C030A /* IUtils.m */,
 				669C67F2BCFDFA792BB147B4 /* MainWindow.xib */,
 				669C693DCCB83EC6E9848D8E /* Login */,
 				669C6B7CA27907A89900CBCE /* Plan */,
@@ -286,6 +284,10 @@
 		669C68B336BA5DDE39935C6D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				669C640CA1F04CDC2827A5AF /* first.png */,
+				669C6064AFAD04DB2718F940 /* first@2x.png */,
+				669C651BC6A8BAB2197F1E47 /* second.png */,
+				669C66E62321A7F3CC94FD86 /* second@2x.png */,
 				AC8DD96B17DAF6C3000AEA1A /* iTunesArtwork@2x.png */,
 				AC8DD96C17DAF6C3000AEA1A /* iTunesArtwork.png */,
 				AC8DD96D17DAF6C3000AEA1A /* Icon-72@2x.png */,
@@ -523,7 +525,6 @@
 				669C6F80A113378493FA8056 /* error@2x.png in Resources */,
 				669C6FED50B7522055BC1065 /* success@2x.png in Resources */,
 				669C60EB9FDD627DBDCE4EA6 /* CreatePlanView.xib in Resources */,
-				669C6EA97EC4A0CB533AB439 /* CreateTargetView.xib in Resources */,
 				669C634531222F197207D528 /* CompleteTaskView.xib in Resources */,
 				AC46F4CA17C864B100988C9E /* README.md in Resources */,
 				AC46F4CB17C864B100988C9E /* release_notes.md in Resources */,
@@ -538,6 +539,7 @@
 				AC8DD97817DAF6C3000AEA1A /* Icon-Small-50.png in Resources */,
 				AC8DD97917DAF6C3000AEA1A /* Icon-Small@2x.png in Resources */,
 				AC8DD97A17DAF6C3000AEA1A /* Icon-Small.png in Resources */,
+				AC2A1E9617DCA2BC00DB6091 /* CreateTarget.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
