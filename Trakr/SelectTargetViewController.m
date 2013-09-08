@@ -63,7 +63,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [TestFlight passCheckpoint:@"select target"];
 
-    self.createPlanVC.plan.target = [[Target alloc] initWithParseObject:[self.objects objectAtIndex:(NSUInteger) indexPath.row]];
+    Target *target = [[Target alloc] initWithParseObject:[self.objects objectAtIndex:(NSUInteger) indexPath.row]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDidSelectTargetNotification object:target];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

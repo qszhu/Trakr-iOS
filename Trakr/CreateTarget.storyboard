@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--Create Target View Controller - Root View Controller-->
+        <!--Create Target View Controller - Create Target-->
         <scene sceneID="mpk-LU-D8f">
             <objects>
                 <tableViewController id="Qr4-Dn-Yih" customClass="CreateTargetViewController" sceneMemberID="viewController">
@@ -15,7 +15,7 @@
                         <sections>
                             <tableViewSection id="SI8-FS-Z5K">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="U7L-VT-NvO">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="U7L-VT-NvO">
                                         <rect key="frame" x="0.0" y="10" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -27,7 +27,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="79W-oZ-rOp">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="79W-oZ-rOp">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="206" id="Hdn-xQ-rwL"/>
                                                         <constraint firstAttribute="height" constant="30" id="Kib-Rk-pBc"/>
@@ -45,7 +45,7 @@
                                             <constraint firstItem="Xtp-S8-p0w" firstAttribute="centerY" secondItem="U7L-VT-NvO" secondAttribute="centerY" type="default" id="upI-XB-0GC"/>
                                         </constraints>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ust-wA-1bA">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ust-wA-1bA">
                                         <rect key="frame" x="0.0" y="55" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -57,7 +57,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UQM-kr-jvv">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UQM-kr-jvv">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="166" id="bsB-7J-M6Z"/>
                                                         <constraint firstAttribute="height" constant="30" id="zdL-mf-gr3"/>
@@ -79,7 +79,7 @@
                             </tableViewSection>
                         </sections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="0Bz-6T-Ojh">
+                    <navigationItem key="navigationItem" title="Create Target" id="0Bz-6T-Ojh">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="Msh-oV-XR5">
                             <connections>
                                 <action selector="cancelPressed:" destination="Qr4-Dn-Yih" id="Lfm-eo-JS1"/>
@@ -103,6 +103,7 @@
         <!--Navigation Controller-->
         <scene sceneID="9Pa-cW-hvi">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hNH-ze-xRB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="SLJ-S4-AIL" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8qA-2y-Aym">
                         <autoresizingMask key="autoresizingMask"/>
@@ -111,25 +112,10 @@
                         <segue destination="Qr4-Dn-Yih" kind="relationship" relationship="rootViewController" id="31j-Bf-ud0"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hNH-ze-xRB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-18" y="57"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="CreateTargetViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateTargetViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelPressed:"/>
-                <relationship kind="action" name="donePressed:"/>
-                <relationship kind="outlet" name="nameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="summaryField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

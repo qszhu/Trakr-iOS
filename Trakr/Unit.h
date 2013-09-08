@@ -12,6 +12,10 @@ extern NSString *const kUnitPage;
 @interface Unit : NSObject
 + (NSUInteger)count;
 
++ (NSArray *)names;
+
++ (NSUInteger)getIndexForValue:(NSNumber *)value;
+
 + (NSNumber *)getValueForName:(NSString *)name;
 
 + (NSString *)getNameForValue:(NSNumber *)unit;

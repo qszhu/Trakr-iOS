@@ -6,33 +6,20 @@
 
 #import <Foundation/Foundation.h>
 
-@class Plan;
 @class ProgressViewController;
-@class AutoTask;
 
 
-@interface CreatePlanViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
-@property(strong, nonatomic) Plan *plan;
+@interface CreatePlanViewController : UITableViewController
+@property (strong, nonatomic) IBOutlet UILabel *targetLabel;
+@property (strong, nonatomic) IBOutlet UITextField *totalField;
+@property (strong, nonatomic) IBOutlet UILabel *unitLabel;
+@property (strong, nonatomic) IBOutlet UILabel *startDateLabel;
 
-@property(strong, nonatomic) IBOutlet UIButton *targetButton;
-
-@property(strong, nonatomic) IBOutlet UITextField *totalField;
-@property(strong, nonatomic) IBOutlet UITextField *unitField;
-
-@property(strong, nonatomic) IBOutlet UITextField *startDateField;
-
-@property(strong, nonatomic) IBOutlet UISwitch *createTaskSwitch;
-@property(strong, nonatomic) IBOutlet UIView *taskView;
-
-@property(strong, nonatomic) IBOutlet UITextField *numberOfTasksField;
-@property(strong, nonatomic) IBOutlet UITextField *repeatField;
-@property(strong, nonatomic) AutoTask *autoTask;
+@property (strong, nonatomic) IBOutlet UITextField *numberOfTasksField;
+@property (strong, nonatomic) IBOutlet UILabel *repeatLabel;
 
 @property(strong, nonatomic) ProgressViewController *progressVC;
 
-- (IBAction)selectTarget:(id)sender;
-
-- (IBAction)createPressed:(id)sender;
-
-- (IBAction)switchCreateTask:(id)sender;
+- (IBAction)donePressed:(id)sender;
+- (IBAction)cancelPressed:(id)sender;
 @end

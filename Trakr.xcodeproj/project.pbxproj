@@ -12,7 +12,6 @@
 		669C60561A0F857E243F9CC7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 669C6BFB0402EB758B041DDC /* InfoPlist.strings */; };
 		669C608BEBCC8FA23DC54901 /* CompleteTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C6FC1C059418CC0CEEF86 /* CompleteTaskViewController.m */; };
 		669C60DF6A1E2DCEF7DEDDD2 /* ProgressDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C69D9355E5B2BD213AA10 /* ProgressDetailViewController.m */; };
-		669C60EB9FDD627DBDCE4EA6 /* CreatePlanView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 669C6F35AE2A37CC618A9021 /* CreatePlanView.xib */; };
 		669C61DE4A887AD53957CE06 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 669C6064AFAD04DB2718F940 /* first@2x.png */; };
 		669C62072E9246B7921E959A /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C639C01773E1EFEC81FA3 /* SVProgressHUD.m */; };
 		669C622BF8EBC75858C46E94 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 669C640CA1F04CDC2827A5AF /* first.png */; };
@@ -60,6 +59,10 @@
 		669C6F8AD53ACF07F6EF415E /* Todo.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C60425EEBD36669DBB83F /* Todo.m */; };
 		669C6FED50B7522055BC1065 /* success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 669C67656EA5FE320050AAA0 /* success@2x.png */; };
 		AC2A1E9617DCA2BC00DB6091 /* CreateTarget.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC2A1E9517DCA2BC00DB6091 /* CreateTarget.storyboard */; };
+		AC2A1E9C17DCAFD000DB6091 /* CreatePlan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC2A1E9B17DCAFD000DB6091 /* CreatePlan.storyboard */; };
+		AC2A1EAB17DCC3C500DB6091 /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A1E9F17DCC3C500DB6091 /* AbstractActionSheetPicker.m */; };
+		AC2A1EAD17DCC3C500DB6091 /* ActionSheetDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A1EA417DCC3C500DB6091 /* ActionSheetDatePicker.m */; };
+		AC2A1EAF17DCC3C500DB6091 /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A1EA817DCC3C500DB6091 /* ActionSheetStringPicker.m */; };
 		AC342F5F17D7833F007F2465 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC342F5E17D7833F007F2465 /* Settings.storyboard */; };
 		AC342F6217D78625007F2465 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC342F6117D78625007F2465 /* SettingsViewController.m */; };
 		AC342F6517D79208007F2465 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = AC342F6417D79208007F2465 /* Setting.m */; };
@@ -154,7 +157,6 @@
 		669C6E62172C6F19B042852A /* CreateTargetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTargetViewController.h; sourceTree = "<group>"; };
 		669C6E6F25CF97484E17C29A /* Target.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Target.h; sourceTree = "<group>"; };
 		669C6E7E41A41B507DDE1747 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		669C6F35AE2A37CC618A9021 /* CreatePlanView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreatePlanView.xib; sourceTree = "<group>"; };
 		669C6F73EA5C4125B02ECB6C /* IUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUtils.h; sourceTree = "<group>"; };
 		669C6F946EA70DEEAFB441EB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		669C6F9D61151C496519022D /* Progress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Progress.m; sourceTree = "<group>"; };
@@ -162,6 +164,13 @@
 		669C6FC1C059418CC0CEEF86 /* CompleteTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompleteTaskViewController.m; sourceTree = "<group>"; };
 		AC2A1E9517DCA2BC00DB6091 /* CreateTarget.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateTarget.storyboard; sourceTree = "<group>"; };
 		AC2A1E9817DCAA8D00DB6091 /* Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
+		AC2A1E9B17DCAFD000DB6091 /* CreatePlan.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreatePlan.storyboard; sourceTree = "<group>"; };
+		AC2A1E9E17DCC3C500DB6091 /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractActionSheetPicker.h; sourceTree = "<group>"; };
+		AC2A1E9F17DCC3C500DB6091 /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractActionSheetPicker.m; sourceTree = "<group>"; };
+		AC2A1EA317DCC3C500DB6091 /* ActionSheetDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetDatePicker.h; sourceTree = "<group>"; };
+		AC2A1EA417DCC3C500DB6091 /* ActionSheetDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetDatePicker.m; sourceTree = "<group>"; };
+		AC2A1EA717DCC3C500DB6091 /* ActionSheetStringPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetStringPicker.h; sourceTree = "<group>"; };
+		AC2A1EA817DCC3C500DB6091 /* ActionSheetStringPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetStringPicker.m; sourceTree = "<group>"; };
 		AC342F5E17D7833F007F2465 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		AC342F6017D78625007F2465 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		AC342F6117D78625007F2465 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
@@ -342,7 +351,7 @@
 				669C6DFBB902E7F81EC700E8 /* Repeat.m */,
 				669C6C567F7DEB8C2DD0C6A4 /* Unit.h */,
 				669C668A797EF87FAF24E132 /* Unit.m */,
-				669C6F35AE2A37CC618A9021 /* CreatePlanView.xib */,
+				AC2A1E9B17DCAFD000DB6091 /* CreatePlan.storyboard */,
 				669C6A397C765F315AE1C6A3 /* CreatePlanViewController.h */,
 				669C669A955F694E265D735F /* CreatePlanViewController.m */,
 				669C66A09B041099967AA86B /* SelectPlanViewController.h */,
@@ -406,12 +415,26 @@
 		AC2A1E7F17DC2F1B00DB6091 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				AC2A1E9D17DCC3C500DB6091 /* Pickers */,
 				AC43EE3917D8DA7E00F950C6 /* FormatterKit */,
 				AC46D95C17D630980070F5A9 /* ODRefreshControl */,
 				669C6A5BBEF0543440AEEE29 /* SVProgressHUD */,
 				AC46F4C217C864B100988C9E /* TestFlightSDK2.0.0 */,
 			);
 			name = Vendor;
+			sourceTree = "<group>";
+		};
+		AC2A1E9D17DCC3C500DB6091 /* Pickers */ = {
+			isa = PBXGroup;
+			children = (
+				AC2A1E9E17DCC3C500DB6091 /* AbstractActionSheetPicker.h */,
+				AC2A1E9F17DCC3C500DB6091 /* AbstractActionSheetPicker.m */,
+				AC2A1EA317DCC3C500DB6091 /* ActionSheetDatePicker.h */,
+				AC2A1EA417DCC3C500DB6091 /* ActionSheetDatePicker.m */,
+				AC2A1EA717DCC3C500DB6091 /* ActionSheetStringPicker.h */,
+				AC2A1EA817DCC3C500DB6091 /* ActionSheetStringPicker.m */,
+			);
+			path = Pickers;
 			sourceTree = "<group>";
 		};
 		AC342F5D17D78319007F2465 /* Setting */ = {
@@ -524,7 +547,6 @@
 				669C6F0ACB8BEAD1A3BA418E /* success.png in Resources */,
 				669C6F80A113378493FA8056 /* error@2x.png in Resources */,
 				669C6FED50B7522055BC1065 /* success@2x.png in Resources */,
-				669C60EB9FDD627DBDCE4EA6 /* CreatePlanView.xib in Resources */,
 				669C634531222F197207D528 /* CompleteTaskView.xib in Resources */,
 				AC46F4CA17C864B100988C9E /* README.md in Resources */,
 				AC46F4CB17C864B100988C9E /* release_notes.md in Resources */,
@@ -540,6 +562,7 @@
 				AC8DD97917DAF6C3000AEA1A /* Icon-Small@2x.png in Resources */,
 				AC8DD97A17DAF6C3000AEA1A /* Icon-Small.png in Resources */,
 				AC2A1E9617DCA2BC00DB6091 /* CreateTarget.storyboard in Resources */,
+				AC2A1E9C17DCAFD000DB6091 /* CreatePlan.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,6 +601,9 @@
 				AC342F6217D78625007F2465 /* SettingsViewController.m in Sources */,
 				AC342F6517D79208007F2465 /* Setting.m in Sources */,
 				AC43EE4C17D8DA7E00F950C6 /* TTTTimeIntervalFormatter.m in Sources */,
+				AC2A1EAB17DCC3C500DB6091 /* AbstractActionSheetPicker.m in Sources */,
+				AC2A1EAD17DCC3C500DB6091 /* ActionSheetDatePicker.m in Sources */,
+				AC2A1EAF17DCC3C500DB6091 /* ActionSheetStringPicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -32,6 +32,23 @@ NSString *const kUnitPage = @"Page";
     return [[Unit UNIT] count];
 }
 
++ (NSArray *)names {
+    NSMutableArray *temp = [[NSMutableArray alloc] init];
+    for (int i = 0; i < [Unit count]; i++) {
+        [temp addObject:[Unit getNameAtIndex:i]];
+    }
+    return [NSArray arrayWithArray:temp];
+}
+
++ (NSUInteger)getIndexForValue:(NSNumber *)value {
+    for (int i = 0; i < [Unit count]; i++) {
+        if ([[Unit getValueAtIndex:i] isEqualToNumber:value]) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 + (NSNumber *)getValueForName:(NSString *)name {
     return [[Unit UNIT] objectForKey:name];
 }

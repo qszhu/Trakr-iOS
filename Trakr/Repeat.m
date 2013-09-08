@@ -34,6 +34,23 @@ NSString *const kRepeatEveryMonth = @"Every Month";
     return [[Repeat REPEAT] count];
 }
 
++ (NSArray *)names {
+    NSMutableArray *temp = [[NSMutableArray alloc] init];
+    for (int i = 0; i < [Repeat count]; i++) {
+        [temp addObject:[Repeat getNameAtIndex:i]];
+    }
+    return [NSArray arrayWithArray:temp];
+}
+
++ (NSUInteger)getIndexForValue:(NSNumber *)value {
+    for (int i = 0; i < [Repeat count]; i++) {
+        if ([[Repeat getValueAtIndex:i] isEqualToNumber:value]) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 + (NSNumber *)getValueForName:(NSString *)name {
     return [[Repeat REPEAT] objectForKey:name];
 }

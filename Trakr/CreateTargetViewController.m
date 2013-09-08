@@ -19,14 +19,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.title = @"Create Target";
-
-    // tab to dismiss keyboard
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
-            initWithTarget:self
-                    action:@selector(dismissKeyboard)];
-    [self.view addGestureRecognizer:tap];
-
     self.target = [[Target alloc] init];
 }
 
@@ -34,6 +26,10 @@
     [super viewDidAppear:animated];
 
     [TestFlight passCheckpoint:@"create target view appear"];
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [self dismissKeyboard];
 }
 
 - (void)dismissKeyboard {

@@ -13,6 +13,7 @@
 #import "ProgressViewController.h"
 #import "Unit.h"
 #import "SVProgressHUD.h"
+#import "Const.h"
 #import "TestFlight.h"
 
 @implementation SelectPlanViewController {
@@ -23,6 +24,7 @@
     [super viewDidLoad];
 
     self.title = @"Select Plan";
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didCreatePlan:) name:kDidCreatePlanNotification object:nil];
 
     [IUtils setRightBarAddButton:self action:@selector(createPlanPressed)];
 }
@@ -32,12 +34,16 @@
     [TestFlight passCheckpoint:@"select plan view appear"];
 }
 
+- (void)didCreatePlan:(NSNotification *)notification {
+    [self loadObjects];
+}
+
 - (void)createPlanPressed {
     [TestFlight passCheckpoint:@"create plan pressed"];
 
-    CreatePlanViewController *createPlanVC = [[CreatePlanViewController alloc] init];
-    createPlanVC.progressVC = self.progressVC;
-    [self.navigationController pushViewController:createPlanVC animated:YES];
+    UIStoryboard *createPlanStoryboard = [UIStoryboard storyboardWithName:@"CreatePlan" bundle:nil];
+    UINavigationController *createPlanNav = [createPlanStoryboard instantiateInitialViewController];
+    [self presentViewController:createPlanNav animated:YES completion:nil];
 }
 
 - (PFQuery *)queryForTable {

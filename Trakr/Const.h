@@ -9,3 +9,5 @@
 #import <Foundation/Foundation.h>
 
 static NSString * const kDidCreateTargetNotification = @"DidCreateTargetNotification";
+static NSString * const kDidSelectTargetNotification = @"DidSelectTargetNotification";
+static NSString * const kDidCreatePlanNotification = @"DidCreatePlanNotification";
