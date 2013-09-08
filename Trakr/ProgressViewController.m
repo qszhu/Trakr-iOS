@@ -156,6 +156,8 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex != actionSheet.cancelButtonIndex) {
+        [TestFlight passCheckpoint:@"delete progress"];
+
         [SVProgressHUD showWithStatus:@"Deleting progress..." maskType:SVProgressHUDMaskTypeGradient];
         [[self.objects objectAtIndex:self.selectedIndex.row] deleteInBackgroundWithTarget:self selector:@selector(deleteProgressWithResult:error:)];
     }
