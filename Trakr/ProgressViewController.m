@@ -93,7 +93,7 @@
     }
     int nextOffset = NSIntegerMax;
     for (Task *task in progress.plan.tasks) {
-        if (task.offset >= offset && task.offset < nextOffset) {
+        if (task.offset > offset && task.offset < nextOffset) {
             nextOffset = task.offset;
         }
     }
