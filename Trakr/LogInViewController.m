@@ -44,6 +44,7 @@ shouldBeginLogInWithUsername:(NSString *)username
 - (void)logInViewController:(PFLogInViewController *)logInController
                didLogInUser:(PFUser *)user {
     [IUtils dismissView:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDidLoginNotification object:self];
 }
 
 - (void)logInViewController:(PFLogInViewController *)logInController
@@ -52,7 +53,6 @@ shouldBeginLogInWithUsername:(NSString *)username
 }
 
 - (void)logInViewControllerDidCancelLogIn:(PFLogInViewController *)logInController {
-
 }
 
 @end

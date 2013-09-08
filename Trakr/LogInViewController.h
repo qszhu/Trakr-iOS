@@ -7,5 +7,7 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 
+static NSString * const kDidLoginNotification = @"DidLoginNotification";
+
 @interface LogInViewController : PFLogInViewController <PFLogInViewControllerDelegate>
 @end

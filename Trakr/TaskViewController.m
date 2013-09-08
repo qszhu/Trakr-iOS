@@ -16,9 +16,10 @@
 #import "Target.h"
 #import "CompleteTaskViewController.h"
 #import "Completion.h"
-#import "TestFlight.h"
 #import "ODRefreshControl.h"
 #import "Setting.h"
+#import "LogInViewController.h"
+#import "TestFlight.h"
 
 @interface TaskViewController ()
 @property(strong, nonatomic) NSArray *progresses;
@@ -41,13 +42,20 @@ static NSString *const kSectionFuture = @"This Week";
     [super viewDidLoad];
 
     [self.navigationItem setTitle:@"My Tasks"];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogin:) name:kDidLoginNotification object:nil];
+
     self.rc = [[ODRefreshControl alloc] initInScrollView:self.tableView];
     [self.rc addTarget:self action:@selector(pullToRefresh:) forControlEvents:UIControlEventValueChanged];
     [self refresh];
 }
 
+- (void)didLogin:(NSNotification *)notification {
+    [self refresh];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+
     [TestFlight passCheckpoint:@"task view appear"];
 }
 
