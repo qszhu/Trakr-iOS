@@ -66,7 +66,7 @@
             offset = task.offset;
         }
     }
-    return [IUtils dateByOffset:offset fromDate:progress.startDate];
+    return [IUtils dateByOffset:offset+1 fromDate:progress.startDate];
 }
 
 - (NSString *)formatFinishDate:(Progress *)progress {
@@ -80,7 +80,7 @@
     return [NSString stringWithFormat:@"finishes in %@", str];
 }
 
-- (NSUInteger)getLateDays:(Progress *)progress {
+- (NSInteger)getLateDays:(Progress *)progress {
     int offset = 0;
     for (Task *task in progress.plan.tasks) {
         for (Completion *completion in progress.completions) {
@@ -102,7 +102,7 @@
 }
 
 - (NSString *)formatLateDays:(Progress *)progress {
-    NSUInteger lateDays = [self getLateDays:progress];
+    NSInteger lateDays = [self getLateDays:progress];
     if (lateDays <= 0) {
         return @"";
     }
