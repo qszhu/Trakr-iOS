@@ -14,6 +14,7 @@
 #import "Unit.h"
 #import "SVProgressHUD.h"
 #import "Const.h"
+#import "Task.h"
 #import "TestFlight.h"
 
 @interface SelectPlanViewController()
@@ -53,7 +54,18 @@
 - (PFQuery *)queryForTable {
     PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([Plan class])];
     [query includeKey:@"target"];
+    [query includeKey:@"tasks"];
     return query;
+}
+
+- (NSInteger)getTaskSpan:(Plan *)plan {
+    NSInteger maxOffset = 0;
+    for (Task *task in plan.tasks) {
+        if (maxOffset < task.offset) {
+            maxOffset = task.offset;
+        }
+    }
+    return maxOffset+1;
 }
 
 - (PFTableViewCell *)tableView:(UITableView *)tableView
@@ -69,7 +81,7 @@
 
     Plan *plan = [[Plan alloc] initWithParseObject:object];
     cell.textLabel.text = plan.target.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d %@s", plan.total, [Unit getNameForValue:plan.unit]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d %@s, %d days", plan.total, [Unit getNameForValue:plan.unit], [self getTaskSpan:plan]];
 
     return cell;
 }
