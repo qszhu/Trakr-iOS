@@ -64,7 +64,7 @@
 
 - (void)dismissKeyboard {
     [self.totalField resignFirstResponder];
-    [self.numberOfTasksField resignFirstResponder];
+    [self.workloadField resignFirstResponder];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -154,7 +154,7 @@
     [TestFlight passCheckpoint:@"done pressed"];
 
     self.plan.total = [self.totalField.text intValue];
-    self.autoTask.taskCount = [self.numberOfTasksField.text integerValue];
+    self.autoTask.workload = [self.workloadField.text integerValue];
     NSError *error = [self.autoTask getValidationError];
     if (error) {
         [IUtils showErrorDialogWithTitle:@"Missing Information" error:error];

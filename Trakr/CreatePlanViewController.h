@@ -15,7 +15,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *unitLabel;
 @property (strong, nonatomic) IBOutlet UILabel *startDateLabel;
 
-@property (strong, nonatomic) IBOutlet UITextField *numberOfTasksField;
+@property (strong, nonatomic) IBOutlet UITextField *workloadField;
 @property (strong, nonatomic) IBOutlet UILabel *repeatLabel;
 
 @property(strong, nonatomic) ProgressViewController *progressVC;

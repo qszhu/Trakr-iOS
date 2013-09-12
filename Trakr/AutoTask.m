@@ -26,8 +26,8 @@
 }
 
 - (NSError *)getValidationError {
-    if (self.taskCount <= 0) {
-        return [IUtils errorWithCode:400 message:@"Number of tasks must be positive"];
+    if (self.workload <= 0) {
+        return [IUtils errorWithCode:400 message:@"Workload must be positive"];
     }
     if (self.repeat == nil) {
         return [IUtils errorWithCode:400 message:@"Repeat interval is required"];
@@ -49,15 +49,14 @@
 - (void)createTasksForPlan:(Plan *)plan {
     NSMutableArray *array = [[NSMutableArray alloc] init];
 
-    double step = plan.total / (double) self.taskCount;
-
-    for (int i = 0; i < self.taskCount; i++) {
+    int step = self.workload;
+    for (int count = 0, i = 0; count < plan.total; count += step, i++) {
         Task *task = [[Task alloc] init];
 
-        int start = (int) round(i * step + 1);
-        int end = (int) round((i + 1) * step);
+        int start = count + 1;
+        int end = MIN(count + step, plan.total);
         task.offset = [self getNthOffset:i];
-        task.step = end - start + 1;
+        task.step = step;
 
         NSString *unit = [Unit getNameForValue:plan.unit];
         if (start == end) {

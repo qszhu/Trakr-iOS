@@ -150,15 +150,19 @@
                                             <rect key="frame" x="10" y="1" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Number of tasks" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOz-Cd-mBm">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Workload" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOz-Cd-mBm">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="77" id="XMZ-Ko-xdh"/>
+                                                        <constraint firstAttribute="height" constant="26" id="fyU-oI-XtX"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1sB-rV-kmy">
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="kE8-rY-hhn"/>
-                                                        <constraint firstAttribute="width" constant="128" id="vCJ-qZ-AuG"/>
+                                                        <constraint firstAttribute="height" constant="28" id="34k-lD-uap"/>
+                                                        <constraint firstAttribute="width" constant="175" id="CEF-tZ-H8t"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -167,10 +171,10 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="1sB-rV-kmy" firstAttribute="top" secondItem="GRY-dW-6yF" secondAttribute="top" constant="8" id="EsB-gx-jhS"/>
-                                            <constraint firstItem="1sB-rV-kmy" firstAttribute="leading" secondItem="xOz-Cd-mBm" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Pip-dO-vBF"/>
+                                            <constraint firstItem="1sB-rV-kmy" firstAttribute="leading" secondItem="xOz-Cd-mBm" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="1X5-7t-aho"/>
+                                            <constraint firstItem="xOz-Cd-mBm" firstAttribute="top" secondItem="GRY-dW-6yF" secondAttribute="top" constant="10" id="HFj-qP-uJS"/>
                                             <constraint firstItem="xOz-Cd-mBm" firstAttribute="leading" secondItem="GRY-dW-6yF" secondAttribute="leading" constant="30" id="h9o-hq-Fqp"/>
-                                            <constraint firstItem="xOz-Cd-mBm" firstAttribute="centerY" secondItem="GRY-dW-6yF" secondAttribute="centerY" type="default" id="mLs-Di-jEq"/>
+                                            <constraint firstItem="1sB-rV-kmy" firstAttribute="top" secondItem="xOz-Cd-mBm" secondAttribute="top" type="default" id="vV9-Yw-8k6"/>
                                         </constraints>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="wRp-wP-FFQ">
@@ -221,12 +225,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="numberOfTasksField" destination="1sB-rV-kmy" id="2uZ-5E-e3L"/>
                         <outlet property="repeatLabel" destination="6mR-Yg-RbJ" id="m1k-ho-DaS"/>
                         <outlet property="startDateLabel" destination="dMT-u0-zmE" id="dn8-zM-MPe"/>
                         <outlet property="targetLabel" destination="Ege-I5-Xc4" id="9S3-BL-Ufo"/>
                         <outlet property="totalField" destination="fj8-k6-yWc" id="KQU-BX-dZH"/>
                         <outlet property="unitLabel" destination="urH-s8-3cb" id="3X2-TS-pwK"/>
+                        <outlet property="workloadField" destination="1sB-rV-kmy" id="Mdn-DV-CSh"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eeK-M8-XRZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -255,12 +259,12 @@
             <relationships>
                 <relationship kind="action" name="cancelPressed:"/>
                 <relationship kind="action" name="donePressed:"/>
-                <relationship kind="outlet" name="numberOfTasksField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="repeatLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="startDateLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="targetLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="totalField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="unitLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="workloadField" candidateClass="UITextField"/>
             </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">

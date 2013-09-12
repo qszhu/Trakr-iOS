@@ -9,7 +9,7 @@
 @class Plan;
 
 @interface AutoTask : NSObject
-@property(nonatomic) NSInteger taskCount;
+@property(nonatomic) NSInteger workload;
 @property(strong, nonatomic) NSNumber *repeat;
 
 - (NSError *)getValidationError;
