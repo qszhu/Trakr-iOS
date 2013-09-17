@@ -175,7 +175,7 @@
     }
 
     [self dismissViewControllerAnimated:YES completion:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:kDidCreatePlanNotification object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kDidCreatePlanNotification object:self.plan];
     }];
 }
 

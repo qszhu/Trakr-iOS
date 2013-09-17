@@ -40,7 +40,7 @@
 }
 
 - (void)didCreatePlan:(NSNotification *)notification {
-    [self loadObjects];
+    [self createProgressForPlan:notification.object];
 }
 
 - (void)createPlanPressed {
@@ -86,14 +86,18 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [TestFlight passCheckpoint:@"select plan"];
-
+- (void)createProgressForPlan:(Plan *)plan {
     Progress *progress = [[Progress alloc] init];
-    Plan *plan = [[Plan alloc] initWithParseObject:[self.objects objectAtIndex:(NSUInteger) indexPath.row]];
     progress.plan = plan;
     [SVProgressHUD showWithStatus:@"Creating progress..." maskType:SVProgressHUDMaskTypeGradient];
     [progress saveWithTarget:self selector:@selector(saveProgressWithResult:error:)];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [TestFlight passCheckpoint:@"select plan"];
+
+    Plan *plan = [[Plan alloc] initWithParseObject:[self.objects objectAtIndex:(NSUInteger) indexPath.row]];
+    [self createProgressForPlan:plan];
 }
 
 - (void)saveProgressWithResult:(NSNumber *)result error:(NSError *)error {
