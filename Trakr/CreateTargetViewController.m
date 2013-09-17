@@ -54,7 +54,7 @@
         return;
     }
     [self dismissViewControllerAnimated:YES completion:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:kDidCreateTargetNotification object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kDidCreateTargetNotification object:self.target];
     }];
 }
 

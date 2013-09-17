@@ -44,7 +44,8 @@
 }
 
 - (void)didCreateTarget:(NSNotification *)notification {
-    [self loadObjects];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDidSelectTargetNotification object:notification.object];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
