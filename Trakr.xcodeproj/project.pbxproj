@@ -13,65 +13,41 @@
 		669C608BEBCC8FA23DC54901 /* CompleteTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C6FC1C059418CC0CEEF86 /* CompleteTaskViewController.m */; };
 		669C60DF6A1E2DCEF7DEDDD2 /* ProgressDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C69D9355E5B2BD213AA10 /* ProgressDetailViewController.m */; };
 		669C61DE4A887AD53957CE06 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 669C6064AFAD04DB2718F940 /* first@2x.png */; };
-		669C62072E9246B7921E959A /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C639C01773E1EFEC81FA3 /* SVProgressHUD.m */; };
 		669C622BF8EBC75858C46E94 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 669C640CA1F04CDC2827A5AF /* first.png */; };
 		669C62B2F87C4BA148EB28A9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669C6672D1896CB0413391FD /* CoreGraphics.framework */; };
 		669C634531222F197207D528 /* CompleteTaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 669C652A5F120E91D407C357 /* CompleteTaskView.xib */; };
-		669C6391F1173D24491B65A9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669C62566F44B4434F4648B2 /* AudioToolbox.framework */; };
-		669C63948119BCA1EBFFEBFA /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669C6A2FF2BFD97F1D6FCF94 /* StoreKit.framework */; };
 		669C63E8DF7D16C5E000C75C /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C652F84308E43F29207E3 /* Task.m */; };
-		669C63ED353DF1A4A685031A /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 669C68513D016457048EBC60 /* libz.1.1.3.dylib */; };
 		669C6562E47F0931EE9F8800 /* CreateTargetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C6689B8DF5798810990E9 /* CreateTargetViewController.m */; };
 		669C656D19CDDB3146002F00 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C6E7E41A41B507DDE1747 /* AppDelegate.m */; };
 		669C657A6B17343607ABC579 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 669C67F2BCFDFA792BB147B4 /* MainWindow.xib */; };
 		669C65DA7FF4C5B108ABCBBF /* SelectPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C68996E88CB9BB848EEB7 /* SelectPlanViewController.m */; };
 		669C66075EBAC1C290D61358 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669C65B1A185AC270CDCCF97 /* Foundation.framework */; };
 		669C667DD9C8DECD17B53402 /* Repeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C6DFBB902E7F81EC700E8 /* Repeat.m */; };
-		669C66E17F09C9BCA0249667 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669C61EED520E564DFE432A7 /* Parse.framework */; };
 		669C674CBC4BEF5C09237E20 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 669C66E62321A7F3CC94FD86 /* second@2x.png */; };
 		669C67DC2EE042C11AF806DC /* ProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C60D03EE11173E1C389E1 /* ProgressViewController.m */; };
 		669C67DED70B2FB99B1493CD /* TaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C66757621D01BABBA4283 /* TaskViewController.m */; };
 		669C68B926B0DFC9CFFD47FA /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C6A7FDEDC01A8233A0B74 /* LogInViewController.m */; };
 		669C68C8B702B5960299121B /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C6699F8AE5A3F07DA7745 /* SignUpViewController.m */; };
 		669C68DB444D15D12FC61E04 /* Completion.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C6A1ADD2FB97A51EA863E /* Completion.m */; };
-		669C691EE57FE95B8CE04F6D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669C66826E6802E4F92474C8 /* MobileCoreServices.framework */; };
 		669C69E2718A58C8B1125C6D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 669C6F946EA70DEEAFB441EB /* Default-568h@2x.png */; };
 		669C69EEE064B1D6512E0C67 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 669C63710AC581800F802E59 /* Default@2x.png */; };
 		669C6A42F625009E408FB24A /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C6B720A4E1A90CF9E1044 /* Plan.m */; };
-		669C6AC293D16B014FD980D8 /* error.png in Resources */ = {isa = PBXBuildFile; fileRef = 669C69CEEB0B23EA98AF03FC /* error.png */; };
 		669C6AE7886F8A6786F5DD05 /* CreatePlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C669A955F694E265D735F /* CreatePlanViewController.m */; };
-		669C6B00083CEF4F0F3E2A45 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669C6099BBC778562D1181B7 /* SystemConfiguration.framework */; };
 		669C6C1FF1DAEAFA3D9C79F5 /* IUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C634D6EAC57DCD49C030A /* IUtils.m */; };
 		669C6C34B78B326F1C8FF341 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 669C651BC6A8BAB2197F1E47 /* second.png */; };
-		669C6C7678437E0842DB0823 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669C616387590E27D56AE8C8 /* CFNetwork.framework */; };
 		669C6CA447D196386DF7AA0D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 669C630186BCD470F9256876 /* Default.png */; };
-		669C6D2B8F133581660FF8FF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669C6B15F07F656FA758ADDD /* CoreLocation.framework */; };
-		669C6D368FD4BA3775372E74 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669C640E54D7A0257B2AA061 /* Security.framework */; };
-		669C6D551D5915B86F05462E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669C6D6373E5AAC55C96A776 /* QuartzCore.framework */; };
 		669C6DB5CBA1BDFC41AEEB37 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C6D7311444283D08F9C75 /* MainViewController.m */; };
 		669C6DD6A0C3076321CB2FA8 /* SelectTargetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C690B1695AE42D802F2CD /* SelectTargetViewController.m */; };
 		669C6E695EA5178BB5871BD3 /* Progress.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C6F9D61151C496519022D /* Progress.m */; };
 		669C6E79C3DDF4323C5CF086 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C6A9DB536F58AC1EF502D /* main.m */; };
 		669C6F07CF023D542212390F /* AutoTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C649B358C4B5C6ADCAE48 /* AutoTask.m */; };
-		669C6F0ACB8BEAD1A3BA418E /* success.png in Resources */ = {isa = PBXBuildFile; fileRef = 669C6630515A9A205EF812F4 /* success.png */; };
 		669C6F25602525C50DD0F8A6 /* Target.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C68609C9121A0C518433D /* Target.m */; };
-		669C6F80A113378493FA8056 /* error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 669C6345C160394495EDFE82 /* error@2x.png */; };
 		669C6F8AD53ACF07F6EF415E /* Todo.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C60425EEBD36669DBB83F /* Todo.m */; };
-		669C6FED50B7522055BC1065 /* success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 669C67656EA5FE320050AAA0 /* success@2x.png */; };
 		AC2A1E9617DCA2BC00DB6091 /* CreateTarget.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC2A1E9517DCA2BC00DB6091 /* CreateTarget.storyboard */; };
 		AC2A1E9C17DCAFD000DB6091 /* CreatePlan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC2A1E9B17DCAFD000DB6091 /* CreatePlan.storyboard */; };
-		AC2A1EAB17DCC3C500DB6091 /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A1E9F17DCC3C500DB6091 /* AbstractActionSheetPicker.m */; };
-		AC2A1EAD17DCC3C500DB6091 /* ActionSheetDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A1EA417DCC3C500DB6091 /* ActionSheetDatePicker.m */; };
-		AC2A1EAF17DCC3C500DB6091 /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A1EA817DCC3C500DB6091 /* ActionSheetStringPicker.m */; };
 		AC342F5F17D7833F007F2465 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC342F5E17D7833F007F2465 /* Settings.storyboard */; };
 		AC342F6217D78625007F2465 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC342F6117D78625007F2465 /* SettingsViewController.m */; };
 		AC342F6517D79208007F2465 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = AC342F6417D79208007F2465 /* Setting.m */; };
-		AC43EE4C17D8DA7E00F950C6 /* TTTTimeIntervalFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = AC43EE4317D8DA7E00F950C6 /* TTTTimeIntervalFormatter.m */; };
-		AC46D95F17D630980070F5A9 /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = AC46D95E17D630980070F5A9 /* ODRefreshControl.m */; };
-		AC46F4C917C864B100988C9E /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC46F4C317C864B100988C9E /* libTestFlight.a */; };
-		AC46F4CA17C864B100988C9E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AC46F4C417C864B100988C9E /* README.md */; };
-		AC46F4CB17C864B100988C9E /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = AC46F4C517C864B100988C9E /* release_notes.md */; };
-		AC46F4CD17C8650800988C9E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AC46F4CC17C8650800988C9E /* libz.dylib */; };
 		AC8DD96817DAF6A5000AEA1A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AC8DD96717DAF6A4000AEA1A /* Icon.png */; };
 		AC8DD96A17DAF6AB000AEA1A /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC8DD96917DAF6AB000AEA1A /* Icon@2x.png */; };
 		AC8DD97317DAF6C3000AEA1A /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC8DD96B17DAF6C3000AEA1A /* iTunesArtwork@2x.png */; };
@@ -82,26 +58,21 @@
 		AC8DD97817DAF6C3000AEA1A /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = AC8DD97017DAF6C3000AEA1A /* Icon-Small-50.png */; };
 		AC8DD97917DAF6C3000AEA1A /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC8DD97117DAF6C3000AEA1A /* Icon-Small@2x.png */; };
 		AC8DD97A17DAF6C3000AEA1A /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = AC8DD97217DAF6C3000AEA1A /* Icon-Small.png */; };
+		B276F46C66C24709919391FE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D4D8DD39F964EFE9427F1AA /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05535976372D4D279B50B921 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		669C60425EEBD36669DBB83F /* Todo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Todo.m; sourceTree = "<group>"; };
 		669C605B96667214189F2E40 /* SelectTargetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectTargetViewController.h; sourceTree = "<group>"; };
 		669C6064AFAD04DB2718F940 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		669C6099BBC778562D1181B7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		669C60D03EE11173E1C389E1 /* ProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressViewController.m; sourceTree = "<group>"; };
 		669C612D524280D17330D56F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		669C616387590E27D56AE8C8 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		669C61B8AE5F0E83A346594E /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
-		669C61EED520E564DFE432A7 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = /Users/qinsi/development/ios/Trakr/Parse.framework; sourceTree = "<absolute>"; };
-		669C62566F44B4434F4648B2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		669C630186BCD470F9256876 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		669C6345C160394495EDFE82 /* error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error@2x.png"; sourceTree = "<group>"; };
 		669C634D6EAC57DCD49C030A /* IUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IUtils.m; sourceTree = "<group>"; };
 		669C63710AC581800F802E59 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		669C639C01773E1EFEC81FA3 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		669C640CA1F04CDC2827A5AF /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
-		669C640E54D7A0257B2AA061 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		669C649B358C4B5C6ADCAE48 /* AutoTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoTask.m; sourceTree = "<group>"; };
 		669C64B0DA7D28D43AE11C5C /* Todo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Todo.h; sourceTree = "<group>"; };
 		669C651BC6A8BAB2197F1E47 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
@@ -109,11 +80,9 @@
 		669C652F84308E43F29207E3 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		669C65B1A185AC270CDCCF97 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		669C66063F75D20B7671CE7F /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
-		669C6630515A9A205EF812F4 /* success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = success.png; sourceTree = "<group>"; };
 		669C6651F57FE70C37923C98 /* Trakr-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "Trakr-Info.plist"; sourceTree = "<group>"; };
 		669C6672D1896CB0413391FD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		669C66757621D01BABBA4283 /* TaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskViewController.m; sourceTree = "<group>"; };
-		669C66826E6802E4F92474C8 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		669C6689B8DF5798810990E9 /* CreateTargetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTargetViewController.m; sourceTree = "<group>"; };
 		669C668A797EF87FAF24E132 /* Unit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Unit.m; sourceTree = "<group>"; };
 		669C6699F8AE5A3F07DA7745 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
@@ -121,26 +90,20 @@
 		669C66A09B041099967AA86B /* SelectPlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPlanViewController.h; sourceTree = "<group>"; };
 		669C66E62321A7F3CC94FD86 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		669C6759ACE59EBC9FEAD50F /* AutoTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoTask.h; sourceTree = "<group>"; };
-		669C67656EA5FE320050AAA0 /* success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "success@2x.png"; sourceTree = "<group>"; };
 		669C67F2BCFDFA792BB147B4 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		669C68094FEE3E51CF1D414E /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
-		669C68513D016457048EBC60 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
 		669C68609C9121A0C518433D /* Target.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Target.m; sourceTree = "<group>"; };
 		669C68996E88CB9BB848EEB7 /* SelectPlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPlanViewController.m; sourceTree = "<group>"; };
 		669C690B1695AE42D802F2CD /* SelectTargetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectTargetViewController.m; sourceTree = "<group>"; };
 		669C6915A703FD74C75B8139 /* TaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskViewController.h; sourceTree = "<group>"; };
 		669C692BAF710C4440684473 /* Trakr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trakr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		669C697703A4315691380DC5 /* Trakr-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Trakr-Prefix.pch"; sourceTree = "<group>"; };
-		669C69CEEB0B23EA98AF03FC /* error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error.png; sourceTree = "<group>"; };
 		669C69D9355E5B2BD213AA10 /* ProgressDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressDetailViewController.m; sourceTree = "<group>"; };
 		669C6A08C24229FF4D3857E4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		669C6A1ADD2FB97A51EA863E /* Completion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Completion.m; sourceTree = "<group>"; };
-		669C6A2FF2BFD97F1D6FCF94 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		669C6A35527B58A459163652 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
 		669C6A397C765F315AE1C6A3 /* CreatePlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatePlanViewController.h; sourceTree = "<group>"; };
 		669C6A7FDEDC01A8233A0B74 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
 		669C6A9DB536F58AC1EF502D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		669C6B15F07F656FA758ADDD /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		669C6B65DC8C7ED739442409 /* ProgressDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressDetailViewController.h; sourceTree = "<group>"; };
 		669C6B720A4E1A90CF9E1044 /* Plan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plan.m; sourceTree = "<group>"; };
 		669C6BF46C68B9F510FAC4FF /* ProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressViewController.h; sourceTree = "<group>"; };
@@ -150,7 +113,6 @@
 		669C6D392BAB69945574A357 /* Completion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Completion.h; sourceTree = "<group>"; };
 		669C6D3E388182242553FB96 /* Progress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Progress.h; sourceTree = "<group>"; };
 		669C6D59DDA2D99F333574DA /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		669C6D6373E5AAC55C96A776 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		669C6D7311444283D08F9C75 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		669C6D7B7033006607CD5ADD /* Repeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Repeat.h; sourceTree = "<group>"; };
 		669C6DFBB902E7F81EC700E8 /* Repeat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Repeat.m; sourceTree = "<group>"; };
@@ -162,31 +124,15 @@
 		669C6F9D61151C496519022D /* Progress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Progress.m; sourceTree = "<group>"; };
 		669C6FB679E148EAF374E83B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		669C6FC1C059418CC0CEEF86 /* CompleteTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompleteTaskViewController.m; sourceTree = "<group>"; };
+		9D4D8DD39F964EFE9427F1AA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC2A1E9517DCA2BC00DB6091 /* CreateTarget.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateTarget.storyboard; sourceTree = "<group>"; };
 		AC2A1E9817DCAA8D00DB6091 /* Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
 		AC2A1E9B17DCAFD000DB6091 /* CreatePlan.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreatePlan.storyboard; sourceTree = "<group>"; };
-		AC2A1E9E17DCC3C500DB6091 /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractActionSheetPicker.h; sourceTree = "<group>"; };
-		AC2A1E9F17DCC3C500DB6091 /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractActionSheetPicker.m; sourceTree = "<group>"; };
-		AC2A1EA317DCC3C500DB6091 /* ActionSheetDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetDatePicker.h; sourceTree = "<group>"; };
-		AC2A1EA417DCC3C500DB6091 /* ActionSheetDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetDatePicker.m; sourceTree = "<group>"; };
-		AC2A1EA717DCC3C500DB6091 /* ActionSheetStringPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetStringPicker.h; sourceTree = "<group>"; };
-		AC2A1EA817DCC3C500DB6091 /* ActionSheetStringPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetStringPicker.m; sourceTree = "<group>"; };
 		AC342F5E17D7833F007F2465 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		AC342F6017D78625007F2465 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		AC342F6117D78625007F2465 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		AC342F6317D79208007F2465 /* Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Setting.h; sourceTree = "<group>"; };
 		AC342F6417D79208007F2465 /* Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Setting.m; sourceTree = "<group>"; };
-		AC43EE4217D8DA7E00F950C6 /* TTTTimeIntervalFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTTimeIntervalFormatter.h; sourceTree = "<group>"; };
-		AC43EE4317D8DA7E00F950C6 /* TTTTimeIntervalFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTTimeIntervalFormatter.m; sourceTree = "<group>"; };
-		AC46D95D17D630980070F5A9 /* ODRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRefreshControl.h; sourceTree = "<group>"; };
-		AC46D95E17D630980070F5A9 /* ODRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRefreshControl.m; sourceTree = "<group>"; };
-		AC46F4C317C864B100988C9E /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		AC46F4C417C864B100988C9E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		AC46F4C517C864B100988C9E /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
-		AC46F4C617C864B100988C9E /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
-		AC46F4C717C864B100988C9E /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
-		AC46F4C817C864B100988C9E /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
-		AC46F4CC17C8650800988C9E /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		AC8DD96717DAF6A4000AEA1A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		AC8DD96917DAF6AB000AEA1A /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		AC8DD96B17DAF6C3000AEA1A /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iTunesArtwork@2x.png"; path = "../iTunesArtwork@2x.png"; sourceTree = "<group>"; };
@@ -204,21 +150,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC46F4CD17C8650800988C9E /* libz.dylib in Frameworks */,
 				669C601792FE5564581951AD /* UIKit.framework in Frameworks */,
 				669C66075EBAC1C290D61358 /* Foundation.framework in Frameworks */,
 				669C62B2F87C4BA148EB28A9 /* CoreGraphics.framework in Frameworks */,
-				669C66E17F09C9BCA0249667 /* Parse.framework in Frameworks */,
-				669C6C7678437E0842DB0823 /* CFNetwork.framework in Frameworks */,
-				669C6391F1173D24491B65A9 /* AudioToolbox.framework in Frameworks */,
-				669C6D2B8F133581660FF8FF /* CoreLocation.framework in Frameworks */,
-				669C63ED353DF1A4A685031A /* libz.1.1.3.dylib in Frameworks */,
-				669C691EE57FE95B8CE04F6D /* MobileCoreServices.framework in Frameworks */,
-				669C6D551D5915B86F05462E /* QuartzCore.framework in Frameworks */,
-				669C6D368FD4BA3775372E74 /* Security.framework in Frameworks */,
-				669C63948119BCA1EBFFEBFA /* StoreKit.framework in Frameworks */,
-				669C6B00083CEF4F0F3E2A45 /* SystemConfiguration.framework in Frameworks */,
-				AC46F4C917C864B100988C9E /* libTestFlight.a in Frameworks */,
+				B276F46C66C24709919391FE /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,8 +165,8 @@
 			children = (
 				669C637C38F806E04EF0C8D9 /* Products */,
 				669C6CF9BE6284EB9AD32FF2 /* Frameworks */,
-				AC2A1E7F17DC2F1B00DB6091 /* Vendor */,
 				669C640A841024947F611A93 /* Trakr */,
+				05535976372D4D279B50B921 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -279,17 +214,6 @@
 			path = Trakr;
 			sourceTree = "<group>";
 		};
-		669C66654D728DD4296EF811 /* SVProgressHUD.bundle */ = {
-			isa = PBXGroup;
-			children = (
-				669C69CEEB0B23EA98AF03FC /* error.png */,
-				669C6630515A9A205EF812F4 /* success.png */,
-				669C6345C160394495EDFE82 /* error@2x.png */,
-				669C67656EA5FE320050AAA0 /* success@2x.png */,
-			);
-			path = SVProgressHUD.bundle;
-			sourceTree = "<group>";
-		};
 		669C68B336BA5DDE39935C6D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -329,17 +253,6 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
-		669C6A5BBEF0543440AEEE29 /* SVProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				669C68094FEE3E51CF1D414E /* SVProgressHUD.h */,
-				669C639C01773E1EFEC81FA3 /* SVProgressHUD.m */,
-				669C66654D728DD4296EF811 /* SVProgressHUD.bundle */,
-			);
-			name = SVProgressHUD;
-			path = Trakr/SVProgressHUD;
-			sourceTree = "<group>";
-		};
 		669C6B7CA27907A89900CBCE /* Plan */ = {
 			isa = PBXGroup;
 			children = (
@@ -376,20 +289,10 @@
 		669C6CF9BE6284EB9AD32FF2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AC46F4CC17C8650800988C9E /* libz.dylib */,
 				669C612D524280D17330D56F /* UIKit.framework */,
 				669C65B1A185AC270CDCCF97 /* Foundation.framework */,
 				669C6672D1896CB0413391FD /* CoreGraphics.framework */,
-				669C61EED520E564DFE432A7 /* Parse.framework */,
-				669C616387590E27D56AE8C8 /* CFNetwork.framework */,
-				669C62566F44B4434F4648B2 /* AudioToolbox.framework */,
-				669C6B15F07F656FA758ADDD /* CoreLocation.framework */,
-				669C68513D016457048EBC60 /* libz.1.1.3.dylib */,
-				669C66826E6802E4F92474C8 /* MobileCoreServices.framework */,
-				669C6D6373E5AAC55C96A776 /* QuartzCore.framework */,
-				669C640E54D7A0257B2AA061 /* Security.framework */,
-				669C6A2FF2BFD97F1D6FCF94 /* StoreKit.framework */,
-				669C6099BBC778562D1181B7 /* SystemConfiguration.framework */,
+				9D4D8DD39F964EFE9427F1AA /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -412,31 +315,6 @@
 			name = Task;
 			sourceTree = "<group>";
 		};
-		AC2A1E7F17DC2F1B00DB6091 /* Vendor */ = {
-			isa = PBXGroup;
-			children = (
-				AC2A1E9D17DCC3C500DB6091 /* Pickers */,
-				AC43EE3917D8DA7E00F950C6 /* FormatterKit */,
-				AC46D95C17D630980070F5A9 /* ODRefreshControl */,
-				669C6A5BBEF0543440AEEE29 /* SVProgressHUD */,
-				AC46F4C217C864B100988C9E /* TestFlightSDK2.0.0 */,
-			);
-			name = Vendor;
-			sourceTree = "<group>";
-		};
-		AC2A1E9D17DCC3C500DB6091 /* Pickers */ = {
-			isa = PBXGroup;
-			children = (
-				AC2A1E9E17DCC3C500DB6091 /* AbstractActionSheetPicker.h */,
-				AC2A1E9F17DCC3C500DB6091 /* AbstractActionSheetPicker.m */,
-				AC2A1EA317DCC3C500DB6091 /* ActionSheetDatePicker.h */,
-				AC2A1EA417DCC3C500DB6091 /* ActionSheetDatePicker.m */,
-				AC2A1EA717DCC3C500DB6091 /* ActionSheetStringPicker.h */,
-				AC2A1EA817DCC3C500DB6091 /* ActionSheetStringPicker.m */,
-			);
-			path = Pickers;
-			sourceTree = "<group>";
-		};
 		AC342F5D17D78319007F2465 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -449,40 +327,6 @@
 			name = Setting;
 			sourceTree = "<group>";
 		};
-		AC43EE3917D8DA7E00F950C6 /* FormatterKit */ = {
-			isa = PBXGroup;
-			children = (
-				AC43EE4217D8DA7E00F950C6 /* TTTTimeIntervalFormatter.h */,
-				AC43EE4317D8DA7E00F950C6 /* TTTTimeIntervalFormatter.m */,
-			);
-			name = FormatterKit;
-			path = Trakr/FormatterKit;
-			sourceTree = "<group>";
-		};
-		AC46D95C17D630980070F5A9 /* ODRefreshControl */ = {
-			isa = PBXGroup;
-			children = (
-				AC46D95D17D630980070F5A9 /* ODRefreshControl.h */,
-				AC46D95E17D630980070F5A9 /* ODRefreshControl.m */,
-			);
-			name = ODRefreshControl;
-			path = Trakr/ODRefreshControl;
-			sourceTree = "<group>";
-		};
-		AC46F4C217C864B100988C9E /* TestFlightSDK2.0.0 */ = {
-			isa = PBXGroup;
-			children = (
-				AC46F4C317C864B100988C9E /* libTestFlight.a */,
-				AC46F4C417C864B100988C9E /* README.md */,
-				AC46F4C517C864B100988C9E /* release_notes.md */,
-				AC46F4C617C864B100988C9E /* TestFlight+AsyncLogging.h */,
-				AC46F4C717C864B100988C9E /* TestFlight+ManualSessions.h */,
-				AC46F4C817C864B100988C9E /* TestFlight.h */,
-			);
-			name = TestFlightSDK2.0.0;
-			path = Trakr/TestFlightSDK2.0.0;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -490,9 +334,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 669C6A275981FA5A705CF609 /* Build configuration list for PBXNativeTarget "Trakr" */;
 			buildPhases = (
+				45C52963D8EF49CBA9158DFA /* Check Pods Manifest.lock */,
 				669C6BF26092C4B9A6EE12EE /* Sources */,
 				669C6F7F4BE1873AE910F79B /* Frameworks */,
 				669C63EA7CC9239C2E374F00 /* Resources */,
+				BD987EA9F1CA4C1F8909FC47 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -543,13 +389,7 @@
 				669C6C34B78B326F1C8FF341 /* second.png in Resources */,
 				669C674CBC4BEF5C09237E20 /* second@2x.png in Resources */,
 				669C657A6B17343607ABC579 /* MainWindow.xib in Resources */,
-				669C6AC293D16B014FD980D8 /* error.png in Resources */,
-				669C6F0ACB8BEAD1A3BA418E /* success.png in Resources */,
-				669C6F80A113378493FA8056 /* error@2x.png in Resources */,
-				669C6FED50B7522055BC1065 /* success@2x.png in Resources */,
 				669C634531222F197207D528 /* CompleteTaskView.xib in Resources */,
-				AC46F4CA17C864B100988C9E /* README.md in Resources */,
-				AC46F4CB17C864B100988C9E /* release_notes.md in Resources */,
 				AC342F5F17D7833F007F2465 /* Settings.storyboard in Resources */,
 				AC8DD96817DAF6A5000AEA1A /* Icon.png in Resources */,
 				AC8DD96A17DAF6AB000AEA1A /* Icon@2x.png in Resources */,
@@ -568,6 +408,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		45C52963D8EF49CBA9158DFA /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BD987EA9F1CA4C1F8909FC47 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		669C6BF26092C4B9A6EE12EE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -577,7 +450,6 @@
 				669C656D19CDDB3146002F00 /* AppDelegate.m in Sources */,
 				669C6DB5CBA1BDFC41AEEB37 /* MainViewController.m in Sources */,
 				669C6C1FF1DAEAFA3D9C79F5 /* IUtils.m in Sources */,
-				669C62072E9246B7921E959A /* SVProgressHUD.m in Sources */,
 				669C60DF6A1E2DCEF7DEDDD2 /* ProgressDetailViewController.m in Sources */,
 				669C67DC2EE042C11AF806DC /* ProgressViewController.m in Sources */,
 				669C68C8B702B5960299121B /* SignUpViewController.m in Sources */,
@@ -597,13 +469,8 @@
 				669C6F8AD53ACF07F6EF415E /* Todo.m in Sources */,
 				669C67DED70B2FB99B1493CD /* TaskViewController.m in Sources */,
 				669C608BEBCC8FA23DC54901 /* CompleteTaskViewController.m in Sources */,
-				AC46D95F17D630980070F5A9 /* ODRefreshControl.m in Sources */,
 				AC342F6217D78625007F2465 /* SettingsViewController.m in Sources */,
 				AC342F6517D79208007F2465 /* Setting.m in Sources */,
-				AC43EE4C17D8DA7E00F950C6 /* TTTTimeIntervalFormatter.m in Sources */,
-				AC2A1EAB17DCC3C500DB6091 /* AbstractActionSheetPicker.m in Sources */,
-				AC2A1EAD17DCC3C500DB6091 /* ActionSheetDatePicker.m in Sources */,
-				AC2A1EAF17DCC3C500DB6091 /* ActionSheetStringPicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,6 +521,7 @@
 		};
 		669C65B521AFFE996802C305 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05535976372D4D279B50B921 /* Pods.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -662,10 +530,7 @@
 				GCC_PREFIX_HEADER = "Trakr/Trakr-Prefix.pch";
 				INFOPLIST_FILE = "Trakr/Trakr-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Trakr/TestFlightSDK2.0.0\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -700,6 +565,7 @@
 		};
 		669C6AD97CDDD4423E5EB7B4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05535976372D4D279B50B921 /* Pods.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "\"${PROJECT_DIR}/\"/**";
@@ -707,10 +573,7 @@
 				GCC_PREFIX_HEADER = "Trakr/Trakr-Prefix.pch";
 				INFOPLIST_FILE = "Trakr/Trakr-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Trakr/TestFlightSDK2.0.0\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
