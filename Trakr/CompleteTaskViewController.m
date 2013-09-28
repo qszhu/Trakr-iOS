@@ -13,6 +13,7 @@
 #import "Completion.h"
 #import "SVProgressHUD.h"
 #import "IUtils.h"
+#import "TaskViewController.h"
 #import "TestFlight.h"
 
 @interface CompleteTaskViewController ()
@@ -81,6 +82,7 @@
     [SVProgressHUD dismiss];
     if ([result boolValue]) {
         [self dismissViewControllerAnimated:YES completion:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kDidCompleteTaskNotification object:self];
     } else {
         [IUtils showErrorDialogWithTitle:@"Cannot complete task" error:error];
     }
