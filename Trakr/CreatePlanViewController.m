@@ -40,6 +40,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    self.navigationItem.title = @"Create Plan";
 
     [TestFlight passCheckpoint:@"create plan view appear"];
 }
@@ -95,6 +96,8 @@
     [TestFlight passCheckpoint:@"select target"];
 
     SelectTargetViewController *selectTargetVC = [[SelectTargetViewController alloc] init];
+
+    self.navigationItem.title = @"";
     [self.navigationController pushViewController:selectTargetVC animated:YES];
 }
 

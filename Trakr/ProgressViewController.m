@@ -29,13 +29,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self.navigationItem setTitle:@"My Progress"];
-
     [IUtils setRightBarAddButton:self action:@selector(newPlanPressed)];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    self.navigationItem.title = @"My Progress";
+
     [TestFlight passCheckpoint:@"progress view appear"];
 }
 
@@ -44,6 +44,8 @@
 
     SelectPlanViewController *selectPlanVC = [[SelectPlanViewController alloc] init];
     selectPlanVC.progressVC = self;
+
+    self.navigationItem.title = @"";
     [self.navigationController pushViewController:selectPlanVC animated:YES];
 }
 
