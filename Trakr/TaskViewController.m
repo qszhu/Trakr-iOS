@@ -297,7 +297,11 @@ static NSString *const kSectionFuture = @"This Week";
 }
 
 - (BOOL)treeView:(RATreeView *)treeView shouldItemBeExpandedAfterDataReload:(id)item treeDepthLevel:(NSInteger)treeDepthLevel {
-    return  treeDepthLevel == 0;
+    return treeDepthLevel == 0;
+}
+
+- (BOOL)treeView:(RATreeView *)treeView canEditRowForItem:(id)item treeNodeInfo:(RATreeNodeInfo *)treeNodeInfo {
+    return NO;
 }
 
 @end
