@@ -7,8 +7,5 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 
-@class CreatePlanViewController;
-
 @interface SelectTargetViewController : PFQueryTableViewController <UIActionSheetDelegate>
-@property(strong, nonatomic) CreatePlanViewController *createPlanVC;
 @end

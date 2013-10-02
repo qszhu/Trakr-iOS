@@ -7,10 +7,13 @@
 #import "CreateTargetViewController.h"
 #import "IUtils.h"
 #import "Target.h"
-#import "Plan.h"
 #import "SVProgressHUD.h"
 #import "Const.h"
 #import "TestFlight.h"
+
+@interface CreateTargetViewController()
+@property(strong, nonatomic) Target *target;
+@end
 
 @implementation CreateTargetViewController {
 
