@@ -94,9 +94,7 @@ static NSString *const kCreatorKey = @"creator";
     }
     NSError *error = [self getValidationError];
     if (error) {
-        SuppressPerformSelectorLeakWarning(
         [target performSelector:selector withObject:[NSNumber numberWithBool:NO] withObject:error];
-        );
         return;
     }
     [self.parseObject setObject:[PFUser currentUser] forKey:kCreatorKey];

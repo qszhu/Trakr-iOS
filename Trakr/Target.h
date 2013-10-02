@@ -8,14 +8,12 @@
 #import <Parse/Parse.h>
 
 
-@interface Target : NSObject
-@property(strong, nonatomic) NSString *name;
-@property(strong, nonatomic) NSString *summary;
-@property(strong, nonatomic) NSString *creator;
+@interface Target : PFObject<PFSubclassing>
++ (NSString *)parseClassName;
 
-- (id)initWithParseObject:(PFObject *)object;
-
-- (PFObject *)getParseObject;
+@property(retain) NSString *name;
+@property(retain) NSString *summary;
+@property(retain) PFUser *creator;
 
 - (NSError *)getValidationError;
 

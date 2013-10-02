@@ -45,15 +45,11 @@ static NSString *const kTasksKey = @"tasks";
 }
 
 - (Target *)target {
-    PFObject *target = [self.parseObject objectForKey:kTargetKey];
-    if (target != nil) {
-        return [[Target alloc] initWithParseObject:target];
-    }
-    return nil;
+    return [self.parseObject objectForKey:kTargetKey];
 }
 
 - (void)setTarget:(Target *)target {
-    [self.parseObject setObject:[target getParseObject] forKey:kTargetKey];
+    [self.parseObject setObject:target forKey:kTargetKey];
 }
 
 - (NSInteger)total {
@@ -122,9 +118,7 @@ static NSString *const kTasksKey = @"tasks";
     }
     NSError *error = [self getValidationError];
     if (error) {
-        SuppressPerformSelectorLeakWarning(
         [target performSelector:selector withObject:[NSNumber numberWithBool:NO] withObject:error];
-        );
         return;
     }
     [self.parseObject setObject:[PFUser currentUser] forKey:kCreatorKey];

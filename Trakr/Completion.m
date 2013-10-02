@@ -75,9 +75,7 @@ static NSString *const kTaskKey = @"task";
     }
     NSError *error = [self getValidationError];
     if (error) {
-        SuppressPerformSelectorLeakWarning(
         [target performSelector:selector withObject:[NSNumber numberWithBool:NO] withObject:error];
-        );
         return;
     }
     [self.parseObject saveInBackgroundWithTarget:target selector:selector];
