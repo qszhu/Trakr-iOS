@@ -27,7 +27,7 @@ static NSString *const kTasksKey = @"tasks";
 
 - (id)init {
     self = [self initWithParseObject:[PFObject objectWithClassName:NSStringFromClass([self class])]];
-    self.unit = [Unit getValueForName:kUnitChapter];
+    self.unit = kUnitChapter;
     self.startDate = [NSDate date];
     return self;
 }
@@ -60,12 +60,12 @@ static NSString *const kTasksKey = @"tasks";
     [self.parseObject setObject:[NSNumber numberWithInteger:total] forKey:kTotalKey];
 }
 
-- (NSNumber *)unit {
-    return [self.parseObject objectForKey:kUnitKey];
+- (NSInteger)unit {
+    return [[self.parseObject objectForKey:kUnitKey] integerValue];
 }
 
-- (void)setUnit:(NSNumber *)unit {
-    [self.parseObject setObject:unit forKey:kUnitKey];
+- (void)setUnit:(NSInteger)unit {
+    [self.parseObject setObject:[NSNumber numberWithInteger:unit] forKey:kUnitKey];
 }
 
 - (NSDate *)startDate {
@@ -105,7 +105,7 @@ static NSString *const kTasksKey = @"tasks";
     if (self.total <= 0) {
         return [IUtils errorWithCode:400 message:@"Total must be positive"];
     }
-    if (self.unit == nil) {
+    if (![Unit isValidUnit:self.unit]) {
         return [IUtils errorWithCode:400 message:@"Invalid unit"];
     }
 

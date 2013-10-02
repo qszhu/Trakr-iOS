@@ -6,22 +6,19 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString *const kUnitChapter;
-extern NSString *const kUnitPage;
+enum {
+    kUnitChapter = 1,
+    kUnitPage = 2
+};
 
 @interface Unit : NSObject
-+ (NSUInteger)count;
-
 + (NSArray *)names;
 
-+ (NSUInteger)getIndexForValue:(NSNumber *)value;
++ (NSString *)getNameForValue:(NSInteger)unit;
 
-+ (NSNumber *)getValueForName:(NSString *)name;
++ (NSInteger)getValueAtIndex:(NSUInteger)index;
 
-+ (NSString *)getNameForValue:(NSNumber *)unit;
++ (NSUInteger)getIndexForValue:(NSInteger)unit;
 
-+ (NSString *)getNameAtIndex:(NSUInteger)index;
-
-+ (NSNumber *)getValueAtIndex:(NSUInteger)index;
-
++ (BOOL)isValidUnit:(NSInteger)unit;
 @end

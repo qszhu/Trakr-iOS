@@ -10,59 +10,47 @@
 
 }
 
-NSString *const kUnitChapter = @"Chapter";
-NSString *const kUnitPage = @"Page";
-
-+ (NSDictionary *)UNIT {
-    static NSDictionary *aDict;
-    if (!aDict) {
-        aDict = [[NSDictionary alloc] initWithObjectsAndKeys:
-                @1, kUnitChapter,
-                @2, kUnitPage,
-//                @3, @"Episode",
-//                @4, @"Lecture",
-//                @5, @"Assignment",
-//                @6, @"Quiz",
-                nil];
++ (NSArray *)values {
+    static NSArray *values;
+    if (!values) {
+        values = @[[NSNumber numberWithInteger:kUnitChapter], [NSNumber numberWithInteger:kUnitPage]];
     }
-    return aDict;
-}
-
-+ (NSUInteger)count {
-    return [[Unit UNIT] count];
+    return values;
 }
 
 + (NSArray *)names {
-    NSMutableArray *temp = [[NSMutableArray alloc] init];
-    for (int i = 0; i < [Unit count]; i++) {
-        [temp addObject:[Unit getNameAtIndex:i]];
+    NSMutableArray *array = [NSMutableArray new];
+    for (int i = 0; i < [Unit values].count; i++) {
+        [array addObject:[Unit getNameForValue:[[Unit values][i] integerValue]]];
     }
-    return [NSArray arrayWithArray:temp];
+    return array;
 }
 
-+ (NSUInteger)getIndexForValue:(NSNumber *)value {
-    for (int i = 0; i < [Unit count]; i++) {
-        if ([[Unit getValueAtIndex:i] isEqualToNumber:value]) {
-            return i;
-        }
++ (NSString *)getNameForValue:(NSInteger)unit {
+    switch (unit) {
+        case kUnitPage:
+            return @"Page";
+        default:
+            return @"Chapter";
     }
-    return -1;
 }
 
-+ (NSNumber *)getValueForName:(NSString *)name {
-    return [[Unit UNIT] objectForKey:name];
++ (NSInteger)getValueAtIndex:(NSUInteger)index {
+    return [[[Unit values] objectAtIndex:index] integerValue];
 }
 
-+ (NSString *)getNameForValue:(NSNumber *)unit {
-    return [[[Unit UNIT] allKeysForObject:unit] objectAtIndex:0];
++ (NSUInteger)getIndexForValue:(NSInteger)unit {
+    for (int i = 0; i < [Unit values].count; i++) {
+        if (unit == [[Unit values][i] integerValue]) return i;
+    }
+    return 0;
 }
 
-+ (NSString *)getNameAtIndex:(NSUInteger)index {
-    return [[[Unit UNIT] allKeys] objectAtIndex:index];
-}
-
-+ (NSNumber *)getValueAtIndex:(NSUInteger)index {
-    return [[[Unit UNIT] allValues] objectAtIndex:index];
++ (BOOL)isValidUnit:(NSInteger)unit {
+    for (int i = 0; i < [Unit values].count; i++) {
+        if (unit == [[Unit values][i] integerValue]) return YES;
+    }
+    return NO;
 }
 
 @end
