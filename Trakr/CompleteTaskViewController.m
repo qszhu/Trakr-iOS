@@ -13,7 +13,7 @@
 #import "Completion.h"
 #import "SVProgressHUD.h"
 #import "IUtils.h"
-#import "TaskViewController.h"
+#import "Const.h"
 #import "TestFlight.h"
 
 @interface CompleteTaskViewController ()

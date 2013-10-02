@@ -18,7 +18,7 @@
 #import "Completion.h"
 #import "ODRefreshControl.h"
 #import "Setting.h"
-#import "LogInViewController.h"
+#import "Const.h"
 #import "RATreeView.h"
 #import "TestFlight.h"
 

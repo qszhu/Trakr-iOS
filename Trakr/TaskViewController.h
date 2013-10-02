@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-static NSString * const kDidCompleteTaskNotification = @"DidCompleteTaskNotification";
-
 @interface TaskViewController : UIViewController <UIAlertViewDelegate>
 
 @end

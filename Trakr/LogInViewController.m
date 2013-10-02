@@ -6,6 +6,7 @@
 
 #import "LogInViewController.h"
 #import "IUtils.h"
+#import "Const.h"
 #import "TestFlight.h"
 
 @implementation LogInViewController {
