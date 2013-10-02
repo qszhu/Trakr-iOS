@@ -11,60 +11,57 @@
 
 }
 
-NSString *const kRepeatEveryDay = @"Every Day";
-NSString *const kRepeatEveryWeek = @"Every Week";
-NSString *const kRepeatEveryMonth = @"Every Month";
-
-+ (NSDictionary *)REPEAT {
-    static NSDictionary *aDict;
-    if (!aDict) {
-        aDict = [[NSDictionary alloc] initWithObjectsAndKeys:
-                @1, kRepeatEveryDay,
-                @2, kRepeatEveryWeek,
-//                @3, @"Every Two Weeks",
-                @4, kRepeatEveryMonth,
-//                @5, @"Every Year",
-//                @6, @"Custom",
-                nil];
++ (NSArray *)values {
+    static NSArray *values;
+    if (!values) {
+        values = @[
+            [NSNumber numberWithInteger:kRepeatEveryDay],
+            [NSNumber numberWithInteger:kRepeatEveryWeek],
+            [NSNumber numberWithInteger:kRepeatEveryMonth]
+            ];
     }
-    return aDict;
-}
-
-+ (NSUInteger)count {
-    return [[Repeat REPEAT] count];
+    return values;
 }
 
 + (NSArray *)names {
-    NSMutableArray *temp = [[NSMutableArray alloc] init];
-    for (int i = 0; i < [Repeat count]; i++) {
-        [temp addObject:[Repeat getNameAtIndex:i]];
-    }
-    return [NSArray arrayWithArray:temp];
-}
-
-+ (NSUInteger)getIndexForValue:(NSNumber *)value {
-    for (int i = 0; i < [Repeat count]; i++) {
-        if ([[Repeat getValueAtIndex:i] isEqualToNumber:value]) {
-            return i;
+    static NSArray *names;
+    if (!names) {
+        NSMutableArray *array = [NSMutableArray new];
+        for (int i = 0; i < [Repeat values].count; i++) {
+            [array addObject:[Repeat getNameForValue:[[Repeat values][i] integerValue]]];
         }
+        names = [NSArray arrayWithArray:array];
     }
-    return -1;
+    return names;
 }
 
-+ (NSNumber *)getValueForName:(NSString *)name {
-    return [[Repeat REPEAT] objectForKey:name];
++ (NSString *)getNameForValue:(NSInteger)repeat {
+    switch (repeat) {
+        case 2:
+            return @"Every week";
+        case 4:
+            return @"Every month";
+        default:
+            return @"Every day";
+    }
 }
 
-+ (NSString *)getNameForValue:(NSNumber *)unit {
-    return [[[Repeat REPEAT] allKeysForObject:unit] objectAtIndex:0];
++ (NSInteger)getValueAtIndex:(NSUInteger)index {
+    return [[Repeat values][index] integerValue];
 }
 
-+ (NSString *)getNameAtIndex:(NSUInteger)index {
-    return [[[Repeat REPEAT] allKeys] objectAtIndex:index];
++ (NSUInteger)getIndexForValue:(NSInteger)repeat {
+    for (int i = 0; i < [Repeat values].count; i++) {
+        if (repeat == [[Repeat values][i] integerValue]) return i;
+    }
+    return 0;
 }
 
-+ (NSNumber *)getValueAtIndex:(NSUInteger)index {
-    return [[[Repeat REPEAT] allValues] objectAtIndex:index];
++ (BOOL)isValidRepeat:(NSInteger)repeat {
+    for (int i = 0; i < [Repeat values].count; i++) {
+        if (repeat == [[Repeat values][i] integerValue]) return YES;
+    }
+    return NO;
 }
 
 @end

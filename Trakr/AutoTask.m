@@ -19,7 +19,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.repeat = [Repeat getValueForName:kRepeatEveryDay];
+        self.repeat = kRepeatEveryDay;
     }
 
     return self;
@@ -29,7 +29,7 @@
     if (self.workload <= 0) {
         return [IUtils errorWithCode:400 message:@"Workload must be positive"];
     }
-    if (self.repeat == nil) {
+    if (![Repeat isValidRepeat:self.repeat]) {
         return [IUtils errorWithCode:400 message:@"Repeat interval is required"];
     }
 
@@ -37,13 +37,14 @@
 }
 
 - (NSInteger)getNthOffset:(int)offset {
-    if ([[Repeat getValueForName:kRepeatEveryWeek] isEqualToNumber:self.repeat]) {
-        return offset * 7;
+    switch (self.repeat) {
+        case kRepeatEveryWeek:
+            return offset * 7;
+        case kRepeatEveryMonth:
+            return offset * 30;
+        default:
+            return offset;
     }
-    if ([[Repeat getValueForName:kRepeatEveryMonth] isEqualToNumber:self.repeat]) {
-        return offset * 30;
-    }
-    return offset;
 }
 
 - (void)createTasksForPlan:(Plan *)plan {

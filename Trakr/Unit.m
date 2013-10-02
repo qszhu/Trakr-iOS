@@ -19,11 +19,15 @@
 }
 
 + (NSArray *)names {
-    NSMutableArray *array = [NSMutableArray new];
-    for (int i = 0; i < [Unit values].count; i++) {
-        [array addObject:[Unit getNameForValue:[[Unit values][i] integerValue]]];
+    static NSArray *names;
+    if (!names) {
+        NSMutableArray *array = [NSMutableArray new];
+        for (int i = 0; i < [Unit values].count; i++) {
+            [array addObject:[Unit getNameForValue:[[Unit values][i] integerValue]]];
+        }
+        names = [NSArray arrayWithArray:names];
     }
-    return array;
+    return names;
 }
 
 + (NSString *)getNameForValue:(NSInteger)unit {
@@ -36,7 +40,7 @@
 }
 
 + (NSInteger)getValueAtIndex:(NSUInteger)index {
-    return [[[Unit values] objectAtIndex:index] integerValue];
+    return [[Unit values][index] integerValue];
 }
 
 + (NSUInteger)getIndexForValue:(NSInteger)unit {

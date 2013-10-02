@@ -10,7 +10,7 @@
 
 @interface AutoTask : NSObject
 @property(nonatomic) NSInteger workload;
-@property(strong, nonatomic) NSNumber *repeat;
+@property(nonatomic) NSInteger repeat;
 
 - (NSError *)getValidationError;
 

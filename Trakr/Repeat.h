@@ -6,22 +6,20 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString *const kRepeatEveryDay;
-extern NSString *const kRepeatEveryWeek;
-extern NSString *const kRepeatEveryMonth;
+enum {
+    kRepeatEveryDay = 1,
+    kRepeatEveryWeek = 2,
+    kRepeatEveryMonth = 4
+};
 
 @interface Repeat : NSObject
-+ (NSUInteger)count;
-
 + (NSArray *)names;
 
-+ (NSUInteger)getIndexForValue:(NSNumber *)value;
++ (NSString *)getNameForValue:(NSInteger)repeat;
 
-+ (NSNumber *)getValueForName:(NSString *)name;
++ (NSInteger)getValueAtIndex:(NSUInteger)index;
 
-+ (NSString *)getNameForValue:(NSNumber *)unit;
++ (NSUInteger)getIndexForValue:(NSInteger)repeat;
 
-+ (NSString *)getNameAtIndex:(NSUInteger)index;
-
-+ (NSNumber *)getValueAtIndex:(NSUInteger)index;
++ (BOOL)isValidRepeat:(NSInteger)repeat;
 @end
