@@ -17,7 +17,7 @@
 #import "SVProgressHUD.h"
 #import "ActionSheetStringPicker.h"
 #import "ActionSheetDatePicker.h"
-#import "Const.H"
+#import "Const.h"
 #import "TestFlight.h"
 
 @interface CreatePlanViewController ()
@@ -31,7 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.plan = [[Plan alloc] init];
+    self.plan = [[Plan object] setDefaults];
     self.autoTask = [[AutoTask alloc] init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectTarget:) name:kDidSelectTargetNotification object:nil];
 
@@ -69,7 +69,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%d %d", indexPath.section, indexPath.row);
     if (indexPath.section == 0) {
         switch (indexPath.row) {
             case 0:

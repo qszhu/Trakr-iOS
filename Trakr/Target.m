@@ -16,7 +16,7 @@
 @dynamic creator;
 
 + (NSString *)parseClassName {
-    return @"Target";
+    return NSStringFromClass([Target class]);
 }
 
 - (NSError *)getValidationError {

@@ -86,7 +86,7 @@
     int offset = 0;
     for (Task *task in progress.plan.tasks) {
         for (Completion *completion in progress.completions) {
-            if ([completion.task.getParseObject.objectId isEqualToString:task.getParseObject.objectId]) {
+            if ([[completion.task objectId] isEqualToString:[task objectId]]) {
                 if (task.offset > offset) {
                     offset = task.offset;
                 }

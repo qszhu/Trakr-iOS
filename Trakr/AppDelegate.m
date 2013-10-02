@@ -12,12 +12,16 @@
 #import "SettingsViewController.h"
 #import "MainViewController.h"
 #import "Target.h"
+#import "Task.h"
+#import "Plan.h"
 #import "TestFlight.h"
 
 @implementation AppDelegate
 
 - (void)parseInit:(NSDictionary *)launchOptions {
     [Target registerSubclass];
+    [Task registerSubclass];
+    [Plan registerSubclass];
     [Parse setApplicationId:@"vWqZkcSCvOlkcGltPDBYwy9Gt5k1cZyBMI32WVpl"
                   clientKey:@"bligFq7ajuGKzzM17eTRUp5PQRd8aUv6frJ8rAU0"];
 

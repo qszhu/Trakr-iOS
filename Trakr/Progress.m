@@ -40,15 +40,11 @@ static NSString *const kCreatorKey = @"creator";
 }
 
 - (Plan *)plan {
-    PFObject *plan = [self.parseObject objectForKey:kPlanKey];
-    if (plan != nil) {
-        return [[Plan alloc] initWithParseObject:plan];
-    }
-    return nil;
+    return [self.parseObject objectForKey:kPlanKey];
 }
 
 - (void)setPlan:(Plan *)plan {
-    [self.parseObject setObject:[plan getParseObject] forKey:kPlanKey];
+    [self.parseObject setObject:plan forKey:kPlanKey];
 }
 
 - (NSDate *)startDate {

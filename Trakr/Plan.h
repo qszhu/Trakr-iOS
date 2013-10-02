@@ -9,17 +9,17 @@
 
 @class Target;
 
-@interface Plan : NSObject
-@property(strong, nonatomic) Target *target;
-@property(nonatomic) NSInteger total;
-@property(nonatomic) NSInteger unit;
-@property(strong, nonatomic) NSDate *startDate;
-@property(strong, nonatomic) NSString *creator;
-@property(strong, nonatomic) NSArray *tasks;
+@interface Plan : PFObject<PFSubclassing>
++ (NSString *)parseClassName;
 
-- (id)initWithParseObject:(PFObject *)object;
+@property(retain) Target *target;
+@property NSInteger total;
+@property NSInteger unit;
+@property(retain) NSDate *startDate;
+@property(retain) PFUser *creator;
+@property(retain) NSArray *tasks;
 
-- (PFObject *)getParseObject;
+- (id)setDefaults;
 
 - (NSError *)getValidationError;
 

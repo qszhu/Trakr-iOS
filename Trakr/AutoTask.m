@@ -52,7 +52,7 @@
 
     int step = self.workload;
     for (int count = 0, i = 0; count < plan.total; count += step, i++) {
-        Task *task = [[Task alloc] init];
+        Task *task = [Task object];
 
         int start = count + 1;
         int end = MIN(count + step, plan.total);

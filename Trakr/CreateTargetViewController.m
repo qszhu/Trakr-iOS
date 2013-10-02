@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.target = [[Target alloc] init];
+    self.target = [Target object];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

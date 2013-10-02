@@ -128,7 +128,7 @@ static NSString *const kSectionFuture = @"This Week";
             todo.progress = progress;
             todo.task = task;
             for (Completion *completion in progress.completions) {
-                if ([[[completion.task getParseObject] objectId] isEqualToString:[[task getParseObject] objectId]]) {
+                if ([[completion.task objectId] isEqualToString:[task objectId]]) {
                     todo.completion = completion;
                 }
             }

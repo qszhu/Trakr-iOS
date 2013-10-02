@@ -53,7 +53,7 @@
 - (NSString *)getTaskStatus:(Task *)task {
     NSDate *taskDate = [task getDate:self.progress.startDate];
     for (Completion *completion in self.progress.completions) {
-        if ([completion.task.getParseObject.objectId isEqualToString:task.getParseObject.objectId]) {
+        if ([[completion.task objectId] isEqualToString:[task objectId]]) {
             return [NSString stringWithFormat:@" / %@", [IUtils stringFromDate:taskDate]];
         }
     }

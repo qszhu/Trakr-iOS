@@ -7,15 +7,13 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 
-@interface Task : NSObject
-@property(nonatomic) NSInteger offset;
-@property(nonatomic) NSInteger step;
-@property(strong, nonatomic) NSString *name;
-//@property (strong, nonatomic) NSDate *deadline;
+@interface Task : PFObject<PFSubclassing>
++ (NSString *)parseClassName;
 
-- (id)initWithParseObject:(PFObject *)object;
-
-- (PFObject *)getParseObject;
+@property NSInteger offset;
+@property NSInteger step;
+@property(retain) NSString *name;
+//@property(retain) NSDate *deadline;
 
 - (NSDate *)getDate:(NSDate *)startDate;
 

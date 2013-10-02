@@ -51,11 +51,11 @@ static NSString *const kTaskKey = @"task";
 }
 
 - (Task *)task {
-    return [[Task alloc] initWithParseObject:[self.parseObject objectForKey:kTaskKey]];
+    return [self.parseObject objectForKey:kTaskKey];
 }
 
 - (void)setTask:(Task *)task {
-    [self.parseObject setObject:task.getParseObject forKey:kTaskKey];
+    [self.parseObject setObject:task forKey:kTaskKey];
 }
 
 - (PFObject *)getParseObject {

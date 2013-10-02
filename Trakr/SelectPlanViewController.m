@@ -79,7 +79,7 @@
                                       reuseIdentifier:cellIdentifier];
     }
 
-    Plan *plan = [[Plan alloc] initWithParseObject:object];
+    Plan *plan = (Plan *)object;
     cell.textLabel.text = plan.target.name;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%d %@s, %d days", plan.total, [Unit getNameForValue:plan.unit], [self getTaskSpan:plan]];
 
@@ -96,7 +96,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [TestFlight passCheckpoint:@"select plan"];
 
-    Plan *plan = [[Plan alloc] initWithParseObject:[self.objects objectAtIndex:(NSUInteger) indexPath.row]];
+    Plan *plan = [self.objects objectAtIndex:indexPath.row];
     [self createProgressForPlan:plan];
 }
 
