@@ -43,6 +43,7 @@
 		669C6F07CF023D542212390F /* AutoTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C649B358C4B5C6ADCAE48 /* AutoTask.m */; };
 		669C6F25602525C50DD0F8A6 /* Target.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C68609C9121A0C518433D /* Target.m */; };
 		669C6F8AD53ACF07F6EF415E /* Todo.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C60425EEBD36669DBB83F /* Todo.m */; };
+		AC103D1617FBFA6800D143D9 /* LoginCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = AC103D1517FBFA6800D143D9 /* LoginCommon.m */; };
 		AC2A1E9617DCA2BC00DB6091 /* CreateTarget.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC2A1E9517DCA2BC00DB6091 /* CreateTarget.storyboard */; };
 		AC2A1E9C17DCAFD000DB6091 /* CreatePlan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC2A1E9B17DCAFD000DB6091 /* CreatePlan.storyboard */; };
 		AC342F5F17D7833F007F2465 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC342F5E17D7833F007F2465 /* Settings.storyboard */; };
@@ -125,6 +126,8 @@
 		669C6FB679E148EAF374E83B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		669C6FC1C059418CC0CEEF86 /* CompleteTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompleteTaskViewController.m; sourceTree = "<group>"; };
 		9D4D8DD39F964EFE9427F1AA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC103D1417FBFA6800D143D9 /* LoginCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginCommon.h; sourceTree = "<group>"; };
+		AC103D1517FBFA6800D143D9 /* LoginCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginCommon.m; sourceTree = "<group>"; };
 		AC2A1E9517DCA2BC00DB6091 /* CreateTarget.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateTarget.storyboard; sourceTree = "<group>"; };
 		AC2A1E9817DCAA8D00DB6091 /* Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
 		AC2A1E9B17DCAFD000DB6091 /* CreatePlan.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreatePlan.storyboard; sourceTree = "<group>"; };
@@ -199,8 +202,8 @@
 				669C6FB679E148EAF374E83B /* AppDelegate.h */,
 				669C6E7E41A41B507DDE1747 /* AppDelegate.m */,
 				AC2A1E9817DCAA8D00DB6091 /* Const.h */,
-				669C6D7311444283D08F9C75 /* MainViewController.m */,
 				669C6D59DDA2D99F333574DA /* MainViewController.h */,
+				669C6D7311444283D08F9C75 /* MainViewController.m */,
 				669C6F73EA5C4125B02ECB6C /* IUtils.h */,
 				669C634D6EAC57DCD49C030A /* IUtils.m */,
 				669C67F2BCFDFA792BB147B4 /* MainWindow.xib */,
@@ -245,6 +248,8 @@
 		669C693DCCB83EC6E9848D8E /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				AC103D1417FBFA6800D143D9 /* LoginCommon.h */,
+				AC103D1517FBFA6800D143D9 /* LoginCommon.m */,
 				669C6A35527B58A459163652 /* LogInViewController.h */,
 				669C6A7FDEDC01A8233A0B74 /* LogInViewController.m */,
 				669C66063F75D20B7671CE7F /* SignUpViewController.h */,
@@ -450,6 +455,7 @@
 				669C656D19CDDB3146002F00 /* AppDelegate.m in Sources */,
 				669C6DB5CBA1BDFC41AEEB37 /* MainViewController.m in Sources */,
 				669C6C1FF1DAEAFA3D9C79F5 /* IUtils.m in Sources */,
+				AC103D1617FBFA6800D143D9 /* LoginCommon.m in Sources */,
 				669C60DF6A1E2DCEF7DEDDD2 /* ProgressDetailViewController.m in Sources */,
 				669C67DC2EE042C11AF806DC /* ProgressViewController.m in Sources */,
 				669C68C8B702B5960299121B /* SignUpViewController.m in Sources */,

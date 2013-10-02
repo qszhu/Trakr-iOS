@@ -6,21 +6,17 @@
 
 #import "SignUpViewController.h"
 #import "IUtils.h"
+#import "LoginCommon.h"
 #import "TestFlight.h"
 
 @implementation SignUpViewController {
 
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    UILabel *label = [[UILabel alloc] init];
-    label.text = @"Trakr";
-    label.font = [UIFont systemFontOfSize:36];
-    label.textColor = [UIColor lightTextColor];
-    [label setBackgroundColor:[UIColor clearColor]];
-    [label sizeToFit];
-    [self.signUpView setLogo:label];
+    [self.signUpView setLogo:[LoginCommon getTitleLabel]];
 
     [self setDelegate:self];
 }
@@ -30,8 +26,7 @@
     [TestFlight passCheckpoint:@"sign up view appear"];
 }
 
-- (BOOL)signUpViewController:(PFSignUpViewController *)signUpController
-           shouldBeginSignUp:(NSDictionary *)info {
+- (BOOL)signUpViewController:(PFSignUpViewController *)signUpController shouldBeginSignUp:(NSDictionary *)info {
     BOOL valid = YES;
     for (id key in info) {
         NSString *value = [info objectForKey:key];
@@ -46,18 +41,15 @@
     return valid;
 }
 
-- (void)signUpViewController:(PFSignUpViewController *)signUpController
-               didSignUpUser:(PFUser *)user {
+- (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
     [IUtils dismissView:self];
 }
 
-- (void)signUpViewController:(PFSignUpViewController *)signUpController
-    didFailToSignUpWithError:(NSError *)error {
+- (void)signUpViewController:(PFSignUpViewController *)signUpController didFailToSignUpWithError:(NSError *)error {
     [IUtils logError:error];
 }
 
 - (void)signUpViewControllerDidCancelSignUp:(PFSignUpViewController *)signUpController {
-
 }
 
 @end
