@@ -14,7 +14,6 @@
 #import "Plan.h"
 #import "Target.h"
 #import "TTTTimeIntervalFormatter.h"
-#import "Task.h"
 #import "Completion.h"
 #import "SVProgressHUD.h"
 #import "Const.h"
@@ -54,7 +53,7 @@
 }
 
 - (PFQuery *)queryForTable {
-    PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([Progress class])];
+    PFQuery *query = [Progress query];
     PFUser *user = [PFUser currentUser];
     if (user != nil) {
         [query whereKey:@"creator" equalTo:user];
@@ -134,7 +133,7 @@
                                       reuseIdentifier:cellIdentifier];
     }
 
-    Progress *progress = [[Progress alloc] initWithParseObject:object];
+    Progress *progress = (Progress *)object;
     cell.textLabel.text = progress.plan.target.name;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%d/%d tasks, %@",
                                  progress.completions.count, progress.plan.tasks.count, [self getProgressStatus:progress]];

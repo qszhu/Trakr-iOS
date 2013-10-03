@@ -3,76 +3,19 @@
 // Copyright (c) 2013 Qinsi ZHU. All rights reserved.
 //
 
-
+#import <Parse/PFObject+Subclass.h>
 #import "Progress.h"
 #import "Plan.h"
 #import "IUtils.h"
-#import "Completion.h"
-#import "Task.h"
-
-static NSString *const kPlanKey = @"plan";
-static NSString *const kStartDateKey = @"startDate";
-static NSString *const kCompletionsKey = @"completions";
-static NSString *const kCreatorKey = @"creator";
-
-@interface Progress ()
-@property(strong, nonatomic) PFObject *parseObject;
-@end
 
 @implementation Progress {
 
 }
-- (id)init {
-    self = [self initWithParseObject:[PFObject objectWithClassName:NSStringFromClass([self class])]];
-    return self;
-}
 
-- (id)initWithParseObject:(PFObject *)object {
-    self = [super init];
-    if (self) {
-        self.parseObject = object;
-    }
-    return self;
-}
+@dynamic plan, startDate, completions, creator;
 
-- (PFObject *)getParseObject {
-    return self.parseObject;
-}
-
-- (Plan *)plan {
-    return [self.parseObject objectForKey:kPlanKey];
-}
-
-- (void)setPlan:(Plan *)plan {
-    [self.parseObject setObject:plan forKey:kPlanKey];
-}
-
-- (NSDate *)startDate {
-    return [self.parseObject objectForKey:kStartDateKey];
-}
-
-- (void)setStartDate:(NSDate *)startDate {
-    [self.parseObject setObject:startDate forKey:kStartDateKey];
-}
-
-- (NSArray *)completions {
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    for (PFObject *object in [self.parseObject objectForKey:kCompletionsKey]) {
-        [array addObject:[[Completion alloc] initWithParseObject:object]];
-    }
-    return [[NSArray alloc] initWithArray:array];
-}
-
-- (void)setCompletions:(NSArray *)completions {
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    for (Completion *completion in completions) {
-        [array addObject:[completion getParseObject]];
-    }
-    [self.parseObject setObject:[[NSArray alloc] initWithArray:array] forKey:kCompletionsKey];
-}
-
-- (NSString *)creator {
-    return [[self.parseObject objectForKey:kCreatorKey] username];
++ (NSString *)parseClassName {
+    return NSStringFromClass([Progress class]);
 }
 
 - (NSError *)getValidationError {
@@ -86,32 +29,21 @@ static NSString *const kCreatorKey = @"creator";
 
 - (void)saveWithTarget:(id)target selector:(SEL)selector {
     if (self.startDate == nil) {
-        self.startDate = [[NSDate alloc] init];
+        self.startDate = [NSDate date];
     }
     NSError *error = [self getValidationError];
     if (error) {
         [target performSelector:selector withObject:[NSNumber numberWithBool:NO] withObject:error];
         return;
     }
-    [self.parseObject setObject:[PFUser currentUser] forKey:kCreatorKey];
-    [self.parseObject saveInBackgroundWithTarget:target selector:selector];
-}
-
-- (BOOL)task:(Task *)task matchesType:(TaskType)taskType {
-    NSDate *taskDate = [IUtils dateByOffset:task.offset fromDate:self.startDate];
-    NSDate *today = [NSDate date];
-    NSInteger dayDiff = [IUtils daysBetween:today and:taskDate];
-    if (taskType == TaskTypeLate && dayDiff < 0) return YES;
-    if (taskType == TaskTypeToday && dayDiff == 0) return YES;
-    if (taskType == TaskTypeTomorrow && dayDiff == 1) return YES;
-    if (taskType == TaskTypeFuture && dayDiff > 1 && dayDiff < 7) return YES;
-    return NO;
+    self.creator = [PFUser currentUser];
+    [self saveInBackgroundWithTarget:target selector:selector];
 }
 
 - (NSArray *)getTasksForType:(TaskType)taskType {
-    NSMutableArray *array = [[NSMutableArray alloc] init];
+    NSMutableArray *array = [NSMutableArray new];
     for (Task *task in self.plan.tasks) {
-        if ([self task:task matchesType:taskType]) {
+        if ([task taskType:self.startDate] == taskType) {
             [array addObject:task];
         }
     }

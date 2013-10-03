@@ -8,9 +8,12 @@
 #import "Progress.h"
 #import "IUtils.h"
 #import "Plan.h"
-#import "Task.h"
 #import "Completion.h"
 #import "TestFlight.h"
+
+@interface ProgressDetailViewController()
+@property (strong, nonatomic) Progress *progress;
+@end
 
 @implementation ProgressDetailViewController {
 
@@ -21,7 +24,7 @@
 
     [self.navigationItem setTitle:@"Tasks"];
 
-    PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([Progress class])];
+    PFQuery *query = [Progress query];
     [query includeKey:@"plan.tasks"];
     [query includeKey:@"completions.task"];
     [query getObjectInBackgroundWithId:self.progressId
@@ -39,7 +42,7 @@
         [IUtils showErrorDialogWithTitle:@"Error" error:error];
         return;
     }
-    self.progress = [[Progress alloc] initWithParseObject:progress];
+    self.progress = (Progress *)progress;
     [self.tableView reloadData];
 }
 

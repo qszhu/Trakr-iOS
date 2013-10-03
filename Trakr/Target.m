@@ -11,9 +11,7 @@
 @implementation Target {
 }
 
-@dynamic name;
-@dynamic summary;
-@dynamic creator;
+@dynamic name, summary, creator;
 
 + (NSString *)parseClassName {
     return NSStringFromClass([Target class]);

@@ -12,12 +12,7 @@
 @implementation Plan {
 }
 
-@dynamic target;
-@dynamic total;
-@dynamic unit;
-@dynamic startDate;
-@dynamic creator;
-@dynamic tasks;
+@dynamic target, total, unit, startDate, creator, tasks;
 
 + (NSString *)parseClassName {
     return NSStringFromClass([Plan class]);

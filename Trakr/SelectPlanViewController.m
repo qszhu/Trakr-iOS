@@ -50,7 +50,7 @@
 }
 
 - (PFQuery *)queryForTable {
-    PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([Plan class])];
+    PFQuery *query = [Plan query];
     [query includeKey:@"target"];
     [query includeKey:@"tasks"];
     return query;
@@ -66,15 +66,12 @@
     return maxOffset+1;
 }
 
-- (PFTableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath
-                        object:(PFObject *)object {
+- (PFTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     static NSString *cellIdentifier = @"Cell";
 
     PFTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
-        cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                      reuseIdentifier:cellIdentifier];
+        cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
 
     Plan *plan = (Plan *)object;
@@ -84,13 +81,6 @@
     return cell;
 }
 
-- (void)createProgressForPlan:(Plan *)plan {
-    Progress *progress = [[Progress alloc] init];
-    progress.plan = plan;
-    [SVProgressHUD showWithStatus:@"Creating progress..." maskType:SVProgressHUDMaskTypeGradient];
-    [progress saveWithTarget:self selector:@selector(saveProgressWithResult:error:)];
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [TestFlight passCheckpoint:@"select plan"];
 
@@ -98,14 +88,21 @@
     [self createProgressForPlan:plan];
 }
 
+- (void)createProgressForPlan:(Plan *)plan {
+    Progress *progress = [Progress object];
+    progress.plan = plan;
+    [SVProgressHUD showWithStatus:@"Creating progress..." maskType:SVProgressHUDMaskTypeGradient];
+    [progress saveWithTarget:self selector:@selector(saveProgressWithResult:error:)];
+}
+
 - (void)saveProgressWithResult:(NSNumber *)result error:(NSError *)error {
     [SVProgressHUD dismiss];
-    if ([result boolValue]) {
-        [self.navigationController popViewControllerAnimated:YES];
-        [[NSNotificationCenter defaultCenter] postNotificationName:kDidCreateProgressNotification object:nil];
-    } else {
+    if (![result boolValue]) {
         [IUtils showErrorDialogWithTitle:@"Cannot create progress" error:error];
+        return;
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDidCreateProgressNotification object:self];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {

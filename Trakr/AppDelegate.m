@@ -14,6 +14,8 @@
 #import "Target.h"
 #import "Task.h"
 #import "Plan.h"
+#import "Completion.h"
+#import "Progress.h"
 #import "TestFlight.h"
 
 @implementation AppDelegate
@@ -22,6 +24,8 @@
     [Target registerSubclass];
     [Task registerSubclass];
     [Plan registerSubclass];
+    [Completion registerSubclass];
+    [Progress registerSubclass];
     [Parse setApplicationId:@"vWqZkcSCvOlkcGltPDBYwy9Gt5k1cZyBMI32WVpl"
                   clientKey:@"bligFq7ajuGKzzM17eTRUp5PQRd8aUv6frJ8rAU0"];
 

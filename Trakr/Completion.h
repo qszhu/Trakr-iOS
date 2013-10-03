@@ -9,16 +9,13 @@
 
 @class Task;
 
+@interface Completion : PFObject<PFSubclassing>
++ (NSString *)parseClassName;
 
-@interface Completion : NSObject
-@property(strong, nonatomic) NSDate *date;
-@property(nonatomic) NSInteger cost;
-@property(strong, nonatomic) Task *task;
-//@property(nonatomic) NSInteger step;
-
-- (id)initWithParseObject:(PFObject *)object;
-
-- (PFObject *)getParseObject;
+@property(retain) NSDate *date;
+@property NSInteger cost;
+@property(retain) Task *task;
+//@property NSInteger step;
 
 - (NSError *)getValidationError;
 

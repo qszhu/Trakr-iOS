@@ -6,25 +6,17 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
+#import "Task.h"
 
 @class Plan;
 
-typedef enum _TaskType : NSUInteger {
-    TaskTypeLate,
-    TaskTypeToday,
-    TaskTypeTomorrow,
-    TaskTypeFuture
-} TaskType;
+@interface Progress : PFObject<PFSubclassing>
++ (NSString *)parseClassName;
 
-@interface Progress : NSObject
-@property(strong, nonatomic) Plan *plan;
-@property(strong, nonatomic) NSDate *startDate;
-@property(strong, nonatomic) NSArray *completions;
-@property(strong, nonatomic, readonly) NSString *creator;
-
-- (id)initWithParseObject:(PFObject *)object;
-
-- (PFObject *)getParseObject;
+@property(retain) Plan *plan;
+@property(retain) NSDate *startDate;
+@property(retain) NSArray *completions;
+@property(retain) PFUser *creator;
 
 - (NSError *)getValidationError;
 

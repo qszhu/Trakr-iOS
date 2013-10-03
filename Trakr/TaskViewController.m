@@ -83,7 +83,7 @@ static NSString *const kSectionFuture = @"This Week";
     self.loaded = NO;
     PFUser *user = [PFUser currentUser];
     if (user != nil) {
-        PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([Progress class])];
+        PFQuery *query = [Progress query];
         [query whereKey:@"creator" equalTo:user];
         [query includeKey:@"plan"];
         [query includeKey:@"plan.target"];
@@ -102,11 +102,7 @@ static NSString *const kSectionFuture = @"This Week";
         return;
     }
 
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    for (PFObject *object in results) {
-        [array addObject:[[Progress alloc] initWithParseObject:object]];
-    }
-    self.progresses = [NSArray arrayWithArray:array];
+    self.progresses = results;
     [self reloadTasks];
     self.loaded = YES;
     NSLog(@"reload");
@@ -121,7 +117,7 @@ static NSString *const kSectionFuture = @"This Week";
 - (NSDictionary *)getTodoForType:(TaskType)taskType {
     NSMutableDictionary *dict = [NSMutableDictionary new];
     for (Progress *progress in self.progresses) {
-        NSString *key = [progress getParseObject].objectId;
+        NSString *key = progress.objectId;
         [dict setObject:[NSMutableArray new] forKey:key];
         for (Task *task in [progress getTasksForType:taskType]) {
             Todo *todo = [[Todo alloc] init];

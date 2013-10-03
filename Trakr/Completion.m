@@ -4,62 +4,19 @@
 //
 
 
+#import <Parse/PFObject+Subclass.h>
 #import "Completion.h"
 #import "IUtils.h"
-#import "Task.h"
 
-
-static NSString *const kDateKey = @"date";
-static NSString *const kCostKey = @"cost";
-static NSString *const kTaskKey = @"task";
-
-@interface Completion ()
-@property(strong, nonatomic) PFObject *parseObject;
-@end
 
 @implementation Completion {
 
 }
 
-- (id)init {
-    self = [self initWithParseObject:[PFObject objectWithClassName:NSStringFromClass([self class])]];
-    return self;
-}
+@dynamic date, cost, task;
 
-- (id)initWithParseObject:(PFObject *)object {
-    self = [super init];
-    if (self) {
-        self.parseObject = object;
-    }
-    return self;
-}
-
-- (NSDate *)date {
-    return [self.parseObject objectForKey:kDateKey];
-}
-
-- (void)setDate:(NSDate *)date {
-    [self.parseObject setObject:date forKey:kDateKey];
-}
-
-- (NSInteger)cost {
-    return [[self.parseObject objectForKey:kCostKey] integerValue];
-}
-
-- (void)setCost:(NSInteger)cost {
-    [self.parseObject setObject:[NSNumber numberWithInteger:cost] forKey:kCostKey];
-}
-
-- (Task *)task {
-    return [self.parseObject objectForKey:kTaskKey];
-}
-
-- (void)setTask:(Task *)task {
-    [self.parseObject setObject:task forKey:kTaskKey];
-}
-
-- (PFObject *)getParseObject {
-    return self.parseObject;
++ (NSString *)parseClassName {
+    return NSStringFromClass([Completion class]);
 }
 
 - (NSError *)getValidationError {
@@ -71,14 +28,14 @@ static NSString *const kTaskKey = @"task";
 
 - (void)saveWithTarget:(id)target selector:(SEL)selector {
     if (self.date == nil) {
-        self.date = [[NSDate alloc] init];
+        self.date = [NSDate date];
     }
     NSError *error = [self getValidationError];
     if (error) {
         [target performSelector:selector withObject:[NSNumber numberWithBool:NO] withObject:error];
         return;
     }
-    [self.parseObject saveInBackgroundWithTarget:target selector:selector];
+    [self saveInBackgroundWithTarget:target selector:selector];
 }
 
 @end

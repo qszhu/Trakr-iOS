@@ -7,6 +7,14 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 
+typedef enum _TaskType : NSUInteger {
+    TaskTypeLate,
+    TaskTypeToday,
+    TaskTypeTomorrow,
+    TaskTypeThisWeek,
+    TaskTypeFuture
+} TaskType;
+
 @interface Task : PFObject<PFSubclassing>
 + (NSString *)parseClassName;
 
@@ -21,4 +29,5 @@
 
 - (void)saveWithTarget:(id)target selector:(SEL)selector;
 
+- (TaskType)taskType:(NSDate *)startDate;
 @end

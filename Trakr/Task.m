@@ -12,9 +12,7 @@
 
 }
 
-@dynamic offset;
-@dynamic step;
-@dynamic name;
+@dynamic offset, step, name;
 
 + (NSString *)parseClassName {
     return NSStringFromClass([Task class]);
@@ -41,6 +39,17 @@
         return;
     }
     [self saveInBackgroundWithTarget:target selector:selector];
+}
+
+- (TaskType)taskType:(NSDate *)startDate {
+    NSDate *taskDate = [IUtils dateByOffset:self.offset fromDate:startDate];
+    NSDate *today = [NSDate date];
+    NSInteger dayDiff = [IUtils daysBetween:today and:taskDate];
+    if (dayDiff < 0) return TaskTypeLate;
+    if (dayDiff == 0) return TaskTypeToday;
+    if (dayDiff == 1) return TaskTypeTomorrow;
+    if (dayDiff < 7) return TaskTypeThisWeek;
+    return TaskTypeFuture;
 }
 
 @end
