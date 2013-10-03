@@ -64,19 +64,9 @@
     return query;
 }
 
-- (NSDate *)getFinishDate:(Progress *)progress {
-    int offset = 0;
-    for (Task *task in progress.plan.tasks) {
-        if (task.offset > offset) {
-            offset = task.offset;
-        }
-    }
-    return [IUtils dateByOffset:offset+1 fromDate:progress.startDate];
-}
-
 - (NSString *)formatFinishDate:(Progress *)progress {
-    NSDate *finishDate = [self getFinishDate:progress];
-    TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
+    NSDate *finishDate = [progress getFinishDate];
+    TTTTimeIntervalFormatter *timeIntervalFormatter = [TTTTimeIntervalFormatter new];
     NSTimeInterval interval = [finishDate timeIntervalSinceDate:[NSDate date]];
     NSString *str = [timeIntervalFormatter stringForTimeInterval:interval];
     if (interval <= 0) {
@@ -85,29 +75,12 @@
     return [NSString stringWithFormat:@"finishes in %@", str];
 }
 
-- (NSInteger)getLateDays:(Progress *)progress {
-    int offset = 0;
-    for (Task *task in progress.plan.tasks) {
-        for (Completion *completion in progress.completions) {
-            if ([[completion.task objectId] isEqualToString:[task objectId]]) {
-                if (task.offset > offset) {
-                    offset = task.offset;
-                }
-            }
-        }
-    }
-    int nextOffset = NSIntegerMax;
-    for (Task *task in progress.plan.tasks) {
-        if (task.offset > offset && task.offset < nextOffset) {
-            nextOffset = task.offset;
-        }
-    }
-    NSDate *nextCompleteDate = [IUtils dateByOffset:nextOffset fromDate:progress.startDate];
-    return [IUtils daysBetween:nextCompleteDate and:[NSDate date]];
-}
-
 - (NSString *)formatLateDays:(Progress *)progress {
-    NSInteger lateDays = [self getLateDays:progress];
+    NSDate *date = [progress getFirstImcompleteDate];
+    if (date == nil) {
+        return @"";
+    }
+    NSInteger lateDays = [IUtils daysBetween:date and:[NSDate date]];
     if (lateDays <= 0) {
         return @"";
     }
@@ -122,15 +95,12 @@
     return lateStr;
 }
 
-- (PFTableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath
-                        object:(PFObject *)object {
+- (PFTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     static NSString *cellIdentifier = @"Cell";
 
     PFTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
-        cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                      reuseIdentifier:cellIdentifier];
+        cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
 
     Progress *progress = (Progress *)object;
@@ -145,8 +115,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [TestFlight passCheckpoint:@"select progress"];
 
-    ProgressDetailViewController *progressDetailVC = [[ProgressDetailViewController alloc] init];
-    PFObject *progress = [self.objects objectAtIndex:indexPath.row];
+    ProgressDetailViewController *progressDetailVC = [ProgressDetailViewController new];
+    Progress *progress = [self.objects objectAtIndex:indexPath.row];
     progressDetailVC.progressId = progress.objectId;
     [self.navigationController pushViewController:progressDetailVC animated:YES];
 }

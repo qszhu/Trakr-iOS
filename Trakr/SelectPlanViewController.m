@@ -56,16 +56,6 @@
     return query;
 }
 
-- (NSInteger)getTaskSpan:(Plan *)plan {
-    NSInteger maxOffset = 0;
-    for (Task *task in plan.tasks) {
-        if (maxOffset < task.offset) {
-            maxOffset = task.offset;
-        }
-    }
-    return maxOffset+1;
-}
-
 - (PFTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     static NSString *cellIdentifier = @"Cell";
 
@@ -76,7 +66,7 @@
 
     Plan *plan = (Plan *)object;
     cell.textLabel.text = plan.target.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d %@s, %d days", plan.total, [Unit getNameForValue:plan.unit], [self getTaskSpan:plan]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d %@s, %d days", plan.total, [Unit getNameForValue:plan.unit], [plan getTaskSpan]];
 
     return cell;
 }

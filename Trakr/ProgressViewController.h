@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Qinsi ZHU. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 
 @interface ProgressViewController : PFQueryTableViewController <UIActionSheetDelegate>

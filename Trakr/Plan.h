@@ -25,4 +25,6 @@
 
 - (void)saveWithTarget:(id)target selector:(SEL)selector;
 
+- (NSInteger)getTaskSpan;
+
 @end

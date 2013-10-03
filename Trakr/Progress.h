@@ -24,4 +24,8 @@
 
 - (NSArray *)getTasksForType:(TaskType)taskType;
 
+- (NSDate *)getFinishDate;
+
+- (NSDate *)getFirstImcompleteDate;
+
 @end

@@ -42,7 +42,7 @@
 }
 
 - (TaskType)taskType:(NSDate *)startDate {
-    NSDate *taskDate = [IUtils dateByOffset:self.offset fromDate:startDate];
+    NSDate *taskDate = [self getDate:startDate];
     NSDate *today = [NSDate date];
     NSInteger dayDiff = [IUtils daysBetween:today and:taskDate];
     if (dayDiff < 0) return TaskTypeLate;

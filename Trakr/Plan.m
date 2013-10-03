@@ -7,6 +7,7 @@
 #import <Parse/PFObject+Subclass.h>
 #import "Plan.h"
 #import "IUtils.h"
+#import "Task.h"
 #import "Unit.h"
 
 @implementation Plan {
@@ -50,6 +51,16 @@
     }
     self.creator = [PFUser currentUser];
     [self saveInBackgroundWithTarget:target selector:selector];
+}
+
+- (NSInteger)getTaskSpan {
+    NSInteger maxOffset = 0;
+    for (Task *task in self.tasks) {
+        if (maxOffset < task.offset) {
+            maxOffset = task.offset;
+        }
+    }
+    return maxOffset + 1;
 }
 
 @end

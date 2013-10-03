@@ -6,6 +6,7 @@
 #import <Parse/PFObject+Subclass.h>
 #import "Progress.h"
 #import "Plan.h"
+#import "Completion.h"
 #import "IUtils.h"
 
 @implementation Progress {
@@ -48,6 +49,29 @@
         }
     }
     return [[NSArray alloc] initWithArray:array];
+}
+
+- (NSDate *)getFinishDate {
+    return [IUtils dateByOffset:[self.plan getTaskSpan] fromDate:self.startDate];
+}
+
+- (NSDate *)getFirstImcompleteDate {
+    NSMutableSet *set = [NSMutableSet new];
+    for (Completion *completion in self.completions) {
+        [set addObject:completion.task.objectId];
+    }
+    NSInteger minOffset = NSIntegerMax;
+    Task *firstTask = nil;
+    for (Task *task in self.plan.tasks) {
+        if (![set containsObject:task.objectId] && minOffset > task.offset) {
+            minOffset = task.offset;
+            firstTask = task;
+        }
+    }
+    if (firstTask != nil) {
+        return [firstTask getDate:self.startDate];
+    }
+    return nil;
 }
 
 @end

@@ -27,9 +27,7 @@
     PFQuery *query = [Progress query];
     [query includeKey:@"plan.tasks"];
     [query includeKey:@"completions.task"];
-    [query getObjectInBackgroundWithId:self.progressId
-                                target:self
-                              selector:@selector(getProgress:error:)];
+    [query getObjectInBackgroundWithId:self.progressId target:self selector:@selector(getProgress:error:)];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -78,10 +76,11 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
 
-    Task *task = [self.progress.plan.tasks objectAtIndex:(NSUInteger)indexPath.row];
+    Task *task = [self.progress.plan.tasks objectAtIndex:indexPath.row];
     cell.textLabel.text = task.name;
 
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%@", [IUtils stringFromDate:[task getDate:self.progress.startDate]], [self getTaskStatus:task]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%@",
+                                 [IUtils stringFromDate:[task getDate:self.progress.startDate]], [self getTaskStatus:task]];
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
