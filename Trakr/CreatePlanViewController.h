@@ -6,9 +6,6 @@
 
 #import <Foundation/Foundation.h>
 
-@class ProgressViewController;
-
-
 @interface CreatePlanViewController : UITableViewController
 @property (strong, nonatomic) IBOutlet UILabel *targetLabel;
 @property (strong, nonatomic) IBOutlet UITextField *totalField;
@@ -17,8 +14,6 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *workloadField;
 @property (strong, nonatomic) IBOutlet UILabel *repeatLabel;
-
-@property(strong, nonatomic) ProgressViewController *progressVC;
 
 - (IBAction)donePressed:(id)sender;
 - (IBAction)cancelPressed:(id)sender;

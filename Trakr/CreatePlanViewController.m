@@ -9,8 +9,6 @@
 #import "SelectTargetViewController.h"
 #import "Plan.h"
 #import "Target.h"
-#import "ProgressViewController.h"
-#import "Progress.h"
 #import "Unit.h"
 #import "Repeat.h"
 #import "AutoTask.h"
@@ -32,7 +30,7 @@
     [super viewDidLoad];
 
     self.plan = [[Plan object] setDefaults];
-    self.autoTask = [[AutoTask alloc] init];
+    self.autoTask = [AutoTask new];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectTarget:) name:kDidSelectTargetNotification object:nil];
 
     [self refresh];
@@ -94,7 +92,7 @@
 - (void)selectTarget {
     [TestFlight passCheckpoint:@"select target"];
 
-    SelectTargetViewController *selectTargetVC = [[SelectTargetViewController alloc] init];
+    SelectTargetViewController *selectTargetVC = [SelectTargetViewController new];
 
     self.navigationItem.title = @"";
     [self.navigationController pushViewController:selectTargetVC animated:YES];
@@ -155,7 +153,7 @@
 - (IBAction)donePressed:(id)sender {
     [TestFlight passCheckpoint:@"done pressed"];
 
-    self.plan.total = [self.totalField.text intValue];
+    self.plan.total = [self.totalField.text integerValue];
     self.autoTask.workload = [self.workloadField.text integerValue];
     NSError *error = [self.autoTask getValidationError];
     if (error) {
@@ -163,9 +161,8 @@
         return;
     }
 
-    [self.autoTask createTasksForPlan:self.plan];
-
     [SVProgressHUD showWithStatus:@"Creating plan..." maskType:SVProgressHUDMaskTypeGradient];
+    [self.autoTask createTasksForPlan:self.plan];
     [self.plan saveWithTarget:self selector:@selector(savePlanWithResult:error:)];
 }
 

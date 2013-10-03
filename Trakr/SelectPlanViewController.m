@@ -6,11 +6,9 @@
 
 #import "SelectPlanViewController.h"
 #import "IUtils.h"
-#import "CreatePlanViewController.h"
 #import "Plan.h"
 #import "Target.h"
 #import "Progress.h"
-#import "ProgressViewController.h"
 #import "Unit.h"
 #import "SVProgressHUD.h"
 #import "Const.h"
@@ -104,7 +102,7 @@
     [SVProgressHUD dismiss];
     if ([result boolValue]) {
         [self.navigationController popViewControllerAnimated:YES];
-        [self.progressVC loadObjects];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kDidCreateProgressNotification object:nil];
     } else {
         [IUtils showErrorDialogWithTitle:@"Cannot create progress" error:error];
     }

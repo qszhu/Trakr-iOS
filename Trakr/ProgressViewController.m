@@ -17,8 +17,8 @@
 #import "Task.h"
 #import "Completion.h"
 #import "SVProgressHUD.h"
+#import "Const.h"
 #import "TestFlight.h"
-
 
 @interface ProgressViewController()
 @property (strong, nonatomic) NSIndexPath *selectedIndex;
@@ -29,6 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didCreateProgress:) name:kDidCreateProgressNotification object:nil];
     [IUtils setRightBarAddButton:self action:@selector(newPlanPressed)];
 }
 
@@ -39,11 +40,14 @@
     [TestFlight passCheckpoint:@"progress view appear"];
 }
 
+- (void)didCreateProgress:(NSNotification *)notification {
+    [self loadObjects];
+}
+
 - (void)newPlanPressed {
     [TestFlight passCheckpoint:@"new plan pressed"];
 
-    SelectPlanViewController *selectPlanVC = [[SelectPlanViewController alloc] init];
-    selectPlanVC.progressVC = self;
+    SelectPlanViewController *selectPlanVC = [SelectPlanViewController new];
 
     self.navigationItem.title = @"";
     [self.navigationController pushViewController:selectPlanVC animated:YES];

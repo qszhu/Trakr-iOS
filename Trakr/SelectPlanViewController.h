@@ -7,9 +7,5 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 
-@class ProgressViewController;
-
-
 @interface SelectPlanViewController : PFQueryTableViewController <UIActionSheetDelegate>
-@property(strong, nonatomic) ProgressViewController *progressVC;
 @end
