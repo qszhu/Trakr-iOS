@@ -28,4 +28,5 @@
 
 - (NSDate *)getFirstImcompleteDate;
 
+- (void)completeTask:(Task *)task withCost:(NSInteger)cost;
 @end

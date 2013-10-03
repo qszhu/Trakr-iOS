@@ -162,12 +162,7 @@ static NSString *const kSectionFuture = @"This Week";
 
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex != alertView.cancelButtonIndex) {
-        // TODO: DRY
-        Completion *completion = [[Completion alloc] init];
-        completion.task = self.todo.task;
-        completion.cost = 0;
-        completion.date = [NSDate date];
-        self.todo.progress.completions = [self.todo.progress.completions arrayByAddingObject:completion];
+        [self.todo.progress completeTask:self.todo.task withCost:0];
         [SVProgressHUD showWithStatus:@"Completing task..." maskType:SVProgressHUDMaskTypeGradient];
         [self.todo.progress saveWithTarget:self selector:@selector(saveProgress:error:)];
     }

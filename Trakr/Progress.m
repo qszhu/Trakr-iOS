@@ -74,4 +74,12 @@
     return nil;
 }
 
+- (void)completeTask:(Task *)task withCost:(NSInteger)cost {
+    Completion *completion = [Completion object];
+    completion.task = task;
+    completion.cost = cost;
+    completion.date = [NSDate date];
+    self.completions = [self.completions arrayByAddingObject:completion];
+}
+
 @end
