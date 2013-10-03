@@ -22,7 +22,7 @@
 
 - (void)saveWithTarget:(id)target selector:(SEL)selector;
 
-- (NSArray *)getTasksForType:(TaskType)taskType;
+- (NSArray *)getTasksInGroup:(NSInteger)taskGroup;
 
 - (NSDate *)getFinishDate;
 

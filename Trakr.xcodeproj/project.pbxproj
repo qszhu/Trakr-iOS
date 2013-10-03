@@ -44,6 +44,7 @@
 		669C6F25602525C50DD0F8A6 /* Target.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C68609C9121A0C518433D /* Target.m */; };
 		669C6F8AD53ACF07F6EF415E /* Todo.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C60425EEBD36669DBB83F /* Todo.m */; };
 		AC103D1617FBFA6800D143D9 /* LoginCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = AC103D1517FBFA6800D143D9 /* LoginCommon.m */; };
+		AC103D1917FD948700D143D9 /* TaskGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = AC103D1817FD948700D143D9 /* TaskGroup.m */; };
 		AC2A1E9617DCA2BC00DB6091 /* CreateTarget.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC2A1E9517DCA2BC00DB6091 /* CreateTarget.storyboard */; };
 		AC2A1E9C17DCAFD000DB6091 /* CreatePlan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC2A1E9B17DCAFD000DB6091 /* CreatePlan.storyboard */; };
 		AC342F5F17D7833F007F2465 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC342F5E17D7833F007F2465 /* Settings.storyboard */; };
@@ -128,6 +129,8 @@
 		9D4D8DD39F964EFE9427F1AA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC103D1417FBFA6800D143D9 /* LoginCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginCommon.h; sourceTree = "<group>"; };
 		AC103D1517FBFA6800D143D9 /* LoginCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginCommon.m; sourceTree = "<group>"; };
+		AC103D1717FD948700D143D9 /* TaskGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskGroup.h; sourceTree = "<group>"; };
+		AC103D1817FD948700D143D9 /* TaskGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskGroup.m; sourceTree = "<group>"; };
 		AC2A1E9517DCA2BC00DB6091 /* CreateTarget.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateTarget.storyboard; sourceTree = "<group>"; };
 		AC2A1E9817DCAA8D00DB6091 /* Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
 		AC2A1E9B17DCAFD000DB6091 /* CreatePlan.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreatePlan.storyboard; sourceTree = "<group>"; };
@@ -309,6 +312,8 @@
 				669C6A1ADD2FB97A51EA863E /* Completion.m */,
 				669C61B8AE5F0E83A346594E /* Task.h */,
 				669C652F84308E43F29207E3 /* Task.m */,
+				AC103D1717FD948700D143D9 /* TaskGroup.h */,
+				AC103D1817FD948700D143D9 /* TaskGroup.m */,
 				669C64B0DA7D28D43AE11C5C /* Todo.h */,
 				669C60425EEBD36669DBB83F /* Todo.m */,
 				669C652A5F120E91D407C357 /* CompleteTaskView.xib */,
@@ -468,6 +473,7 @@
 				669C68DB444D15D12FC61E04 /* Completion.m in Sources */,
 				669C6A42F625009E408FB24A /* Plan.m in Sources */,
 				669C6E695EA5178BB5871BD3 /* Progress.m in Sources */,
+				AC103D1917FD948700D143D9 /* TaskGroup.m in Sources */,
 				669C667DD9C8DECD17B53402 /* Repeat.m in Sources */,
 				669C6F25602525C50DD0F8A6 /* Target.m in Sources */,
 				669C63E8DF7D16C5E000C75C /* Task.m in Sources */,

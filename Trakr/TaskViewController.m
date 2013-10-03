@@ -10,6 +10,7 @@
 #import "Progress.h"
 #import "IUtils.h"
 #import "Task.h"
+#import "TaskGroup.h"
 #import "SVProgressHUD.h"
 #import "Todo.h"
 #import "Plan.h"
@@ -33,11 +34,6 @@
 @property(strong, nonatomic) RATreeView *treeView;
 @property(nonatomic) BOOL loaded;
 @end
-
-static NSString *const kSectionLate = @"Late";
-static NSString *const kSectionToday = @"Today";
-static NSString *const kSectionTomorrow = @"Tomorrow";
-static NSString *const kSectionFuture = @"This Week";
 
 @implementation TaskViewController
 
@@ -114,12 +110,12 @@ static NSString *const kSectionFuture = @"This Week";
     [TestFlight passCheckpoint:@"task list reloaded"];
 }
 
-- (NSDictionary *)getTodoForType:(TaskType)taskType {
+- (NSDictionary *)getTodoInGroup:(NSInteger)taskGroup {
     NSMutableDictionary *dict = [NSMutableDictionary new];
     for (Progress *progress in self.progresses) {
         NSString *key = progress.objectId;
         [dict setObject:[NSMutableArray new] forKey:key];
-        for (Task *task in [progress getTasksForType:taskType]) {
+        for (Task *task in [progress getTasksInGroup:taskGroup]) {
             Todo *todo = [[Todo alloc] init];
             todo.progress = progress;
             todo.task = task;
@@ -138,10 +134,10 @@ static NSString *const kSectionFuture = @"This Week";
 }
 
 - (void)reloadTasks {
-    self.lateTodos = [self getTodoForType:TaskTypeLate];
-    self.todayTodos = [self getTodoForType:TaskTypeToday];
-    self.tomorrowTodos = [self getTodoForType:TaskTypeTomorrow];
-    self.futureTodos = [self getTodoForType:TaskTypeFuture];
+    self.lateTodos = [self getTodoInGroup:kTaskGroupLate];
+    self.todayTodos = [self getTodoInGroup:kTaskGroupToday];
+    self.tomorrowTodos = [self getTodoInGroup:kTaskGroupTomorrow];
+    self.futureTodos = [self getTodoInGroup:kTaskGroupFuture];
 }
 
 - (void)showCompleteTaskTimer:(Todo *)todo {
@@ -238,13 +234,13 @@ static NSString *const kSectionFuture = @"This Week";
     [self underlineCellText:cell on:NO];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (item == self.lateTodos) {
-        cell.textLabel.text = kSectionLate;
+        cell.textLabel.text = [TaskStatus getNameForValue:kTaskGroupLate];
     } else if (item == self.todayTodos) {
-        cell.textLabel.text = kSectionToday;
+        cell.textLabel.text = [TaskStatus getNameForValue:kTaskGroupToday];
     } else if (item == self.tomorrowTodos) {
-        cell.textLabel.text = kSectionTomorrow;
+        cell.textLabel.text = [TaskStatus getNameForValue:kTaskGroupTomorrow];
     } else if (item == self.futureTodos) {
-        cell.textLabel.text = kSectionFuture;
+        cell.textLabel.text = [TaskStatus getNameForValue:kTaskGroupFuture];
     } else if ([item isKindOfClass:[NSArray class]]) {
         Todo *todo = [((NSArray *)item) objectAtIndex:0];
         cell.textLabel.text = todo.progress.plan.target.name;

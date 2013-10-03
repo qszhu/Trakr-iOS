@@ -41,10 +41,10 @@
     [self saveInBackgroundWithTarget:target selector:selector];
 }
 
-- (NSArray *)getTasksForType:(TaskType)taskType {
+- (NSArray *)getTasksInGroup:(NSInteger)taskGroup {
     NSMutableArray *array = [NSMutableArray new];
     for (Task *task in self.plan.tasks) {
-        if ([task taskType:self.startDate] == taskType) {
+        if ([task taskGroup:self.startDate] == taskGroup) {
             [array addObject:task];
         }
     }
