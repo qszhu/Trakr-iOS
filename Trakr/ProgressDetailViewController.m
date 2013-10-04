@@ -22,9 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self.navigationItem setTitle:@"Tasks"];
-
     PFQuery *query = [Progress query];
+    [query includeKey:@"plan.target"];
     [query includeKey:@"plan.tasks"];
     [query includeKey:@"completions.task"];
     [query getObjectInBackgroundWithId:self.progressId target:self selector:@selector(getProgress:error:)];
@@ -41,6 +40,8 @@
         return;
     }
     self.progress = (Progress *)progress;
+    [self.navigationItem setTitle:[self.progress getName]];
+
     [self.tableView reloadData];
 }
 

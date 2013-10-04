@@ -8,13 +8,12 @@
 
 @class Progress;
 @class Task;
-@class Completion;
-
 
 @interface Todo : NSObject
 @property(strong, nonatomic) Progress *progress;
 @property(strong, nonatomic) Task *task;
-@property(strong, nonatomic) Completion *completion;
 
-- (BOOL)isCompleted;
+- (id)initWithTask:(Task *)task inProgress:(Progress *)progress;
+- (void)completeWithCost:(NSInteger)cost;
+- (void)saveWithTarget:(id)target selector:(SEL)selector;
 @end

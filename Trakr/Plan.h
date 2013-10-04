@@ -21,6 +21,8 @@
 
 - (id)setDefaults;
 
+- (NSString *)getName;
+
 - (NSError *)getValidationError;
 
 - (void)saveWithTarget:(id)target selector:(SEL)selector;

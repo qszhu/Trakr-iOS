@@ -45,6 +45,9 @@
 		669C6F8AD53ACF07F6EF415E /* Todo.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C60425EEBD36669DBB83F /* Todo.m */; };
 		AC103D1617FBFA6800D143D9 /* LoginCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = AC103D1517FBFA6800D143D9 /* LoginCommon.m */; };
 		AC103D1917FD948700D143D9 /* TaskGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = AC103D1817FD948700D143D9 /* TaskGroup.m */; };
+		AC103D1C17FDA63000D143D9 /* GroupedTasks.m in Sources */ = {isa = PBXBuildFile; fileRef = AC103D1B17FDA63000D143D9 /* GroupedTasks.m */; };
+		AC103D1E17FE654200D143D9 /* TaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC103D1D17FE654200D143D9 /* TaskView.xib */; };
+		AC103D2117FED07F00D143D9 /* TodoUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = AC103D2017FED07F00D143D9 /* TodoUtils.m */; };
 		AC2A1E9617DCA2BC00DB6091 /* CreateTarget.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC2A1E9517DCA2BC00DB6091 /* CreateTarget.storyboard */; };
 		AC2A1E9C17DCAFD000DB6091 /* CreatePlan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC2A1E9B17DCAFD000DB6091 /* CreatePlan.storyboard */; };
 		AC342F5F17D7833F007F2465 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC342F5E17D7833F007F2465 /* Settings.storyboard */; };
@@ -131,6 +134,11 @@
 		AC103D1517FBFA6800D143D9 /* LoginCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginCommon.m; sourceTree = "<group>"; };
 		AC103D1717FD948700D143D9 /* TaskGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskGroup.h; sourceTree = "<group>"; };
 		AC103D1817FD948700D143D9 /* TaskGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskGroup.m; sourceTree = "<group>"; };
+		AC103D1A17FDA63000D143D9 /* GroupedTasks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupedTasks.h; sourceTree = "<group>"; };
+		AC103D1B17FDA63000D143D9 /* GroupedTasks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupedTasks.m; sourceTree = "<group>"; };
+		AC103D1D17FE654200D143D9 /* TaskView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskView.xib; sourceTree = "<group>"; };
+		AC103D1F17FED07F00D143D9 /* TodoUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoUtils.h; sourceTree = "<group>"; };
+		AC103D2017FED07F00D143D9 /* TodoUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoUtils.m; sourceTree = "<group>"; };
 		AC2A1E9517DCA2BC00DB6091 /* CreateTarget.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateTarget.storyboard; sourceTree = "<group>"; };
 		AC2A1E9817DCAA8D00DB6091 /* Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
 		AC2A1E9B17DCAFD000DB6091 /* CreatePlan.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreatePlan.storyboard; sourceTree = "<group>"; };
@@ -216,6 +224,7 @@
 				AC342F5D17D78319007F2465 /* Setting */,
 				669C6124F7CAD5489AE5A84E /* Target */,
 				669C6E5E7F86EDDA8D82FF8E /* Task */,
+				AC103D2217FED5D900D143D9 /* Todo */,
 			);
 			path = Trakr;
 			sourceTree = "<group>";
@@ -310,19 +319,31 @@
 			children = (
 				669C6D392BAB69945574A357 /* Completion.h */,
 				669C6A1ADD2FB97A51EA863E /* Completion.m */,
+				AC103D1A17FDA63000D143D9 /* GroupedTasks.h */,
+				AC103D1B17FDA63000D143D9 /* GroupedTasks.m */,
 				669C61B8AE5F0E83A346594E /* Task.h */,
 				669C652F84308E43F29207E3 /* Task.m */,
 				AC103D1717FD948700D143D9 /* TaskGroup.h */,
 				AC103D1817FD948700D143D9 /* TaskGroup.m */,
+				AC103D1D17FE654200D143D9 /* TaskView.xib */,
+				669C6915A703FD74C75B8139 /* TaskViewController.h */,
+				669C66757621D01BABBA4283 /* TaskViewController.m */,
+			);
+			name = Task;
+			sourceTree = "<group>";
+		};
+		AC103D2217FED5D900D143D9 /* Todo */ = {
+			isa = PBXGroup;
+			children = (
 				669C64B0DA7D28D43AE11C5C /* Todo.h */,
 				669C60425EEBD36669DBB83F /* Todo.m */,
 				669C652A5F120E91D407C357 /* CompleteTaskView.xib */,
 				669C6CFEEDA61F5CC26B4D9E /* CompleteTaskViewController.h */,
 				669C6FC1C059418CC0CEEF86 /* CompleteTaskViewController.m */,
-				669C6915A703FD74C75B8139 /* TaskViewController.h */,
-				669C66757621D01BABBA4283 /* TaskViewController.m */,
+				AC103D1F17FED07F00D143D9 /* TodoUtils.h */,
+				AC103D2017FED07F00D143D9 /* TodoUtils.m */,
 			);
-			name = Task;
+			name = Todo;
 			sourceTree = "<group>";
 		};
 		AC342F5D17D78319007F2465 /* Setting */ = {
@@ -401,6 +422,7 @@
 				669C657A6B17343607ABC579 /* MainWindow.xib in Resources */,
 				669C634531222F197207D528 /* CompleteTaskView.xib in Resources */,
 				AC342F5F17D7833F007F2465 /* Settings.storyboard in Resources */,
+				AC103D1E17FE654200D143D9 /* TaskView.xib in Resources */,
 				AC2A1E9617DCA2BC00DB6091 /* CreateTarget.storyboard in Resources */,
 				AC2A1E9C17DCAFD000DB6091 /* CreatePlan.storyboard in Resources */,
 				ACEC38CA17EA0D7E00110798 /* Icon-72.png in Resources */,
@@ -477,6 +499,8 @@
 				669C667DD9C8DECD17B53402 /* Repeat.m in Sources */,
 				669C6F25602525C50DD0F8A6 /* Target.m in Sources */,
 				669C63E8DF7D16C5E000C75C /* Task.m in Sources */,
+				AC103D2117FED07F00D143D9 /* TodoUtils.m in Sources */,
+				AC103D1C17FDA63000D143D9 /* GroupedTasks.m in Sources */,
 				669C60081D4D3083B45B7386 /* Unit.m in Sources */,
 				669C6F8AD53ACF07F6EF415E /* Todo.m in Sources */,
 				669C67DED70B2FB99B1493CD /* TaskViewController.m in Sources */,

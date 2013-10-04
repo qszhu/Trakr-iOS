@@ -7,7 +7,9 @@
 #import "Progress.h"
 #import "Plan.h"
 #import "Completion.h"
+#import "TaskGroup.h"
 #import "IUtils.h"
+#import "TTTTimeIntervalFormatter.h"
 
 @implementation Progress {
 
@@ -41,10 +43,14 @@
     [self saveInBackgroundWithTarget:target selector:selector];
 }
 
+- (NSString *)getName {
+    return [self.plan getName];
+}
+
 - (NSArray *)getTasksInGroup:(NSInteger)taskGroup {
     NSMutableArray *array = [NSMutableArray new];
     for (Task *task in self.plan.tasks) {
-        if ([task taskGroup:self.startDate] == taskGroup) {
+        if (taskGroup == kTaskGroupAll || [task taskGroup:self.startDate] == taskGroup) {
             [array addObject:task];
         }
     }
@@ -55,7 +61,26 @@
     return [IUtils dateByOffset:[self.plan getTaskSpan] fromDate:self.startDate];
 }
 
-- (NSDate *)getFirstImcompleteDate {
+- (void)completeTask:(Task *)task withCost:(NSInteger)cost {
+    Completion *completion = [Completion object];
+    completion.task = task;
+    completion.cost = cost;
+    completion.date = [NSDate date];
+    if (!self.completions) {
+        self.completions = [NSArray new];
+    }
+    self.completions = [self.completions arrayByAddingObject:completion];
+}
+
+- (NSInteger)getNumberOfTasks {
+    return self.plan.tasks.count;
+}
+
+- (NSInteger)getNumberOfCompletedTasks {
+    return self.completions.count;
+}
+
+- (Task *)getFirstImcompleteTask {
     NSMutableSet *set = [NSMutableSet new];
     for (Completion *completion in self.completions) {
         [set addObject:completion.task.objectId];
@@ -68,18 +93,52 @@
             firstTask = task;
         }
     }
-    if (firstTask != nil) {
-        return [firstTask getDate:self.startDate];
-    }
-    return nil;
+    return firstTask;
 }
 
-- (void)completeTask:(Task *)task withCost:(NSInteger)cost {
-    Completion *completion = [Completion object];
-    completion.task = task;
-    completion.cost = cost;
-    completion.date = [NSDate date];
-    self.completions = [self.completions arrayByAddingObject:completion];
+- (NSInteger)getLateDays {
+    Task *task = [self getFirstImcompleteTask];
+    if (task == nil) {
+        return 0;
+    }
+    NSDate *date = [task getDate:self.startDate];
+    return [IUtils daysBetween:date and:[NSDate date]];
+}
+
++ (NSString *)formatFinishDate:(Progress *)progress {
+    NSDate *finishDate = [progress getFinishDate];
+    TTTTimeIntervalFormatter *timeIntervalFormatter = [TTTTimeIntervalFormatter new];
+    NSTimeInterval interval = [finishDate timeIntervalSinceDate:[NSDate date]];
+    NSString *str = [timeIntervalFormatter stringForTimeInterval:interval];
+    if (interval <= 0) {
+        return [NSString stringWithFormat:@"finished %@", str];
+    }
+    return [NSString stringWithFormat:@"finishes in %@", str];
+}
+
++ (NSString *)formatLateDays:(Progress *)progress {
+    NSInteger lateDays = [progress getLateDays];
+    if (lateDays <= 0) {
+        return @"";
+    }
+    return [NSString stringWithFormat:@"%d days late", lateDays];
+}
+
+- (NSString *)getProgressStatusString {
+    NSString *lateStr = [Progress formatLateDays:self];
+    if ([lateStr isEqualToString:@""]) {
+        return [Progress formatFinishDate:self];
+    }
+    return lateStr;
+}
+
+- (BOOL)isTaskCompleted:(Task *)task {
+    for (Completion *completion in self.completions) {
+        if ([completion.task.objectId isEqualToString:task.objectId]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 @end

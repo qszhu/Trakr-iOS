@@ -51,7 +51,7 @@
 
     TaskViewController *taskVC = [[TaskViewController alloc] init];
     UINavigationController *taskNav = [[UINavigationController alloc] initWithRootViewController:taskVC];
-    taskVC.tabBarItem.title = @"Task";
+    taskVC.tabBarItem.title = @"Tasks";
     taskVC.tabBarItem.image = [UIImage imageNamed:@"second"];
 
     UIStoryboard *settingsStoryboard = [UIStoryboard storyboardWithName:@"Settings" bundle:nil];

@@ -13,11 +13,16 @@ enum {
     kTaskGroupToday,
     kTaskGroupTomorrow,
     kTaskGroupThisWeek,
-    kTaskGroupFuture
+    kTaskGroupFuture,
+    kTaskGroupAll
 };
 
-@interface TaskStatus : NSObject
+@interface TaskGroup : NSObject
++ (NSArray *)values;
+
 + (NSArray *)names;
 
-+ (NSString *)getNameForValue:(NSInteger)taskStatus;
++ (NSString *)getNameForValue:(NSInteger)taskGroup;
+
++ (NSInteger)getValueAtIndex:(NSUInteger)index;
 @end

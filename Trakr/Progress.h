@@ -22,11 +22,21 @@
 
 - (void)saveWithTarget:(id)target selector:(SEL)selector;
 
+- (NSString *)getName;
+
 - (NSArray *)getTasksInGroup:(NSInteger)taskGroup;
 
 - (NSDate *)getFinishDate;
 
-- (NSDate *)getFirstImcompleteDate;
-
 - (void)completeTask:(Task *)task withCost:(NSInteger)cost;
+
+- (NSInteger)getNumberOfTasks;
+
+- (NSInteger)getNumberOfCompletedTasks;
+
+- (NSInteger)getLateDays;
+
+- (NSString *)getProgressStatusString;
+
+- (BOOL)isTaskCompleted:(Task *)task;
 @end

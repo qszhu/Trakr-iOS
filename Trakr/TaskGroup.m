@@ -8,7 +8,7 @@
 
 #import "TaskGroup.h"
 
-@implementation TaskStatus
+@implementation TaskGroup
 
 + (NSArray *)values {
     static NSArray *values;
@@ -18,6 +18,8 @@
             [NSNumber numberWithInteger:kTaskGroupToday],
             [NSNumber numberWithInteger:kTaskGroupTomorrow],
             [NSNumber numberWithInteger:kTaskGroupThisWeek],
+            [NSNumber numberWithInteger:kTaskGroupFuture],
+            [NSNumber numberWithInteger:kTaskGroupAll]
             ];
     }
     return values;
@@ -27,16 +29,16 @@
     static NSArray *names;
     if (!names) {
         NSMutableArray *array = [NSMutableArray new];
-        for (int i = 0; i < [TaskStatus values].count; i++) {
-            [array addObject:[TaskStatus getNameForValue:[[TaskStatus values][i] integerValue]]];
+        for (int i = 0; i < [TaskGroup values].count; i++) {
+            [array addObject:[TaskGroup getNameForValue:[[TaskGroup values][i] integerValue]]];
         }
         names = [NSArray arrayWithArray:names];
     }
     return names;
 }
 
-+ (NSString *)getNameForValue:(NSInteger)taskStatus {
-    switch (taskStatus) {
++ (NSString *)getNameForValue:(NSInteger)taskGroup {
+    switch (taskGroup) {
         case kTaskGroupLate:
             return @"Late";
         case kTaskGroupToday:
@@ -45,9 +47,15 @@
             return @"Tomorrow";
         case kTaskGroupThisWeek:
             return @"This week";
-        default:
+        case kTaskGroupFuture:
             return @"Future";
+        default:
+            return @"All";
     }
+}
+
++ (NSInteger)getValueAtIndex:(NSUInteger)index {
+    return [[TaskGroup values][index] integerValue];
 }
 
 @end

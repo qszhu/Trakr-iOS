@@ -6,15 +6,26 @@
 
 #import "Todo.h"
 #import "Progress.h"
-#import "Task.h"
-#import "Completion.h"
-
 
 @implementation Todo {
 
 }
-- (BOOL)isCompleted {
-    return self.completion != nil;
+
+- (id)initWithTask:(Task *)task inProgress:(Progress *)progress {
+    self = [super init];
+    if (self) {
+        self.task = task;
+        self.progress = progress;
+    }
+    return self;
+}
+
+- (void)completeWithCost:(NSInteger)cost {
+    [self.progress completeTask:self.task withCost:cost];
+}
+
+- (void)saveWithTarget:(id)target selector:(SEL)selector {
+    [self.progress saveWithTarget:target selector:selector];
 }
 
 @end

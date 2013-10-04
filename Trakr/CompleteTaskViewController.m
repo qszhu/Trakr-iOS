@@ -12,6 +12,7 @@
 #import "SVProgressHUD.h"
 #import "IUtils.h"
 #import "Const.h"
+#import "TodoUtils.h"
 #import "TestFlight.h"
 
 @interface CompleteTaskViewController ()
@@ -67,19 +68,9 @@
     if (self.timer != nil) {
         [self.timer invalidate];
     }
-    [self.todo.progress completeTask:self.todo.task withCost:self.seconds];
-    [SVProgressHUD showWithStatus:@"Completing task..." maskType:SVProgressHUDMaskTypeGradient];
-    [self.todo.progress saveWithTarget:self selector:@selector(saveProgress:error:)];
-}
-
-- (void)saveProgress:(NSNumber *)result error:(NSError *)error {
-    [SVProgressHUD dismiss];
-    if (![result boolValue]) {
-        [IUtils showErrorDialogWithTitle:@"Cannot complete task" error:error];
-        return;
-    }
+    TodoUtils *todoUtils = [[TodoUtils alloc] initWithViewController:self];
+    [todoUtils completeTodoWithCost:self.seconds];
     [self dismissViewControllerAnimated:YES completion:nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kDidCompleteTaskNotification object:self];
 }
 
 - (IBAction)timerPressed:(id)sender {

@@ -11,48 +11,58 @@
 #import "IUtils.h"
 #import "Task.h"
 #import "TaskGroup.h"
+#import "GroupedTasks.h"
 #import "SVProgressHUD.h"
 #import "Todo.h"
 #import "Plan.h"
 #import "Target.h"
 #import "CompleteTaskViewController.h"
+#import "ProgressDetailViewController.h"
 #import "Completion.h"
 #import "ODRefreshControl.h"
+#import "TTTTimeIntervalFormatter.h"
 #import "Setting.h"
 #import "Const.h"
-#import "RATreeView.h"
+#import "TodoUtils.h"
 #import "TestFlight.h"
 
-@interface TaskViewController () <RATreeViewDelegate, RATreeViewDataSource>
-@property(strong, nonatomic) NSArray *progresses;
-@property(strong, nonatomic) NSDictionary *lateTodos;
-@property(strong, nonatomic) NSDictionary *todayTodos;
-@property(strong, nonatomic) NSDictionary *tomorrowTodos;
-@property(strong, nonatomic) NSDictionary *futureTodos;
+@interface TaskViewController () <UIAlertViewDelegate, UITableViewDelegate, UITableViewDataSource>
+@property(strong, nonatomic) GroupedTasks *groupedTasks;
 @property(strong, nonatomic) ODRefreshControl *rc;
 @property(strong, nonatomic) Todo *todo;
-@property(strong, nonatomic) RATreeView *treeView;
-@property(nonatomic) BOOL loaded;
+@property(nonatomic) NSInteger selectedTaskGroup;
+@property(strong, nonatomic) TodoUtils *todoUtils;
 @end
+
+enum CellType {
+    CellTypeEmpty,
+    CellTypeSingleTask,
+    CellTypeProgress,
+    CellTypeProgressOverview
+};
 
 @implementation TaskViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self.navigationItem setTitle:@"My Tasks"];
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+
+    [self.navigationItem setTitle:@"Tasks"];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogin:) name:kDidLoginNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didCompleteTask:) name:kDidCompleteTaskNotification object:nil];
-/*
-    self.rc = [[ODRefreshControl alloc] initInScrollView:self.tableView];
-    [self.rc addTarget:self action:@selector(pullToRefresh:) forControlEvents:UIControlEventValueChanged];
- */
-    self.treeView = [[RATreeView alloc] initWithFrame:self.view.frame];
-    self.treeView.delegate = self;
-    self.treeView.dataSource = self;
-    self.treeView.separatorStyle = RATreeViewCellSeparatorStyleSingleLine;
 
-    [self.view addSubview:self.treeView];
+    [self.progressesTable setDelegate:self];
+    [self.progressesTable setDataSource:self];
+
+    self.rc = [[ODRefreshControl alloc] initInScrollView:self.progressesTable];
+    [self.rc addTarget:self action:@selector(pullToRefresh:) forControlEvents:UIControlEventValueChanged];
+
+    self.todoUtils = [[TodoUtils alloc] initWithViewController:self];
+
+    self.selectedTaskGroup = kTaskGroupToday;
     [self refresh];
 }
 
@@ -69,14 +79,13 @@
 
     [TestFlight passCheckpoint:@"task view appear"];
 }
-/*
- - (void)pullToRefresh:(ODRefreshControl *)refreshControl {
- [self refresh];
- }
- */
+
+- (void)pullToRefresh:(ODRefreshControl *)refreshControl {
+    [self refresh];
+}
+
 - (void)refresh {
     NSLog(@"refresh");
-    self.loaded = NO;
     PFUser *user = [PFUser currentUser];
     if (user != nil) {
         PFQuery *query = [Progress query];
@@ -87,208 +96,168 @@
         [query includeKey:@"completions"];
 
         [SVProgressHUD showWithStatus:@"Loading..." maskType:SVProgressHUDMaskTypeNone];
-        [query findObjectsInBackgroundWithTarget:self selector:@selector(getPlans:error:)];
+        [query findObjectsInBackgroundWithTarget:self selector:@selector(getProgresses:error:)];
     }
 }
 
-- (void)getPlans:(NSArray *)results error:(NSError *)error {
+- (void)getProgresses:(NSArray *)results error:(NSError *)error {
     [SVProgressHUD dismiss];
     if (error) {
         [IUtils showErrorDialogWithTitle:@"Error" error:error];
         return;
     }
 
-    self.progresses = results;
-    [self reloadTasks];
-    self.loaded = YES;
+    self.groupedTasks = [[GroupedTasks alloc] initWithProgresses:results];
+
     NSLog(@"reload");
-    [self.treeView reloadData];
-/*
-    [self.tableView reloadData];
+    [self.progressesTable reloadData];
     [self.rc endRefreshing];
- */
+
     [TestFlight passCheckpoint:@"task list reloaded"];
 }
 
-- (NSDictionary *)getTodoInGroup:(NSInteger)taskGroup {
-    NSMutableDictionary *dict = [NSMutableDictionary new];
-    for (Progress *progress in self.progresses) {
-        NSString *key = progress.objectId;
-        [dict setObject:[NSMutableArray new] forKey:key];
-        for (Task *task in [progress getTasksInGroup:taskGroup]) {
-            Todo *todo = [[Todo alloc] init];
-            todo.progress = progress;
-            todo.task = task;
-            for (Completion *completion in progress.completions) {
-                if ([[completion.task objectId] isEqualToString:[task objectId]]) {
-                    todo.completion = completion;
-                }
-            }
-            [[dict objectForKey:key] addObject:todo];
-        }
-        if ([[dict objectForKey:key] count] == 0) {
-            [dict removeObjectForKey:key];
-        }
+- (IBAction)groupChanged:(id)sender {
+    [TestFlight passCheckpoint:@"switch task group segment"];
+
+    switch (self.taskGroupSegment.selectedSegmentIndex) {
+        case 1:
+            self.selectedTaskGroup = kTaskGroupToday;
+            break;
+        case 2:
+            self.selectedTaskGroup = kTaskGroupTomorrow;
+            break;
+        default:
+            self.selectedTaskGroup = kTaskGroupAll;
+            break;
     }
-    return dict;
+
+    [self.progressesTable reloadData];
 }
 
-- (void)reloadTasks {
-    self.lateTodos = [self getTodoInGroup:kTaskGroupLate];
-    self.todayTodos = [self getTodoInGroup:kTaskGroupToday];
-    self.tomorrowTodos = [self getTodoInGroup:kTaskGroupTomorrow];
-    self.futureTodos = [self getTodoInGroup:kTaskGroupFuture];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSInteger numOfProgresses = [[self groupedTasks] getNumberOfProgressesInGroup:self.selectedTaskGroup];
+    return numOfProgresses > 0 ? numOfProgresses : 1;
 }
 
-- (void)showCompleteTaskTimer:(Todo *)todo {
-    CompleteTaskViewController *completeTaskVC = [[CompleteTaskViewController alloc] init];
-    completeTaskVC.todo = todo;
-    [self presentViewController:completeTaskVC animated:YES completion:nil];
+- (void)resetCell:(UITableViewCell *)cell {
+    cell.textLabel.text = nil;
+    cell.detailTextLabel.text = nil;
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
-- (void)showCompleteTaskDialog:(Todo *)todo {
-    self.todo = todo;
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                    message:@"Complete this task?"
-                                                   delegate:self
-                                          cancelButtonTitle:@"No"
-                                          otherButtonTitles:@"Yes", nil];
-    [alert show];
-}
-
-- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex != alertView.cancelButtonIndex) {
-        [self.todo.progress completeTask:self.todo.task withCost:0];
-        [SVProgressHUD showWithStatus:@"Completing task..." maskType:SVProgressHUDMaskTypeGradient];
-        [self.todo.progress saveWithTarget:self selector:@selector(saveProgress:error:)];
-    }
-}
-
-- (void)saveProgress:(NSNumber *)result error:(NSError *)error {
-    [SVProgressHUD dismiss];
-    if (![result boolValue]) {
-        [IUtils showErrorDialogWithTitle:@"Cannot complete task" error:error];
-    } else {
-        [[NSNotificationCenter defaultCenter] postNotificationName:kDidCompleteTaskNotification object:self];
-    }
-}
-
-- (NSInteger)treeView:(RATreeView *)treeView numberOfChildrenOfItem:(id)item {
-    if (!self.loaded) {
-        return 0;
-    }
-    NSInteger res = 0;
-    if (item == nil) {
-        if (self.lateTodos.count > 0) res++;
-        if (self.todayTodos.count > 0) res++;
-        if (self.tomorrowTodos.count > 0) res++;
-        if (self.futureTodos.count > 0) res++;
-    } else if ([item isKindOfClass:[NSDictionary class]]) {
-        res = ((NSDictionary *)item).count;
-    } else if ([item isKindOfClass:[NSArray class]]) {
-        res = ((NSArray *)item).count;
-    }
-    return res;
-}
-
-- (id)treeView:(RATreeView *)treeView child:(NSInteger)index ofItem:(id)item {
-    if (item == nil) {
-        switch (index) {
-            case 0:
-                return self.lateTodos;
-            case 1:
-                return self.todayTodos;
-            case 2:
-                return self.tomorrowTodos;
-            default:
-                return self.futureTodos;
-        }
-    }
-    if ([item isKindOfClass:[NSDictionary class]]) {
-        NSDictionary *dict = item;
-        return [dict objectForKey:[[dict allKeys] objectAtIndex:index]];
-    }
-    return [((NSArray *)item) objectAtIndex:index];
-}
-
-- (void)underlineCellText:(UITableViewCell *)cell on:(BOOL)on {
-    NSDictionary *attributes = @{NSStrikethroughStyleAttributeName : on ? @1 : @0};
-    if (cell.textLabel.text != nil) {
-        cell.textLabel.attributedText = [[NSAttributedString alloc] initWithString:cell.textLabel.text
-                                                                        attributes:attributes];
-    }
-    if (cell.detailTextLabel.text != nil) {
-        cell.detailTextLabel.attributedText = [[NSAttributedString alloc] initWithString:cell.detailTextLabel.text
-                                                                              attributes:attributes];
-    }
-}
-
-- (UITableViewCell *)treeView:(RATreeView *)treeView cellForItem:(id)item treeNodeInfo:(RATreeNodeInfo *)treeNodeInfo {
+- (UITableViewCell *)recycleCellFromTableView:(UITableView *)tableView {
     static NSString *cellIdentifier = @"cell";
-    UITableViewCell *cell = [treeView dequeueReusableCellWithIdentifier:cellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
-    cell.textLabel.text = nil;
-    cell.detailTextLabel.text = nil;
-    [self underlineCellText:cell on:NO];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    if (item == self.lateTodos) {
-        cell.textLabel.text = [TaskStatus getNameForValue:kTaskGroupLate];
-    } else if (item == self.todayTodos) {
-        cell.textLabel.text = [TaskStatus getNameForValue:kTaskGroupToday];
-    } else if (item == self.tomorrowTodos) {
-        cell.textLabel.text = [TaskStatus getNameForValue:kTaskGroupTomorrow];
-    } else if (item == self.futureTodos) {
-        cell.textLabel.text = [TaskStatus getNameForValue:kTaskGroupFuture];
-    } else if ([item isKindOfClass:[NSArray class]]) {
-        Todo *todo = [((NSArray *)item) objectAtIndex:0];
-        cell.textLabel.text = todo.progress.plan.target.name;
-    } else {
-        Todo *todo = item;
-        cell.textLabel.text = ((Todo *)item).task.name;
-        if (!todo.isCompleted) {
-            NSDate *taskDate = [IUtils dateByOffset:todo.task.offset fromDate:todo.progress.startDate];
-            cell.detailTextLabel.text = [IUtils stringFromDate:taskDate];
-        } else {
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"completed in %d minutes", todo.completion.cost / 60];
-            [self underlineCellText:cell on:YES];
-        }
-    }
+    [self resetCell:cell];
     return cell;
 }
 
-- (void)treeView:(RATreeView *)treeView didSelectRowForItem:(id)item treeNodeInfo:(RATreeNodeInfo *)treeNodeInfo {
-    if (![item isKindOfClass:[Todo class]]) return;
-    [TestFlight passCheckpoint:@"select todo"];
+- (NSInteger)getCellTypeAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.selectedTaskGroup == kTaskGroupAll) {
+        return CellTypeProgressOverview;
+    }
 
-    Todo *todo = item;
-    if (todo.isCompleted) {
+    NSInteger numOfProgresses = [self.groupedTasks getNumberOfProgressesInGroup:self.selectedTaskGroup];
+    if (numOfProgresses == 0) {
+        return CellTypeEmpty;
+    }
+
+    Progress *progress = [[self.groupedTasks getProgressesInGroup:self.selectedTaskGroup] objectAtIndex:indexPath.row];
+    NSInteger numOfTasks = [self.groupedTasks getNumberOfTasksOfProgressById:progress.objectId inGroup:self.selectedTaskGroup];
+    if (numOfTasks == 1) {
+        return CellTypeSingleTask;
+    }
+
+    return CellTypeProgress;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [self recycleCellFromTableView:tableView];
+
+    NSInteger cellType = [self getCellTypeAtIndexPath:indexPath];
+    if (cellType == CellTypeEmpty) {
+        return [self setEmptyCell:cell];
+    }
+
+    Progress *progress = [[self.groupedTasks getProgressesInGroup:self.selectedTaskGroup] objectAtIndex:indexPath.row];
+    NSArray *tasks = [self.groupedTasks getTasksOfProgressById:progress.objectId inGroup:self.selectedTaskGroup];
+    switch (cellType) {
+        case CellTypeProgressOverview:
+            return [self setProgressOverviewCell:cell forProgress:progress];
+        case CellTypeSingleTask:
+            return [self setSingleTaskCell:cell forTask:[tasks objectAtIndex:0] inProgress:progress];
+        default:
+            return [self setProgressCell:cell forProgress:progress tasks:tasks];
+    }
+}
+
+- (UITableViewCell *)setEmptyCell:(UITableViewCell *)cell {
+    cell.textLabel.text = @"No tasks";
+    return cell;
+}
+
+- (UITableViewCell *)setProgressOverviewCell:(UITableViewCell *)cell forProgress:(Progress *)progress {
+    cell.textLabel.text = [progress getName];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d/%d tasks, %@",
+                                 [progress getNumberOfCompletedTasks], [progress getNumberOfTasks], [progress getProgressStatusString]];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    return cell;
+}
+
+- (UITableViewCell *)setSingleTaskCell:(UITableViewCell *)cell forTask:(Task *)task inProgress:(Progress *)progress{
+    cell.textLabel.text = [progress getName];
+    cell.detailTextLabel.text = task.name;
+    cell.accessoryType = [progress isTaskCompleted:task] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    return cell;
+}
+
+- (UITableViewCell *)setProgressCell:(UITableViewCell *)cell forProgress:(Progress *)progress tasks:(NSArray *)tasks {
+    cell.textLabel.text = [progress getName];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d tasks", tasks.count];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [TestFlight passCheckpoint:@"select task"];
+
+    NSInteger cellType = [self getCellTypeAtIndexPath:indexPath];
+    if (cellType == CellTypeEmpty) {
         return;
     }
-    if ([Setting taskShouldShowTimer]) {
-        [self showCompleteTaskTimer:todo];
-    } else {
-        [self showCompleteTaskDialog:todo];
+
+    Progress *progress = [[self.groupedTasks getProgressesInGroup:self.selectedTaskGroup] objectAtIndex:indexPath.row];
+    NSArray *tasks = [self.groupedTasks getTasksOfProgressById:progress.objectId inGroup:self.selectedTaskGroup];
+    switch (cellType) {
+        case CellTypeProgressOverview:
+            [self selectedProgressOverview:progress];
+            return;
+        case CellTypeSingleTask:
+            [self selectedTask:[tasks objectAtIndex:0] inProgress:progress];
+            return;
+        default:
+            [TestFlight passCheckpoint:@"select progress"];
+            return;
     }
 }
 
-- (void)treeView:(RATreeView *)treeView willDisplayCell:(UITableViewCell *)cell forItem:(id)item treeNodeInfo:(RATreeNodeInfo *)treeNodeInfo {
-    if (treeNodeInfo.treeDepthLevel == 0) {
-        cell.backgroundColor = UIColorFromRGB(0xF7F7F7);
-    } else if (treeNodeInfo.treeDepthLevel == 1) {
-        cell.backgroundColor = UIColorFromRGB(0xD1EEFC);
-    } else if (treeNodeInfo.treeDepthLevel == 2) {
-        cell.backgroundColor = UIColorFromRGB(0xE0F8D8);
-    }
+- (void)selectedTask:(Task *)task inProgress:(Progress *)progress {
+    [TestFlight passCheckpoint:@"select task"];
+
+    Todo *todo = [[Todo alloc] initWithTask:task inProgress:progress];
+    [self.todoUtils completeTodo:todo];
 }
 
-- (BOOL)treeView:(RATreeView *)treeView shouldItemBeExpandedAfterDataReload:(id)item treeDepthLevel:(NSInteger)treeDepthLevel {
-    return treeDepthLevel == 0;
-}
+- (void)selectedProgressOverview:(Progress *)progress {
+    [TestFlight passCheckpoint:@"select progress overview"];
 
-- (BOOL)treeView:(RATreeView *)treeView canEditRowForItem:(id)item treeNodeInfo:(RATreeNodeInfo *)treeNodeInfo {
-    return NO;
+    ProgressDetailViewController *progressDetailVC = [ProgressDetailViewController new];
+    progressDetailVC.progressId = progress.objectId;
+    [self.navigationController pushViewController:progressDetailVC animated:YES];
 }
 
 @end

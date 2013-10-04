@@ -64,37 +64,6 @@
     return query;
 }
 
-- (NSString *)formatFinishDate:(Progress *)progress {
-    NSDate *finishDate = [progress getFinishDate];
-    TTTTimeIntervalFormatter *timeIntervalFormatter = [TTTTimeIntervalFormatter new];
-    NSTimeInterval interval = [finishDate timeIntervalSinceDate:[NSDate date]];
-    NSString *str = [timeIntervalFormatter stringForTimeInterval:interval];
-    if (interval <= 0) {
-        return [NSString stringWithFormat:@"finished %@", str];
-    }
-    return [NSString stringWithFormat:@"finishes in %@", str];
-}
-
-- (NSString *)formatLateDays:(Progress *)progress {
-    NSDate *date = [progress getFirstImcompleteDate];
-    if (date == nil) {
-        return @"";
-    }
-    NSInteger lateDays = [IUtils daysBetween:date and:[NSDate date]];
-    if (lateDays <= 0) {
-        return @"";
-    }
-    return [NSString stringWithFormat:@"%d days late", lateDays];
-}
-
-- (NSString *)getProgressStatus:(Progress *)progress {
-    NSString *lateStr = [self formatLateDays:progress];
-    if ([lateStr isEqualToString:@""]) {
-        return [self formatFinishDate:progress];
-    }
-    return lateStr;
-}
-
 - (PFTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     static NSString *cellIdentifier = @"Cell";
 
@@ -106,7 +75,7 @@
     Progress *progress = (Progress *)object;
     cell.textLabel.text = progress.plan.target.name;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%d/%d tasks, %@",
-                                 progress.completions.count, progress.plan.tasks.count, [self getProgressStatus:progress]];
+                                 progress.completions.count, progress.plan.tasks.count, [progress getProgressStatusString]];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;

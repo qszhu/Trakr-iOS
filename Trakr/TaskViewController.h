@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TaskViewController : UIViewController <UIAlertViewDelegate>
+@interface TaskViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UISegmentedControl *taskGroupSegment;
+@property (strong, nonatomic) IBOutlet UITableView *progressesTable;
 
+- (IBAction)groupChanged:(id)sender;
 @end

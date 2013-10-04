@@ -6,6 +6,7 @@
 
 #import <Parse/PFObject+Subclass.h>
 #import "Plan.h"
+#import "Target.h"
 #import "IUtils.h"
 #import "Task.h"
 #import "Unit.h"
@@ -23,6 +24,10 @@
     self.unit = kUnitChapter;
     self.startDate = [NSDate date];
     return self;
+}
+
+- (NSString *)getName {
+    return self.target.name;
 }
 
 - (NSError *)getValidationError {
