@@ -25,6 +25,8 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [TestFlight passCheckpoint:@"settings view appear"];
+
+    [self.showTimerSwitch setOn:[Setting taskShouldShowTimer]];
 }
 
 - (IBAction)showTimerSwitched:(id)sender {
