@@ -19,6 +19,7 @@
 @property(nonatomic) NSInteger seconds;
 @property(nonatomic) BOOL timerRunning;
 @property(strong, nonatomic) NSTimer *timer;
+@property(strong, nonatomic) TodoUtils *todoUtils;
 @end
 
 @implementation CompleteTaskViewController {
@@ -34,6 +35,8 @@
 
     self.targetNameLabel.text = self.todo.progress.plan.target.name;
     self.taskNameLabel.text = self.todo.task.name;
+
+    self.todoUtils = [[TodoUtils alloc] initWithViewController:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -68,8 +71,7 @@
     if (self.timer != nil) {
         [self.timer invalidate];
     }
-    TodoUtils *todoUtils = [[TodoUtils alloc] initWithViewController:self];
-    [todoUtils completeTodoWithCost:self.seconds];
+    [self.todoUtils completeTodo:self.todo withCost:self.seconds];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

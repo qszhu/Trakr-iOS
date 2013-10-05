@@ -16,5 +16,5 @@
 
 - (void)completeTodo:(Todo *)todo;
 
-- (void)completeTodoWithCost:(NSInteger)cost;
+- (void)completeTodo:(Todo *)todo withCost:(NSInteger)cost;
 @end

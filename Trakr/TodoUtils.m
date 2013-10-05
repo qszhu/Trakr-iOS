@@ -30,21 +30,21 @@
 }
 
 - (void)completeTodo:(Todo *)todo {
-    self.todo = todo;
     if ([Setting taskShouldShowTimer]) {
-        [self showCompleteTaskTimer];
+        [self showCompleteTaskTimer:todo];
     } else {
-        [self showCompleteTaskDialog];
+        [self showCompleteTaskDialog:todo];
     }
 }
 
-- (void)showCompleteTaskTimer {
+- (void)showCompleteTaskTimer:(Todo *)todo {
     CompleteTaskViewController *completeTaskVC = [[CompleteTaskViewController alloc] init];
-    completeTaskVC.todo = self.todo;
+    completeTaskVC.todo = todo;
     [self.viewController presentViewController:completeTaskVC animated:YES completion:nil];
 }
 
-- (void)showCompleteTaskDialog {
+- (void)showCompleteTaskDialog:(Todo *)todo {
+    self.todo = todo;
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
                                                     message:@"Complete this task?"
                                                    delegate:self
@@ -55,14 +55,14 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex != alertView.cancelButtonIndex) {
-        [self completeTodoWithCost:0];
+        [self completeTodo:self.todo withCost:0];
     }
 }
 
-- (void)completeTodoWithCost:(NSInteger)cost {
-    [self.todo completeWithCost:cost];
+- (void)completeTodo:(Todo *)todo withCost:(NSInteger)cost {
+    [todo completeWithCost:cost];
     [SVProgressHUD showWithStatus:@"Completing task..." maskType:SVProgressHUDMaskTypeGradient];
-    [self.todo saveWithTarget:self selector:@selector(saveTodo:error:)];
+    [todo saveWithTarget:self selector:@selector(saveTodo:error:)];
 }
 
 - (void)saveTodo:(NSNumber *)result error:(NSError *)error {
