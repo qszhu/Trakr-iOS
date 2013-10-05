@@ -20,6 +20,7 @@
 #import "TTTTimeIntervalFormatter.h"
 #import "Const.h"
 #import "TodoUtils.h"
+#import "SettingsViewController.h"
 #import "TestFlight.h"
 
 @interface TaskViewController () <UIAlertViewDelegate, UITableViewDelegate, UITableViewDataSource>
@@ -46,6 +47,9 @@ enum CellType {
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
 
+    UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStyleBordered target:self action:@selector(viewSettings)];
+    self.navigationItem.rightBarButtonItem = btn;
+
     [self.navigationItem setTitle:@"Tasks"];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogin:) name:kDidLoginNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didCompleteTask:) name:kDidCompleteTaskNotification object:nil];
@@ -60,6 +64,12 @@ enum CellType {
 
     self.selectedTaskGroup = kTaskGroupToday;
     [self refresh];
+}
+
+- (void)viewSettings {
+    UIStoryboard *settingsStoryboard = [UIStoryboard storyboardWithName:@"Settings" bundle:nil];
+    SettingsViewController *settingsVC = [settingsStoryboard instantiateInitialViewController];
+    [self.navigationController pushViewController:settingsVC animated:YES];
 }
 
 - (void)didLogin:(NSNotification *)notification {

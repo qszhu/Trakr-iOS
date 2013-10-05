@@ -54,14 +54,8 @@
     taskVC.tabBarItem.title = @"Tasks";
     taskVC.tabBarItem.image = [UIImage imageNamed:@"second"];
 
-    UIStoryboard *settingsStoryboard = [UIStoryboard storyboardWithName:@"Settings" bundle:nil];
-    SettingsViewController *settingsVC = [settingsStoryboard instantiateInitialViewController];
-    UINavigationController *settingsNav = [[UINavigationController alloc] initWithRootViewController:settingsVC];
-    settingsVC.tabBarItem.title = @"Settings";
-    settingsVC.tabBarItem.image = [UIImage imageNamed:@"second"];
-
     MainViewController *mainVC = [[MainViewController alloc] init];
-    [mainVC setViewControllers:@[taskNav, progressNav, settingsNav] animated:NO];
+    [mainVC setViewControllers:@[taskNav, progressNav] animated:NO];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setRootViewController:mainVC];
