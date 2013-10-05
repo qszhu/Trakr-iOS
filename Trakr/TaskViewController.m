@@ -200,7 +200,11 @@ enum CellType {
     cell.textLabel.text = [progress getName];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%d/%d tasks, %@",
                                  [progress getNumberOfCompletedTasks], [progress getNumberOfTasks], [progress getProgressStatusString]];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    if ([progress getLateDays] > 0) {
+        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
     return cell;
 }
 

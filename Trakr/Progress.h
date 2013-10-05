@@ -38,5 +38,9 @@
 
 - (NSString *)getProgressStatusString;
 
+- (NSInteger)getTaskLateDays:(Task *)task;
+
+- (NSString *)getTaskStatusString:(Task *)task;
+
 - (BOOL)isTaskCompleted:(Task *)task;
 @end

@@ -132,6 +132,26 @@
     return lateStr;
 }
 
+- (NSInteger)getTaskLateDays:(Task *)task {
+    NSDate *taskDate = [task getDate:self.startDate];
+    return [IUtils daysBetween:taskDate and:[NSDate date]];
+}
+
+- (NSString *)getTaskStatusString:(Task *)task {
+    for (Completion *completion in self.completions) {
+        if ([[completion.task objectId] isEqualToString:[task objectId]]) {
+            TTTTimeIntervalFormatter *timeIntervalFormatter = [TTTTimeIntervalFormatter new];
+            NSTimeInterval interval = [completion.date timeIntervalSinceDate:[NSDate date]];
+            return [NSString stringWithFormat:@"completed %@", [timeIntervalFormatter stringForTimeInterval:interval]];
+        }
+    }
+    NSInteger lateDays = [self getTaskLateDays:task];
+    if (lateDays > 0) {
+        return [NSString stringWithFormat:@"%d days late", lateDays];
+    }
+    return @"";
+}
+
 - (BOOL)isTaskCompleted:(Task *)task {
     for (Completion *completion in self.completions) {
         if ([completion.task.objectId isEqualToString:task.objectId]) {

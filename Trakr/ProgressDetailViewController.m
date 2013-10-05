@@ -9,10 +9,17 @@
 #import "IUtils.h"
 #import "Plan.h"
 #import "Completion.h"
+#import "Todo.h"
+#import "TodoUtils.h"
+#import "Const.h"
+#import "ODRefreshControl.h"
+#import "SVProgressHUD.h"
 #import "TestFlight.h"
 
 @interface ProgressDetailViewController()
 @property (strong, nonatomic) Progress *progress;
+@property (strong, nonatomic) TodoUtils *todoUtils;
+@property(strong, nonatomic) ODRefreshControl *rc;
 @end
 
 @implementation ProgressDetailViewController {
@@ -22,11 +29,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    PFQuery *query = [Progress query];
-    [query includeKey:@"plan.target"];
-    [query includeKey:@"plan.tasks"];
-    [query includeKey:@"completions.task"];
-    [query getObjectInBackgroundWithId:self.progressId target:self selector:@selector(getProgress:error:)];
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+
+    self.todoUtils = [[TodoUtils alloc] initWithViewController:self];
+
+    self.rc = [[ODRefreshControl alloc] initInScrollView:self.tableView];
+    [self.rc addTarget:self action:@selector(pullToRefresh:) forControlEvents:UIControlEventValueChanged];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didCompleteTask:) name:kDidCompleteTaskNotification object:nil];
+
+    [self refresh];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -34,7 +48,26 @@
     [TestFlight passCheckpoint:@"progress detail view appear"];
 }
 
+- (void)didCompleteTask:(NSNotification *)notification {
+    [self refresh];
+}
+
+- (void)pullToRefresh:(ODRefreshControl *)refreshControl {
+    [self refresh];
+}
+
+- (void)refresh {
+    PFQuery *query = [Progress query];
+    [query includeKey:@"plan.target"];
+    [query includeKey:@"plan.tasks"];
+    [query includeKey:@"completions.task"];
+
+    [SVProgressHUD showWithStatus:@"Loading..." maskType:SVProgressHUDMaskTypeNone];
+    [query getObjectInBackgroundWithId:self.progressId target:self selector:@selector(getProgress:error:)];
+}
+
 - (void)getProgress:(PFObject *)progress error:(NSError *)error {
+    [SVProgressHUD dismiss];
     if (error) {
         [IUtils showErrorDialogWithTitle:@"Error" error:error];
         return;
@@ -43,6 +76,7 @@
     [self.navigationItem setTitle:[self.progress getName]];
 
     [self.tableView reloadData];
+    [self.rc endRefreshing];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -52,18 +86,21 @@
     return self.progress.plan.tasks.count;
 }
 
-- (NSString *)getTaskStatus:(Task *)task {
-    NSDate *taskDate = [task getDate:self.progress.startDate];
-    for (Completion *completion in self.progress.completions) {
-        if ([[completion.task objectId] isEqualToString:[task objectId]]) {
-            return [NSString stringWithFormat:@" / %@", [IUtils stringFromDate:taskDate]];
-        }
+- (void)resetTableViewCell:(UITableViewCell *)cell {
+    cell.textLabel.text = nil;
+    cell.detailTextLabel.text = nil;
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+}
+
+- (UITableViewCell *)recycleCellFromTableView:(UITableView *)tableView {
+    static NSString *cellIdentifier = @"cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
-    NSInteger lateDays = [IUtils daysBetween:taskDate and:[NSDate date]];
-    if (lateDays > 0) {
-        return [NSString stringWithFormat:@" / %d days late", lateDays];
-    }
-    return @"";
+    [self resetTableViewCell:cell];
+    return cell;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -71,20 +108,29 @@
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];
     }
 
-    static NSString *cellIdentifier = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-    }
+    UITableViewCell *cell = [self recycleCellFromTableView:tableView];
 
     Task *task = [self.progress.plan.tasks objectAtIndex:indexPath.row];
     cell.textLabel.text = task.name;
 
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%@",
-                                 [IUtils stringFromDate:[task getDate:self.progress.startDate]], [self getTaskStatus:task]];
+    NSString *taskDateString = [IUtils stringFromDate:[task getDate:self.progress.startDate]];
+    NSString *taskStatusString = [self.progress getTaskStatusString:task];
+    NSString *separator = [taskStatusString isEqualToString:@""] ? @"" : @" / ";
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%@%@", taskDateString, separator, taskStatusString];
 
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if ([self.progress isTaskCompleted:task]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else if ([self.progress getTaskLateDays:task] > 0) {
+        cell.accessoryType = UITableViewCellAccessoryDetailButton;
+    }
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Task *task = [self.progress.plan.tasks objectAtIndex:indexPath.row];
+    Todo *todo = [[Todo alloc] initWithTask:task inProgress:self.progress];
+    if (todo.isCompleted) return;
+    [self.todoUtils completeTodo:todo];
 }
 
 @end
