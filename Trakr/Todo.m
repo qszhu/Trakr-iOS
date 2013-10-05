@@ -28,4 +28,8 @@
     [self.progress saveWithTarget:target selector:selector];
 }
 
+- (BOOL)isCompleted {
+    return [self.progress isTaskCompleted:self.task];
+}
+
 @end

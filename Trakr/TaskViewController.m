@@ -245,6 +245,7 @@ enum CellType {
     [TestFlight passCheckpoint:@"select task"];
 
     Todo *todo = [[Todo alloc] initWithTask:task inProgress:progress];
+    if ([todo isCompleted]) return;
     [self.todoUtils completeTodo:todo];
 }
 
