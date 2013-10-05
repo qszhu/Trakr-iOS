@@ -32,7 +32,6 @@
 @end
 
 enum CellType {
-    CellTypeEmpty,
     CellTypeSingleTask,
     CellTypeProgress,
     CellTypeProgressOverview
@@ -141,8 +140,7 @@ enum CellType {
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSInteger numOfProgresses = [[self groupedTasks] getNumberOfProgressesInGroup:self.selectedTaskGroup];
-    return numOfProgresses > 0 ? numOfProgresses : 1;
+    return [[self groupedTasks] getNumberOfProgressesInGroup:self.selectedTaskGroup];
 }
 
 - (void)resetCell:(UITableViewCell *)cell {
@@ -167,11 +165,6 @@ enum CellType {
         return CellTypeProgressOverview;
     }
 
-    NSInteger numOfProgresses = [self.groupedTasks getNumberOfProgressesInGroup:self.selectedTaskGroup];
-    if (numOfProgresses == 0) {
-        return CellTypeEmpty;
-    }
-
     Progress *progress = [[self.groupedTasks getProgressesInGroup:self.selectedTaskGroup] objectAtIndex:indexPath.row];
     NSInteger numOfTasks = [self.groupedTasks getNumberOfTasksOfProgressById:progress.objectId inGroup:self.selectedTaskGroup];
     if (numOfTasks == 1) {
@@ -185,10 +178,6 @@ enum CellType {
     UITableViewCell *cell = [self recycleCellFromTableView:tableView];
 
     NSInteger cellType = [self getCellTypeAtIndexPath:indexPath];
-    if (cellType == CellTypeEmpty) {
-        return [self setEmptyCell:cell];
-    }
-
     Progress *progress = [[self.groupedTasks getProgressesInGroup:self.selectedTaskGroup] objectAtIndex:indexPath.row];
     NSArray *tasks = [self.groupedTasks getTasksOfProgressById:progress.objectId inGroup:self.selectedTaskGroup];
     switch (cellType) {
@@ -199,11 +188,6 @@ enum CellType {
         default:
             return [self setProgressCell:cell forProgress:progress tasks:tasks];
     }
-}
-
-- (UITableViewCell *)setEmptyCell:(UITableViewCell *)cell {
-    cell.textLabel.text = @"No tasks";
-    return cell;
 }
 
 - (UITableViewCell *)setProgressOverviewCell:(UITableViewCell *)cell forProgress:(Progress *)progress {
@@ -236,10 +220,6 @@ enum CellType {
     [TestFlight passCheckpoint:@"select task"];
 
     NSInteger cellType = [self getCellTypeAtIndexPath:indexPath];
-    if (cellType == CellTypeEmpty) {
-        return;
-    }
-
     Progress *progress = [[self.groupedTasks getProgressesInGroup:self.selectedTaskGroup] objectAtIndex:indexPath.row];
     NSArray *tasks = [self.groupedTasks getTasksOfProgressById:progress.objectId inGroup:self.selectedTaskGroup];
     switch (cellType) {

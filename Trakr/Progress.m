@@ -107,9 +107,8 @@
 
 + (NSString *)formatFinishDate:(Progress *)progress {
     NSDate *finishDate = [progress getFinishDate];
-    TTTTimeIntervalFormatter *timeIntervalFormatter = [TTTTimeIntervalFormatter new];
     NSTimeInterval interval = [finishDate timeIntervalSinceDate:[NSDate date]];
-    NSString *str = [timeIntervalFormatter stringForTimeInterval:interval];
+    NSString *str = [IUtils relativeDate:finishDate];
     if (interval <= 0) {
         return [NSString stringWithFormat:@"finished %@", str];
     }
@@ -140,9 +139,7 @@
 - (NSString *)getTaskStatusString:(Task *)task {
     for (Completion *completion in self.completions) {
         if ([[completion.task objectId] isEqualToString:[task objectId]]) {
-            TTTTimeIntervalFormatter *timeIntervalFormatter = [TTTTimeIntervalFormatter new];
-            NSTimeInterval interval = [completion.date timeIntervalSinceDate:[NSDate date]];
-            return [NSString stringWithFormat:@"completed %@", [timeIntervalFormatter stringForTimeInterval:interval]];
+            return [NSString stringWithFormat:@"completed %@", [IUtils relativeDate:completion.date]];
         }
     }
     NSInteger lateDays = [self getTaskLateDays:task];

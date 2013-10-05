@@ -86,29 +86,12 @@
     return self.progress.plan.tasks.count;
 }
 
-- (void)resetTableViewCell:(UITableViewCell *)cell {
-    cell.textLabel.text = nil;
-    cell.detailTextLabel.text = nil;
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-}
-
-- (UITableViewCell *)recycleCellFromTableView:(UITableView *)tableView {
-    static NSString *cellIdentifier = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-    }
-    [self resetTableViewCell:cell];
-    return cell;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.progress == nil) {
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];
     }
 
-    UITableViewCell *cell = [self recycleCellFromTableView:tableView];
+    UITableViewCell *cell = [IUtils recycleCellFromTableView:tableView];
 
     Task *task = [self.progress.plan.tasks objectAtIndex:indexPath.row];
     cell.textLabel.text = task.name;

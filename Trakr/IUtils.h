@@ -28,4 +28,8 @@
 + (void)showValidationErrorDialog;
 
 + (void)logError:(NSError *)error;
+
++ (UITableViewCell *)recycleCellFromTableView:(UITableView *)tableView;
+
++ (NSString *)relativeDate:(NSDate *)date;
 @end

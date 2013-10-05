@@ -56,15 +56,15 @@
         [IUtils showErrorDialogWithTitle:@"Cannot create target" error:error];
         return;
     }
-    [self dismissViewControllerAnimated:YES completion:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:kDidCreateTargetNotification object:self.target];
-    }];
+    [self.navigationController popViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDidCreateTargetNotification object:self.target];
 }
 
 - (IBAction)cancelPressed:(id)sender {
     [TestFlight passCheckpoint:@"cancel pressed"];
 
     [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

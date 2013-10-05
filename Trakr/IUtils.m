@@ -5,6 +5,7 @@
 
 
 #import "IUtils.h"
+#import "TTTTimeIntervalFormatter.h"
 
 
 @implementation IUtils {
@@ -75,6 +76,29 @@
 
 + (void)logError:(NSError *)error {
     NSLog(@"Error: %@", [[error userInfo] objectForKey:NSLocalizedDescriptionKey]);
+}
+
++ (void)resetTableViewCell:(UITableViewCell *)cell {
+    cell.textLabel.text = nil;
+    cell.detailTextLabel.text = nil;
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+}
+
++ (UITableViewCell *)recycleCellFromTableView:(UITableView *)tableView {
+    static NSString *cellIdentifier = @"cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+    }
+    [IUtils resetTableViewCell:cell];
+    return cell;
+}
+
++ (NSString *)relativeDate:(NSDate *)date {
+    TTTTimeIntervalFormatter *timeIntervalFormatter = [TTTTimeIntervalFormatter new];
+    NSTimeInterval interval = [date timeIntervalSinceDate:[NSDate date]];
+    return [timeIntervalFormatter stringForTimeInterval:interval];
 }
 
 @end

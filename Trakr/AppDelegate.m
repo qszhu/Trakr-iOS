@@ -7,9 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "ProgressViewController.h"
 #import "TaskViewController.h"
-#import "SettingsViewController.h"
+#import "TargetViewController.h"
 #import "MainViewController.h"
 #import "Target.h"
 #import "Task.h"
@@ -43,19 +42,24 @@
     [TestFlight takeOff:@"530feffc-44ab-461c-bc5d-bdfd5fa53fe6"];
 
     [self parseInit:launchOptions];
-
-    ProgressViewController *progressVC = [[ProgressViewController alloc] init];
+/*
+    ProgressViewController *progressVC = [ProgressViewController new];
     UINavigationController *progressNav = [[UINavigationController alloc] initWithRootViewController:progressVC];
     progressNav.tabBarItem.title = @"Progress";
     progressNav.tabBarItem.image = [UIImage imageNamed:@"first"];
-
-    TaskViewController *taskVC = [[TaskViewController alloc] init];
+*/
+    TaskViewController *taskVC = [TaskViewController new];
     UINavigationController *taskNav = [[UINavigationController alloc] initWithRootViewController:taskVC];
     taskVC.tabBarItem.title = @"Tasks";
     taskVC.tabBarItem.image = [UIImage imageNamed:@"second"];
 
+    TargetViewController *targetVC = [TargetViewController new];
+    UINavigationController *targetNav = [[UINavigationController alloc] initWithRootViewController:targetVC];
+    targetVC.tabBarItem.title = @"Targets";
+    targetVC.tabBarItem.image = [UIImage imageNamed:@"first"];
+
     MainViewController *mainVC = [[MainViewController alloc] init];
-    [mainVC setViewControllers:@[taskNav, progressNav] animated:NO];
+    [mainVC setViewControllers:@[taskNav, targetNav] animated:NO];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setRootViewController:mainVC];
