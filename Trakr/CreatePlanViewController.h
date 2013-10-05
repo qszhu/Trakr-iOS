@@ -6,7 +6,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class Target;
+
 @interface CreatePlanViewController : UITableViewController
+@property (strong, nonatomic) Target *target;
+
 @property (strong, nonatomic) IBOutlet UILabel *targetLabel;
 @property (strong, nonatomic) IBOutlet UITextField *totalField;
 @property (strong, nonatomic) IBOutlet UILabel *unitLabel;

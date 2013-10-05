@@ -6,7 +6,6 @@
 
 #import "CreatePlanViewController.h"
 #import "IUtils.h"
-#import "SelectTargetViewController.h"
 #import "Plan.h"
 #import "Target.h"
 #import "Unit.h"
@@ -30,6 +29,7 @@
     [super viewDidLoad];
 
     self.plan = [[Plan object] setDefaults];
+    self.plan.target = self.target;
     self.autoTask = [AutoTask new];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectTarget:) name:kDidSelectTargetNotification object:nil];
 
@@ -69,9 +69,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         switch (indexPath.row) {
-            case 0:
-                [self selectTarget];
-                return;
             case 2:
                 [self pickUnit];
                 return;
@@ -87,15 +84,6 @@
                 return;
         }
     }
-}
-
-- (void)selectTarget {
-    [TestFlight passCheckpoint:@"select target"];
-
-    SelectTargetViewController *selectTargetVC = [SelectTargetViewController new];
-
-    self.navigationItem.title = @"";
-    [self.navigationController pushViewController:selectTargetVC animated:YES];
 }
 
 - (void)pickUnit {

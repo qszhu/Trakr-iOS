@@ -20,11 +20,9 @@
 		669C6562E47F0931EE9F8800 /* CreateTargetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C6689B8DF5798810990E9 /* CreateTargetViewController.m */; };
 		669C656D19CDDB3146002F00 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C6E7E41A41B507DDE1747 /* AppDelegate.m */; };
 		669C657A6B17343607ABC579 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 669C67F2BCFDFA792BB147B4 /* MainWindow.xib */; };
-		669C65DA7FF4C5B108ABCBBF /* SelectPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C68996E88CB9BB848EEB7 /* SelectPlanViewController.m */; };
 		669C66075EBAC1C290D61358 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669C65B1A185AC270CDCCF97 /* Foundation.framework */; };
 		669C667DD9C8DECD17B53402 /* Repeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C6DFBB902E7F81EC700E8 /* Repeat.m */; };
 		669C674CBC4BEF5C09237E20 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 669C66E62321A7F3CC94FD86 /* second@2x.png */; };
-		669C67DC2EE042C11AF806DC /* ProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C60D03EE11173E1C389E1 /* ProgressViewController.m */; };
 		669C67DED70B2FB99B1493CD /* TaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C66757621D01BABBA4283 /* TaskViewController.m */; };
 		669C68B926B0DFC9CFFD47FA /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C6A7FDEDC01A8233A0B74 /* LogInViewController.m */; };
 		669C68C8B702B5960299121B /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C6699F8AE5A3F07DA7745 /* SignUpViewController.m */; };
@@ -37,7 +35,6 @@
 		669C6C34B78B326F1C8FF341 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 669C651BC6A8BAB2197F1E47 /* second.png */; };
 		669C6CA447D196386DF7AA0D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 669C630186BCD470F9256876 /* Default.png */; };
 		669C6DB5CBA1BDFC41AEEB37 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C6D7311444283D08F9C75 /* MainViewController.m */; };
-		669C6DD6A0C3076321CB2FA8 /* SelectTargetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C690B1695AE42D802F2CD /* SelectTargetViewController.m */; };
 		669C6E695EA5178BB5871BD3 /* Progress.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C6F9D61151C496519022D /* Progress.m */; };
 		669C6E79C3DDF4323C5CF086 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C6A9DB536F58AC1EF502D /* main.m */; };
 		669C6F07CF023D542212390F /* AutoTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C649B358C4B5C6ADCAE48 /* AutoTask.m */; };
@@ -50,6 +47,7 @@
 		AC103D2117FED07F00D143D9 /* TodoUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = AC103D2017FED07F00D143D9 /* TodoUtils.m */; };
 		AC103D2F17FFF68000D143D9 /* TargetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC103D2E17FFF68000D143D9 /* TargetViewController.m */; };
 		AC103D32180007FB00D143D9 /* DeleteUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = AC103D31180007FB00D143D9 /* DeleteUtils.m */; };
+		AC103D35180013C100D143D9 /* PlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC103D34180013C100D143D9 /* PlanViewController.m */; };
 		AC2A1E9617DCA2BC00DB6091 /* CreateTarget.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC2A1E9517DCA2BC00DB6091 /* CreateTarget.storyboard */; };
 		AC2A1E9C17DCAFD000DB6091 /* CreatePlan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC2A1E9B17DCAFD000DB6091 /* CreatePlan.storyboard */; };
 		AC342F5F17D7833F007F2465 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC342F5E17D7833F007F2465 /* Settings.storyboard */; };
@@ -71,9 +69,7 @@
 /* Begin PBXFileReference section */
 		05535976372D4D279B50B921 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		669C60425EEBD36669DBB83F /* Todo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Todo.m; sourceTree = "<group>"; };
-		669C605B96667214189F2E40 /* SelectTargetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectTargetViewController.h; sourceTree = "<group>"; };
 		669C6064AFAD04DB2718F940 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		669C60D03EE11173E1C389E1 /* ProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressViewController.m; sourceTree = "<group>"; };
 		669C612D524280D17330D56F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		669C61B8AE5F0E83A346594E /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
 		669C630186BCD470F9256876 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -94,13 +90,10 @@
 		669C668A797EF87FAF24E132 /* Unit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Unit.m; sourceTree = "<group>"; };
 		669C6699F8AE5A3F07DA7745 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		669C669A955F694E265D735F /* CreatePlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatePlanViewController.m; sourceTree = "<group>"; };
-		669C66A09B041099967AA86B /* SelectPlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPlanViewController.h; sourceTree = "<group>"; };
 		669C66E62321A7F3CC94FD86 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		669C6759ACE59EBC9FEAD50F /* AutoTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoTask.h; sourceTree = "<group>"; };
 		669C67F2BCFDFA792BB147B4 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		669C68609C9121A0C518433D /* Target.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Target.m; sourceTree = "<group>"; };
-		669C68996E88CB9BB848EEB7 /* SelectPlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPlanViewController.m; sourceTree = "<group>"; };
-		669C690B1695AE42D802F2CD /* SelectTargetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectTargetViewController.m; sourceTree = "<group>"; };
 		669C6915A703FD74C75B8139 /* TaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskViewController.h; sourceTree = "<group>"; };
 		669C692BAF710C4440684473 /* Trakr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trakr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		669C697703A4315691380DC5 /* Trakr-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Trakr-Prefix.pch"; sourceTree = "<group>"; };
@@ -113,7 +106,6 @@
 		669C6A9DB536F58AC1EF502D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		669C6B65DC8C7ED739442409 /* ProgressDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressDetailViewController.h; sourceTree = "<group>"; };
 		669C6B720A4E1A90CF9E1044 /* Plan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plan.m; sourceTree = "<group>"; };
-		669C6BF46C68B9F510FAC4FF /* ProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressViewController.h; sourceTree = "<group>"; };
 		669C6C4DDF0CD5EFF4CA054C /* Plan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plan.h; sourceTree = "<group>"; };
 		669C6C567F7DEB8C2DD0C6A4 /* Unit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unit.h; sourceTree = "<group>"; };
 		669C6CFEEDA61F5CC26B4D9E /* CompleteTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompleteTaskViewController.h; sourceTree = "<group>"; };
@@ -145,6 +137,8 @@
 		AC103D2E17FFF68000D143D9 /* TargetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TargetViewController.m; sourceTree = "<group>"; };
 		AC103D30180007FB00D143D9 /* DeleteUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteUtils.h; sourceTree = "<group>"; };
 		AC103D31180007FB00D143D9 /* DeleteUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteUtils.m; sourceTree = "<group>"; };
+		AC103D33180013C100D143D9 /* PlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanViewController.h; sourceTree = "<group>"; };
+		AC103D34180013C100D143D9 /* PlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanViewController.m; sourceTree = "<group>"; };
 		AC2A1E9517DCA2BC00DB6091 /* CreateTarget.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateTarget.storyboard; sourceTree = "<group>"; };
 		AC2A1E9817DCAA8D00DB6091 /* Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
 		AC2A1E9B17DCAFD000DB6091 /* CreatePlan.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreatePlan.storyboard; sourceTree = "<group>"; };
@@ -198,12 +192,8 @@
 				AC2A1E9517DCA2BC00DB6091 /* CreateTarget.storyboard */,
 				669C6E62172C6F19B042852A /* CreateTargetViewController.h */,
 				669C6689B8DF5798810990E9 /* CreateTargetViewController.m */,
-				669C605B96667214189F2E40 /* SelectTargetViewController.h */,
-				669C690B1695AE42D802F2CD /* SelectTargetViewController.m */,
 				AC103D2D17FFF68000D143D9 /* TargetViewController.h */,
 				AC103D2E17FFF68000D143D9 /* TargetViewController.m */,
-				AC103D30180007FB00D143D9 /* DeleteUtils.h */,
-				AC103D31180007FB00D143D9 /* DeleteUtils.m */,
 			);
 			name = Target;
 			sourceTree = "<group>";
@@ -228,6 +218,8 @@
 				669C6F73EA5C4125B02ECB6C /* IUtils.h */,
 				669C634D6EAC57DCD49C030A /* IUtils.m */,
 				669C67F2BCFDFA792BB147B4 /* MainWindow.xib */,
+				AC103D30180007FB00D143D9 /* DeleteUtils.h */,
+				AC103D31180007FB00D143D9 /* DeleteUtils.m */,
 				669C693DCCB83EC6E9848D8E /* Login */,
 				669C6B7CA27907A89900CBCE /* Plan */,
 				669C6BACA1A9EAE6A7DE467A /* Progress */,
@@ -294,8 +286,8 @@
 				AC2A1E9B17DCAFD000DB6091 /* CreatePlan.storyboard */,
 				669C6A397C765F315AE1C6A3 /* CreatePlanViewController.h */,
 				669C669A955F694E265D735F /* CreatePlanViewController.m */,
-				669C66A09B041099967AA86B /* SelectPlanViewController.h */,
-				669C68996E88CB9BB848EEB7 /* SelectPlanViewController.m */,
+				AC103D33180013C100D143D9 /* PlanViewController.h */,
+				AC103D34180013C100D143D9 /* PlanViewController.m */,
 			);
 			name = Plan;
 			sourceTree = "<group>";
@@ -307,8 +299,6 @@
 				669C6F9D61151C496519022D /* Progress.m */,
 				669C6B65DC8C7ED739442409 /* ProgressDetailViewController.h */,
 				669C69D9355E5B2BD213AA10 /* ProgressDetailViewController.m */,
-				669C6BF46C68B9F510FAC4FF /* ProgressViewController.h */,
-				669C60D03EE11173E1C389E1 /* ProgressViewController.m */,
 			);
 			name = Progress;
 			sourceTree = "<group>";
@@ -496,13 +486,10 @@
 				AC103D32180007FB00D143D9 /* DeleteUtils.m in Sources */,
 				AC103D2F17FFF68000D143D9 /* TargetViewController.m in Sources */,
 				669C60DF6A1E2DCEF7DEDDD2 /* ProgressDetailViewController.m in Sources */,
-				669C67DC2EE042C11AF806DC /* ProgressViewController.m in Sources */,
 				669C68C8B702B5960299121B /* SignUpViewController.m in Sources */,
 				669C68B926B0DFC9CFFD47FA /* LogInViewController.m in Sources */,
-				669C65DA7FF4C5B108ABCBBF /* SelectPlanViewController.m in Sources */,
 				669C6AE7886F8A6786F5DD05 /* CreatePlanViewController.m in Sources */,
 				669C6562E47F0931EE9F8800 /* CreateTargetViewController.m in Sources */,
-				669C6DD6A0C3076321CB2FA8 /* SelectTargetViewController.m in Sources */,
 				669C6F07CF023D542212390F /* AutoTask.m in Sources */,
 				669C68DB444D15D12FC61E04 /* Completion.m in Sources */,
 				669C6A42F625009E408FB24A /* Plan.m in Sources */,
@@ -513,6 +500,7 @@
 				669C63E8DF7D16C5E000C75C /* Task.m in Sources */,
 				AC103D2117FED07F00D143D9 /* TodoUtils.m in Sources */,
 				AC103D1C17FDA63000D143D9 /* GroupedTasks.m in Sources */,
+				AC103D35180013C100D143D9 /* PlanViewController.m in Sources */,
 				669C60081D4D3083B45B7386 /* Unit.m in Sources */,
 				669C6F8AD53ACF07F6EF415E /* Todo.m in Sources */,
 				669C67DED70B2FB99B1493CD /* TaskViewController.m in Sources */,

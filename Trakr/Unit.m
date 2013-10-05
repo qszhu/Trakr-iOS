@@ -25,7 +25,7 @@
         for (int i = 0; i < [Unit values].count; i++) {
             [array addObject:[Unit getNameForValue:[[Unit values][i] integerValue]]];
         }
-        names = [NSArray arrayWithArray:names];
+        names = [NSArray arrayWithArray:array];
     }
     return names;
 }

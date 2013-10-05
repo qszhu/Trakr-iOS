@@ -7,10 +7,10 @@
 //
 
 #import "TargetViewController.h"
+#import "PlanViewController.h"
 #import "Const.h"
 #import "IUtils.h"
 #import "Target.h"
-#import "Parse/Parse.h"
 #import "DeleteUtils.h"
 #import "ODRefreshControl.h"
 #import "SVProgressHUD.h"
@@ -60,8 +60,8 @@ static NSString * const kDidDeleteTargetNotification = @"DidDeleteTargetNotifica
     [TestFlight passCheckpoint:@"create target pressed"];
 
     UIStoryboard *createTargetStoryboard = [UIStoryboard storyboardWithName:@"CreateTarget" bundle:nil];
-    UIViewController *createTargetVC = [createTargetStoryboard instantiateViewControllerWithIdentifier:@"CreateTargetViewController"];
-    [self.navigationController pushViewController:createTargetVC animated:YES];
+    UIViewController *createTargetVC = [createTargetStoryboard instantiateInitialViewController];
+    [self presentViewController:createTargetVC animated:YES completion:nil];
 }
 
 - (void)didCreateTarget:(NSNotification *)notification
@@ -116,8 +116,15 @@ static NSString * const kDidDeleteTargetNotification = @"DidDeleteTargetNotifica
     cell.textLabel.text = target.name;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"created by %@ %@", target.creator.username, [IUtils relativeDate:target.createdAt]];
     cell.selectionStyle = UITableViewCellSelectionStyleDefault;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Target *target = [self.targets objectAtIndex:indexPath.row];
+    PlanViewController *planVC = [PlanViewController new];
+    planVC.target = target;
+    [self.navigationController pushViewController:planVC animated:YES];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
