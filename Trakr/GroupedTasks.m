@@ -69,7 +69,20 @@
     for (NSString *progressId in [dict allKeys]) {
         [array addObject:[self.progressMap objectForKey:progressId]];
     }
-    return [NSArray arrayWithArray:array];
+    NSArray *sorted = [array sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        Progress *a = obj1;
+        Progress *b = obj2;
+        NSInteger d1 = [a getLateDays];
+        NSInteger d2 = [b getLateDays];
+        if (d1 < d2) {
+            return NSOrderedDescending;
+        }
+        if (d1 > d2) {
+            return NSOrderedAscending;
+        }
+        return [[a getName] compare:[b getName]];
+    }];
+    return sorted;
 }
 
 - (NSInteger)getNumberOfTasksOfProgressById:(NSString *)progressId inGroup:(NSInteger)group {
