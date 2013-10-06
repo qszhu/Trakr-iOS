@@ -10,6 +10,7 @@
 #import "CreatePlanViewController.h"
 #import "Plan.h"
 #import "Target.h"
+#import "Progress.h"
 #import "Unit.h"
 #import "Const.h"
 #import "IUtils.h"
@@ -20,7 +21,7 @@
 
 static NSString * const kDidDeletePlanNotification = @"DidDeletePlanNotification";
 
-@interface PlanViewController ()
+@interface PlanViewController () <UIActionSheetDelegate>
 @property(strong, nonatomic) NSArray *plans;
 @property(strong, nonatomic) ODRefreshControl *rc;
 @property(strong, nonatomic) DeleteUtils *deleteUtils;
@@ -127,6 +128,44 @@ static NSString * const kDidDeletePlanNotification = @"DidDeletePlanNotification
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [TestFlight passCheckpoint:@"select plan"];
+
+    self.selectedIndex = indexPath;
+    [self createProgress];
+}
+
+- (void)createProgress {
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"Start this plan?"]
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                         destructiveButtonTitle:nil
+                                              otherButtonTitles:@"Start", nil];
+    [sheet showInView:self.tabBarController.tabBar];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == actionSheet.cancelButtonIndex) {
+        [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    } else {
+        Progress *progress = [Progress object];
+        progress.plan = [self.plans objectAtIndex:self.selectedIndex.row];
+        [SVProgressHUD showWithStatus:@"Creating progress..." maskType:SVProgressHUDMaskTypeGradient];
+        [progress saveWithTarget:self selector:@selector(saveProgressWithResult:error:)];
+    }
+}
+
+- (void)saveProgressWithResult:(NSNumber *)result error:(NSError *)error {
+    [SVProgressHUD dismiss];
+    if (![result boolValue]) {
+        [IUtils showErrorDialogWithTitle:@"Cannot create progress" error:error];
+        return;
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDidCreateProgressNotification object:self];
+    [self.tabBarController setSelectedIndex:0];
+}
+
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Plan *plan = [self.plans objectAtIndex:indexPath.row];
@@ -138,9 +177,8 @@ static NSString * const kDidDeletePlanNotification = @"DidDeletePlanNotification
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [TestFlight passCheckpoint:@"delete plan"];
 
-        self.selectedIndex = indexPath;
         Plan *plan = [self.plans objectAtIndex:indexPath.row];
-        [self.deleteUtils delete:@"plan" object:plan inView:self.view withNotificationName:kDidDeletePlanNotification];
+        [self.deleteUtils delete:@"plan" object:plan inView:self.tabBarController.tabBar withNotificationName:kDidDeletePlanNotification];
     }
 }
 

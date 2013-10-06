@@ -22,7 +22,6 @@ static NSString * const kDidDeleteTargetNotification = @"DidDeleteTargetNotifica
 @property(strong, nonatomic) NSArray *targets;
 @property(strong, nonatomic) ODRefreshControl *rc;
 @property(strong, nonatomic) DeleteUtils *deleteUtils;
-@property(strong, nonatomic) NSIndexPath *selectedIndex;
 @end
 
 @implementation TargetViewController
@@ -138,9 +137,8 @@ static NSString * const kDidDeleteTargetNotification = @"DidDeleteTargetNotifica
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [TestFlight passCheckpoint:@"delete target"];
 
-        self.selectedIndex = indexPath;
         Target *target = [self.targets objectAtIndex:indexPath.row];
-        [self.deleteUtils delete:@"target" object:target inView:self.view withNotificationName:kDidDeleteTargetNotification];
+        [self.deleteUtils delete:@"target" object:target inView:self.tabBarController.tabBar withNotificationName:kDidDeleteTargetNotification];
     }
 }
 

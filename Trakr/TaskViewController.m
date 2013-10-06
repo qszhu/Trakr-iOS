@@ -20,8 +20,11 @@
 #import "TTTTimeIntervalFormatter.h"
 #import "Const.h"
 #import "TodoUtils.h"
+#import "DeleteUtils.h"
 #import "SettingsViewController.h"
 #import "TestFlight.h"
+
+static NSString * const kDidDeleteProgressNotification = @"DidDeleteProgressNotification";
 
 @interface TaskViewController () <UIAlertViewDelegate, UITableViewDelegate, UITableViewDataSource>
 @property(strong, nonatomic) GroupedTasks *groupedTasks;
@@ -29,6 +32,7 @@
 @property(strong, nonatomic) Todo *todo;
 @property(nonatomic) NSInteger selectedTaskGroup;
 @property(strong, nonatomic) TodoUtils *todoUtils;
+@property(strong, nonatomic) DeleteUtils *deleteUtils;
 @end
 
 enum CellType {
@@ -52,6 +56,8 @@ enum CellType {
     [self.navigationItem setTitle:@"Tasks"];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLogin:) name:kDidLoginNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didCompleteTask:) name:kDidCompleteTaskNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didCreateProgress:) name:kDidCreateProgressNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDeleteProgress:) name:kDidDeleteProgressNotification object:nil];
 
     [self.progressesTable setDelegate:self];
     [self.progressesTable setDataSource:self];
@@ -60,6 +66,7 @@ enum CellType {
     [self.rc addTarget:self action:@selector(pullToRefresh:) forControlEvents:UIControlEventValueChanged];
 
     self.todoUtils = [[TodoUtils alloc] initWithViewController:self];
+    self.deleteUtils = [DeleteUtils new];
 
     self.selectedTaskGroup = kTaskGroupToday;
     [self refresh];
@@ -76,6 +83,14 @@ enum CellType {
 }
 
 - (void)didCompleteTask:(NSNotification *)notification {
+    [self refresh];
+}
+
+- (void)didCreateProgress:(NSNotification *)notification {
+    [self refresh];
+}
+
+- (void)didDeleteProgress:(NSNotification *)notification {
     [self refresh];
 }
 
@@ -202,7 +217,7 @@ enum CellType {
     return cell;
 }
 
-- (UITableViewCell *)setSingleTaskCell:(UITableViewCell *)cell forTask:(Task *)task inProgress:(Progress *)progress{
+- (UITableViewCell *)setSingleTaskCell:(UITableViewCell *)cell forTask:(Task *)task inProgress:(Progress *)progress {
     cell.textLabel.text = [progress getName];
     cell.detailTextLabel.text = task.name;
     cell.accessoryType = [progress isTaskCompleted:task] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
@@ -249,6 +264,20 @@ enum CellType {
     ProgressDetailViewController *progressDetailVC = [ProgressDetailViewController new];
     progressDetailVC.progressId = progress.objectId;
     [self.navigationController pushViewController:progressDetailVC animated:YES];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger cellType = [self getCellTypeAtIndexPath:indexPath];
+    return cellType == CellTypeProgressOverview;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [TestFlight passCheckpoint:@"delete progress"];
+
+        Progress *progress = [[self.groupedTasks getProgressesInGroup:self.selectedTaskGroup] objectAtIndex:indexPath.row];
+        [self.deleteUtils delete:@"progress" object:progress inView:self.tabBarController.tabBar withNotificationName:kDidDeleteProgressNotification];
+    }
 }
 
 @end
