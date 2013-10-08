@@ -22,11 +22,12 @@
 #import "TodoUtils.h"
 #import "DeleteUtils.h"
 #import "SettingsViewController.h"
+#import "SWTableViewCell.h"
 #import "TestFlight.h"
 
 static NSString * const kDidDeleteProgressNotification = @"DidDeleteProgressNotification";
 
-@interface TaskViewController () <UIAlertViewDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface TaskViewController () <UIAlertViewDelegate, UITableViewDelegate, UITableViewDataSource, SWTableViewCellDelegate>
 @property(strong, nonatomic) GroupedTasks *groupedTasks;
 @property(strong, nonatomic) ODRefreshControl *rc;
 @property(strong, nonatomic) Todo *todo;
@@ -175,6 +176,23 @@ enum CellType {
     return cell;
 }
 
+- (SWTableViewCell *)recycleSWCellFromTableView:(UITableView *)tableView {
+    static NSString *cellIdentifier = @"SWCell";
+    SWTableViewCell *cell = (SWTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        NSMutableArray *leftUtilityButtons = [NSMutableArray new];
+        NSMutableArray *rightUtilityButtons = [NSMutableArray new];
+
+        [leftUtilityButtons addUtilityButtonWithColor:[UIColor colorWithRed:0.07 green:0.75f blue:0.16f alpha:1.0] icon:[UIImage imageNamed:@"check.png"]];
+        [leftUtilityButtons addUtilityButtonWithColor:[UIColor colorWithRed:0.55f green:0.27f blue:0.07f alpha:1.0] icon:[UIImage imageNamed:@"clock.png"]];
+
+        cell = [[SWTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier height:tableView.rowHeight leftUtilityButtons:leftUtilityButtons rightUtilityButtons:rightUtilityButtons];
+        cell.delegate = self;
+    }
+    [self resetCell:cell];
+    return cell;
+}
+
 - (NSInteger)getCellTypeAtIndexPath:(NSIndexPath *)indexPath {
     if (self.selectedTaskGroup == kTaskGroupAll) {
         return CellTypeProgressOverview;
@@ -217,11 +235,33 @@ enum CellType {
     return cell;
 }
 
+- (void)swippableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index {
+    NSIndexPath *indexPath = [self.progressesTable indexPathForCell:cell];
+    Progress *progress = [[self.groupedTasks getProgressesInGroup:self.selectedTaskGroup] objectAtIndex:indexPath.row];
+    NSArray *tasks = [self.groupedTasks getTasksOfProgressById:progress.objectId inGroup:self.selectedTaskGroup];
+    Todo *todo = [[Todo alloc] initWithTask:[tasks objectAtIndex:0] inProgress:progress];
+    if ([todo isCompleted]) return;
+    switch (index) {
+        case 0:
+            [self.todoUtils showCompleteTaskDialog:todo];
+            break;
+        case 1:
+            [self.todoUtils showCompleteTaskTimer:todo];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)swippableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index {
+}
+
 - (UITableViewCell *)setSingleTaskCell:(UITableViewCell *)cell forTask:(Task *)task inProgress:(Progress *)progress {
-    cell.textLabel.text = [progress getName];
-    cell.detailTextLabel.text = task.name;
-    cell.accessoryType = [progress isTaskCompleted:task] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-    return cell;
+    UITableViewCell *swcell = [self recycleSWCellFromTableView:self.progressesTable];
+    swcell.textLabel.text = [progress getName];
+    swcell.detailTextLabel.text = task.name;
+    swcell.accessoryType = [progress isTaskCompleted:task] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    return swcell;
 }
 
 - (UITableViewCell *)setProgressCell:(UITableViewCell *)cell forProgress:(Progress *)progress tasks:(NSArray *)tasks {

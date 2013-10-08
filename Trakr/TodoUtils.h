@@ -16,5 +16,9 @@
 
 - (void)completeTodo:(Todo *)todo;
 
+- (void)showCompleteTaskTimer:(Todo *)todo;
+
+- (void)showCompleteTaskDialog:(Todo *)todo;
+
 - (void)completeTodo:(Todo *)todo withCost:(NSInteger)cost;
 @end

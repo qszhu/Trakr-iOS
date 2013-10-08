@@ -50,6 +50,8 @@
 		AC103D35180013C100D143D9 /* PlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC103D34180013C100D143D9 /* PlanViewController.m */; };
 		AC2A1E9617DCA2BC00DB6091 /* CreateTarget.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC2A1E9517DCA2BC00DB6091 /* CreateTarget.storyboard */; };
 		AC2A1E9C17DCAFD000DB6091 /* CreatePlan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC2A1E9B17DCAFD000DB6091 /* CreatePlan.storyboard */; };
+		AC2ECC8C180450D1007AE13D /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC2ECC8A180450D0007AE13D /* check@2x.png */; };
+		AC2ECC8D180450D1007AE13D /* clock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC2ECC8B180450D0007AE13D /* clock@2x.png */; };
 		AC342F5F17D7833F007F2465 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC342F5E17D7833F007F2465 /* Settings.storyboard */; };
 		AC342F6217D78625007F2465 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC342F6117D78625007F2465 /* SettingsViewController.m */; };
 		AC342F6517D79208007F2465 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = AC342F6417D79208007F2465 /* Setting.m */; };
@@ -142,6 +144,8 @@
 		AC2A1E9517DCA2BC00DB6091 /* CreateTarget.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateTarget.storyboard; sourceTree = "<group>"; };
 		AC2A1E9817DCAA8D00DB6091 /* Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
 		AC2A1E9B17DCAFD000DB6091 /* CreatePlan.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreatePlan.storyboard; sourceTree = "<group>"; };
+		AC2ECC8A180450D0007AE13D /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@2x.png"; sourceTree = "<group>"; };
+		AC2ECC8B180450D0007AE13D /* clock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock@2x.png"; sourceTree = "<group>"; };
 		AC342F5E17D7833F007F2465 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		AC342F6017D78625007F2465 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		AC342F6117D78625007F2465 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
@@ -234,6 +238,8 @@
 		669C68B336BA5DDE39935C6D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AC2ECC8A180450D0007AE13D /* check@2x.png */,
+				AC2ECC8B180450D0007AE13D /* clock@2x.png */,
 				ACEC38C017EA0D7E00110798 /* Icon-72.png */,
 				ACEC38C117EA0D7E00110798 /* Icon-72@2x.png */,
 				ACEC38C217EA0D7E00110798 /* Icon-Small-50.png */,
@@ -412,6 +418,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				669C60561A0F857E243F9CC7 /* InfoPlist.strings in Resources */,
+				AC2ECC8D180450D1007AE13D /* clock@2x.png in Resources */,
 				669C6CA447D196386DF7AA0D /* Default.png in Resources */,
 				669C69EEE064B1D6512E0C67 /* Default@2x.png in Resources */,
 				669C69E2718A58C8B1125C6D /* Default-568h@2x.png in Resources */,
@@ -431,6 +438,7 @@
 				ACEC38CD17EA0D7E00110798 /* Icon-Small-50@2x.png in Resources */,
 				ACEC38CE17EA0D7E00110798 /* Icon-Small.png in Resources */,
 				ACEC38CF17EA0D7E00110798 /* Icon-Small@2x.png in Resources */,
+				AC2ECC8C180450D1007AE13D /* check@2x.png in Resources */,
 				ACEC38D017EA0D7E00110798 /* Icon.png in Resources */,
 				ACEC38D117EA0D7E00110798 /* Icon@2x.png in Resources */,
 				ACEC38D217EA0D7E00110798 /* iTunesArtwork.png in Resources */,
@@ -565,7 +573,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Trakr/Trakr-Prefix.pch";
 				INFOPLIST_FILE = "Trakr/Trakr-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -609,7 +617,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Trakr/Trakr-Prefix.pch";
 				INFOPLIST_FILE = "Trakr/Trakr-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
