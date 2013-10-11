@@ -159,37 +159,13 @@ enum CellType {
     return [[self groupedTasks] getNumberOfProgressesInGroup:self.selectedTaskGroup];
 }
 
-- (void)resetCell:(UITableViewCell *)cell {
-    cell.textLabel.text = nil;
-    cell.detailTextLabel.text = nil;
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-}
-
 - (UITableViewCell *)recycleCellFromTableView:(UITableView *)tableView {
     static NSString *cellIdentifier = @"cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
-    [self resetCell:cell];
-    return cell;
-}
-
-- (SWTableViewCell *)recycleSWCellFromTableView:(UITableView *)tableView {
-    static NSString *cellIdentifier = @"SWCell";
-    SWTableViewCell *cell = (SWTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        NSMutableArray *leftUtilityButtons = [NSMutableArray new];
-        NSMutableArray *rightUtilityButtons = [NSMutableArray new];
-
-        [leftUtilityButtons addUtilityButtonWithColor:[UIColor colorWithRed:0.07 green:0.75f blue:0.16f alpha:1.0] icon:[UIImage imageNamed:@"check.png"]];
-        [leftUtilityButtons addUtilityButtonWithColor:[UIColor colorWithRed:0.55f green:0.27f blue:0.07f alpha:1.0] icon:[UIImage imageNamed:@"clock.png"]];
-
-        cell = [[SWTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier height:tableView.rowHeight leftUtilityButtons:leftUtilityButtons rightUtilityButtons:rightUtilityButtons];
-        cell.delegate = self;
-    }
-    [self resetCell:cell];
+    [IUtils resetTableViewCell:cell];
     return cell;
 }
 
@@ -253,11 +229,8 @@ enum CellType {
     }
 }
 
-- (void)swippableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index {
-}
-
 - (UITableViewCell *)setSingleTaskCell:(UITableViewCell *)cell forTask:(Task *)task inProgress:(Progress *)progress {
-    UITableViewCell *swcell = [self recycleSWCellFromTableView:self.progressesTable];
+    UITableViewCell *swcell = [TodoUtils recycleSWCellFromTableView:self.progressesTable delegate:self];
     swcell.textLabel.text = [progress getName];
     swcell.detailTextLabel.text = task.name;
     swcell.accessoryType = [progress isTaskCompleted:task] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;

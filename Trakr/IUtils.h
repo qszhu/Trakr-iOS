@@ -29,7 +29,10 @@
 
 + (void)logError:(NSError *)error;
 
++ (void)resetTableViewCell:(UITableViewCell *)cell;
+
 + (UITableViewCell *)recycleCellFromTableView:(UITableView *)tableView;
 
 + (NSString *)relativeDate:(NSDate *)date;
+
 @end

@@ -14,9 +14,10 @@
 #import "Const.h"
 #import "ODRefreshControl.h"
 #import "SVProgressHUD.h"
+#import "SWTableViewCell.h"
 #import "TestFlight.h"
 
-@interface ProgressDetailViewController()
+@interface ProgressDetailViewController() <SWTableViewCellDelegate>
 @property (strong, nonatomic) Progress *progress;
 @property (strong, nonatomic) TodoUtils *todoUtils;
 @property(strong, nonatomic) ODRefreshControl *rc;
@@ -87,11 +88,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.progress == nil) {
-        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
-    }
-
-    UITableViewCell *cell = [IUtils recycleCellFromTableView:tableView];
+    UITableViewCell *cell = [TodoUtils recycleSWCellFromTableView:tableView delegate:self];
 
     Task *task = [self.progress.plan.tasks objectAtIndex:indexPath.row];
     cell.textLabel.text = task.name;
@@ -107,6 +104,28 @@
         cell.accessoryType = UITableViewCellAccessoryDetailButton;
     }
     return cell;
+}
+
+- (void)swippableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    Task *task = [self.progress.plan.tasks objectAtIndex:indexPath.row];
+    Todo *todo = [[Todo alloc] initWithTask:task inProgress:self.progress];
+    if ([todo isCompleted]) return;
+    switch (index) {
+        case 0:
+            [self.todoUtils showCompleteTaskDialog:todo];
+            break;
+        case 1:
+            [self.todoUtils showCompleteTaskTimer:todo];
+            break;
+        default:
+            break;
+    }
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    Task *task = [self.progress.plan.tasks objectAtIndex:indexPath.row];
+    return ![self.progress isTaskCompleted:task];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

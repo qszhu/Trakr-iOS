@@ -13,6 +13,7 @@
 #import "Setting.h"
 #import "Todo.h"
 #import "SVProgressHUD.h"
+#import "SWTableViewCell.h"
 
 @interface TodoUtils()
 @property(strong, nonatomic) UIViewController *viewController;
@@ -72,6 +73,23 @@
         return;
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:kDidCompleteTaskNotification object:self];
+}
+
++ (SWTableViewCell *)recycleSWCellFromTableView:(UITableView *)tableView delegate:(id)delegate {
+    static NSString *cellIdentifier = @"SWCell";
+    SWTableViewCell *cell = (SWTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        NSMutableArray *leftUtilityButtons = [NSMutableArray new];
+        NSMutableArray *rightUtilityButtons = [NSMutableArray new];
+
+        [leftUtilityButtons addUtilityButtonWithColor:[UIColor colorWithRed:0.07 green:0.75f blue:0.16f alpha:1.0] icon:[UIImage imageNamed:@"check.png"]];
+        [leftUtilityButtons addUtilityButtonWithColor:[UIColor colorWithRed:0.55f green:0.27f blue:0.07f alpha:1.0] icon:[UIImage imageNamed:@"clock.png"]];
+
+        cell = [[SWTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier containingTableView:tableView leftUtilityButtons:leftUtilityButtons rightUtilityButtons:rightUtilityButtons];
+        cell.delegate = delegate;
+    }
+    [IUtils resetTableViewCell:cell];
+    return cell;
 }
 
 @end

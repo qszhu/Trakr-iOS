@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class Todo;
+@class SWTableViewCell;
 
 @interface TodoUtils : NSObject
 
@@ -21,4 +22,6 @@
 - (void)showCompleteTaskDialog:(Todo *)todo;
 
 - (void)completeTodo:(Todo *)todo withCost:(NSInteger)cost;
+
++ (SWTableViewCell *)recycleSWCellFromTableView:(UITableView *)tableView delegate:(id)delegate;
 @end
