@@ -72,6 +72,19 @@
     self.completions = [self.completions arrayByAddingObject:completion];
 }
 
+- (void)uncompleteTask:(Task *)task {
+    if (!self.completions) {
+        self.completions = [NSArray new];
+    }
+    NSMutableArray *array = [NSMutableArray new];
+    for (Completion *completion in self.completions) {
+        if (![completion.task.objectId isEqualToString:task.objectId]) {
+            [array addObject:completion];
+        }
+    }
+    self.completions = [NSArray arrayWithArray:array];
+}
+
 - (NSInteger)getNumberOfTasks {
     return self.plan.tasks.count;
 }

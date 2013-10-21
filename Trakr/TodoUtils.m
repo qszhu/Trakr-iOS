@@ -18,6 +18,7 @@
 @interface TodoUtils()
 @property(strong, nonatomic) UIViewController *viewController;
 @property(strong, nonatomic) Todo *todo;
+@property(nonatomic) BOOL uncomplete;
 @end
 
 @implementation TodoUtils
@@ -46,6 +47,7 @@
 
 - (void)showCompleteTaskDialog:(Todo *)todo {
     self.todo = todo;
+    self.uncomplete = NO;
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
                                                     message:@"Complete this task?"
                                                    delegate:self
@@ -54,9 +56,24 @@
     [alert show];
 }
 
+- (void)showUncompleteTaskDialog:(Todo *)todo {
+    self.todo = todo;
+    self.uncomplete = YES;
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                    message:@"Uncomplete this task?"
+                                                   delegate:self
+                                          cancelButtonTitle:@"No"
+                                          otherButtonTitles:@"Yes", nil];
+    [alert show];
+}
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex != alertView.cancelButtonIndex) {
-        [self completeTodo:self.todo withCost:0];
+        if (self.uncomplete) {
+            [self uncompleteTodo:self.todo];
+        } else {
+            [self completeTodo:self.todo withCost:0];
+        }
     }
 }
 
@@ -75,17 +92,39 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kDidCompleteTaskNotification object:self];
 }
 
-+ (SWTableViewCell *)recycleSWCellFromTableView:(UITableView *)tableView delegate:(id)delegate {
+- (void)uncompleteTodo:(Todo *)todo {
+    [todo uncomplete];
+    [SVProgressHUD showWithStatus:@"Uncompleting task..." maskType:SVProgressHUDMaskTypeGradient];
+    [todo saveWithTarget:self selector:@selector(uncompleteTodo:error:)];
+}
+
+- (void)uncompleteTodo:(NSNumber *)result error:(NSError *)error {
+    [SVProgressHUD dismiss];
+    if (![result boolValue]) {
+        [IUtils showErrorDialogWithTitle:@"Cannot uncomplete task" error:error];
+        return;
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDidCompleteTaskNotification object:self]; // reused notification
+}
+
++ (SWTableViewCell *)recycleSWCellFromTableView:(UITableView *)tableView delegate:(id)delegate completed:(BOOL)completed {
     static NSString *cellIdentifier = @"SWCell";
-    SWTableViewCell *cell = (SWTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    static NSString *cellIdentifierCompleted = @"SWCellCompleted";
+    SWTableViewCell *cell = (SWTableViewCell *)[tableView dequeueReusableCellWithIdentifier:completed ? cellIdentifierCompleted : cellIdentifier];
     if (cell == nil) {
         NSMutableArray *leftUtilityButtons = [NSMutableArray new];
-        NSMutableArray *rightUtilityButtons = [NSMutableArray new];
 
-        [leftUtilityButtons addUtilityButtonWithColor:[UIColor colorWithRed:0.07 green:0.75f blue:0.16f alpha:1.0] icon:[UIImage imageNamed:@"check.png"]];
-        [leftUtilityButtons addUtilityButtonWithColor:[UIColor colorWithRed:0.55f green:0.27f blue:0.07f alpha:1.0] icon:[UIImage imageNamed:@"clock.png"]];
+        if (completed) {
+            [leftUtilityButtons addUtilityButtonWithColor:[UIColor colorWithRed:1.0f green:0.231f blue:0.188f alpha:1.0]
+                                                     icon:[UIImage imageNamed:@"cross.png"]];
+        } else {
+            [leftUtilityButtons addUtilityButtonWithColor:[UIColor colorWithRed:0.07 green:0.75f blue:0.16f alpha:1.0]
+                                                     icon:[UIImage imageNamed:@"check.png"]];
+            [leftUtilityButtons addUtilityButtonWithColor:[UIColor colorWithRed:0.55f green:0.27f blue:0.07f alpha:1.0]
+                                                     icon:[UIImage imageNamed:@"clock.png"]];
+        }
 
-        cell = [[SWTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier containingTableView:tableView leftUtilityButtons:leftUtilityButtons rightUtilityButtons:rightUtilityButtons];
+        cell = [[SWTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier containingTableView:tableView leftUtilityButtons:leftUtilityButtons rightUtilityButtons:nil];
         cell.delegate = delegate;
     }
     [IUtils resetTableViewCell:cell];

@@ -88,9 +88,11 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [TodoUtils recycleSWCellFromTableView:tableView delegate:self];
-
     Task *task = [self.progress.plan.tasks objectAtIndex:indexPath.row];
+    BOOL completed = [self.progress isTaskCompleted:task];
+
+    UITableViewCell *cell = [TodoUtils recycleSWCellFromTableView:tableView delegate:self completed:completed];
+
     cell.textLabel.text = task.name;
 
     NSString *taskDateString = [IUtils stringFromDate:[task getDate:self.progress.startDate]];
@@ -98,7 +100,7 @@
     NSString *separator = [taskStatusString isEqualToString:@""] ? @"" : @" / ";
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%@%@", taskDateString, separator, taskStatusString];
 
-    if ([self.progress isTaskCompleted:task]) {
+    if (completed) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else if ([self.progress getTaskLateDays:task] > 0) {
         cell.accessoryType = UITableViewCellAccessoryDetailButton;
@@ -121,11 +123,6 @@
         default:
             break;
     }
-}
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    Task *task = [self.progress.plan.tasks objectAtIndex:indexPath.row];
-    return ![self.progress isTaskCompleted:task];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

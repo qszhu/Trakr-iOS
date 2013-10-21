@@ -30,6 +30,8 @@
 
 - (void)completeTask:(Task *)task withCost:(NSInteger)cost;
 
+- (void)uncompleteTask:(Task *)task;
+
 - (NSInteger)getNumberOfTasks;
 
 - (NSInteger)getNumberOfCompletedTasks;

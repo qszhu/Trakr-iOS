@@ -216,7 +216,12 @@ enum CellType {
     Progress *progress = [[self.groupedTasks getProgressesInGroup:self.selectedTaskGroup] objectAtIndex:indexPath.row];
     NSArray *tasks = [self.groupedTasks getTasksOfProgressById:progress.objectId inGroup:self.selectedTaskGroup];
     Todo *todo = [[Todo alloc] initWithTask:[tasks objectAtIndex:0] inProgress:progress];
-    if ([todo isCompleted]) return;
+    if ([todo isCompleted]) {
+        if (index == 0) {
+            [self.todoUtils showUncompleteTaskDialog:todo];
+        }
+        return;
+    }
     switch (index) {
         case 0:
             [self.todoUtils showCompleteTaskDialog:todo];
@@ -230,10 +235,11 @@ enum CellType {
 }
 
 - (UITableViewCell *)setSingleTaskCell:(UITableViewCell *)cell forTask:(Task *)task inProgress:(Progress *)progress {
-    UITableViewCell *swcell = [TodoUtils recycleSWCellFromTableView:self.progressesTable delegate:self];
+    BOOL completed = [progress isTaskCompleted:task];
+    UITableViewCell *swcell = [TodoUtils recycleSWCellFromTableView:self.progressesTable delegate:self completed:completed];
     swcell.textLabel.text = [progress getName];
     swcell.detailTextLabel.text = task.name;
-    swcell.accessoryType = [progress isTaskCompleted:task] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    swcell.accessoryType = completed ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     return swcell;
 }
 

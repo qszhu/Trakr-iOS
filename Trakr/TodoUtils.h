@@ -21,7 +21,9 @@
 
 - (void)showCompleteTaskDialog:(Todo *)todo;
 
+- (void)showUncompleteTaskDialog:(Todo *)todo;
+
 - (void)completeTodo:(Todo *)todo withCost:(NSInteger)cost;
 
-+ (SWTableViewCell *)recycleSWCellFromTableView:(UITableView *)tableView delegate:(id)delegate;
++ (SWTableViewCell *)recycleSWCellFromTableView:(UITableView *)tableView delegate:(id)delegate completed:(BOOL)completed;
 @end

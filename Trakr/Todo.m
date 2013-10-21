@@ -24,6 +24,10 @@
     [self.progress completeTask:self.task withCost:cost];
 }
 
+- (void)uncomplete {
+    [self.progress uncompleteTask:self.task];
+}
+
 - (void)saveWithTarget:(id)target selector:(SEL)selector {
     [self.progress saveWithTarget:target selector:selector];
 }

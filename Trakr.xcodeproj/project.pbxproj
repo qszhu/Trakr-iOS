@@ -55,6 +55,7 @@
 		AC342F5F17D7833F007F2465 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC342F5E17D7833F007F2465 /* Settings.storyboard */; };
 		AC342F6217D78625007F2465 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC342F6117D78625007F2465 /* SettingsViewController.m */; };
 		AC342F6517D79208007F2465 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = AC342F6417D79208007F2465 /* Setting.m */; };
+		ACAFB95B18156AF900E9D5AF /* cross@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACAFB95A18156AF900E9D5AF /* cross@2x.png */; };
 		ACEC38CA17EA0D7E00110798 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = ACEC38C017EA0D7E00110798 /* Icon-72.png */; };
 		ACEC38CB17EA0D7E00110798 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACEC38C117EA0D7E00110798 /* Icon-72@2x.png */; };
 		ACEC38CC17EA0D7E00110798 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = ACEC38C217EA0D7E00110798 /* Icon-Small-50.png */; };
@@ -151,6 +152,7 @@
 		AC342F6117D78625007F2465 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		AC342F6317D79208007F2465 /* Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Setting.h; sourceTree = "<group>"; };
 		AC342F6417D79208007F2465 /* Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Setting.m; sourceTree = "<group>"; };
+		ACAFB95A18156AF900E9D5AF /* cross@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cross@2x.png"; sourceTree = "<group>"; };
 		ACEC38C017EA0D7E00110798 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		ACEC38C117EA0D7E00110798 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		ACEC38C217EA0D7E00110798 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 		669C68B336BA5DDE39935C6D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ACAFB95A18156AF900E9D5AF /* cross@2x.png */,
 				AC2ECC8A180450D0007AE13D /* check@2x.png */,
 				AC2ECC8B180450D0007AE13D /* clock@2x.png */,
 				ACEC38C017EA0D7E00110798 /* Icon-72.png */,
@@ -431,6 +434,7 @@
 				AC342F5F17D7833F007F2465 /* Settings.storyboard in Resources */,
 				AC103D1E17FE654200D143D9 /* TaskView.xib in Resources */,
 				AC2A1E9617DCA2BC00DB6091 /* CreateTarget.storyboard in Resources */,
+				ACAFB95B18156AF900E9D5AF /* cross@2x.png in Resources */,
 				AC2A1E9C17DCAFD000DB6091 /* CreatePlan.storyboard in Resources */,
 				ACEC38CA17EA0D7E00110798 /* Icon-72.png in Resources */,
 				ACEC38CB17EA0D7E00110798 /* Icon-72@2x.png in Resources */,

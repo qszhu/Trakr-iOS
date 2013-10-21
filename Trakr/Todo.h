@@ -15,6 +15,7 @@
 
 - (id)initWithTask:(Task *)task inProgress:(Progress *)progress;
 - (void)completeWithCost:(NSInteger)cost;
+- (void)uncomplete;
 - (void)saveWithTarget:(id)target selector:(SEL)selector;
 - (BOOL)isCompleted;
 @end
