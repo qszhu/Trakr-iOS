@@ -124,7 +124,11 @@
                                                      icon:[UIImage imageNamed:@"clock.png"]];
         }
 
-        cell = [[SWTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier containingTableView:tableView leftUtilityButtons:leftUtilityButtons rightUtilityButtons:nil];
+        cell = [[SWTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+                                      reuseIdentifier:completed ? cellIdentifierCompleted : cellIdentifier
+                                  containingTableView:tableView
+                                   leftUtilityButtons:leftUtilityButtons
+                                  rightUtilityButtons:nil];
         cell.delegate = delegate;
     }
     [IUtils resetTableViewCell:cell];

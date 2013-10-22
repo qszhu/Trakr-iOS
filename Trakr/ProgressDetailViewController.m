@@ -112,7 +112,12 @@
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     Task *task = [self.progress.plan.tasks objectAtIndex:indexPath.row];
     Todo *todo = [[Todo alloc] initWithTask:task inProgress:self.progress];
-    if ([todo isCompleted]) return;
+    if ([todo isCompleted]) {
+        if (index == 0) {
+            [self.todoUtils showUncompleteTaskDialog:todo];
+            return;
+        }
+    }
     switch (index) {
         case 0:
             [self.todoUtils showCompleteTaskDialog:todo];
