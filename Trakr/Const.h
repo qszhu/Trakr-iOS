@@ -14,3 +14,4 @@ static NSString * const kDidCreatePlanNotification = @"DidCreatePlanNotification
 static NSString * const kDidLoginNotification = @"DidLoginNotification";
 static NSString * const kDidCompleteTaskNotification = @"DidCompleteTaskNotification";
 static NSString * const kDidCreateProgressNotification = @"DidCreateProgressNotification";
+static NSString * const kBarcodeScannedNotification = @"BarcodeScannedNotification";

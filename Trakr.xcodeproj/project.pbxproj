@@ -55,6 +55,7 @@
 		AC342F5F17D7833F007F2465 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC342F5E17D7833F007F2465 /* Settings.storyboard */; };
 		AC342F6217D78625007F2465 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC342F6117D78625007F2465 /* SettingsViewController.m */; };
 		AC342F6517D79208007F2465 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = AC342F6417D79208007F2465 /* Setting.m */; };
+		AC96C34C1825100F00EB0D3F /* ScanTargetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC96C34B1825100F00EB0D3F /* ScanTargetViewController.m */; };
 		ACAFB95B18156AF900E9D5AF /* cross@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACAFB95A18156AF900E9D5AF /* cross@2x.png */; };
 		ACEC38CA17EA0D7E00110798 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = ACEC38C017EA0D7E00110798 /* Icon-72.png */; };
 		ACEC38CB17EA0D7E00110798 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACEC38C117EA0D7E00110798 /* Icon-72@2x.png */; };
@@ -152,6 +153,8 @@
 		AC342F6117D78625007F2465 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		AC342F6317D79208007F2465 /* Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Setting.h; sourceTree = "<group>"; };
 		AC342F6417D79208007F2465 /* Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Setting.m; sourceTree = "<group>"; };
+		AC96C34A1825100F00EB0D3F /* ScanTargetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanTargetViewController.h; sourceTree = "<group>"; };
+		AC96C34B1825100F00EB0D3F /* ScanTargetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanTargetViewController.m; sourceTree = "<group>"; };
 		ACAFB95A18156AF900E9D5AF /* cross@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cross@2x.png"; sourceTree = "<group>"; };
 		ACEC38C017EA0D7E00110798 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		ACEC38C117EA0D7E00110798 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
@@ -198,6 +201,8 @@
 				AC2A1E9517DCA2BC00DB6091 /* CreateTarget.storyboard */,
 				669C6E62172C6F19B042852A /* CreateTargetViewController.h */,
 				669C6689B8DF5798810990E9 /* CreateTargetViewController.m */,
+				AC96C34A1825100F00EB0D3F /* ScanTargetViewController.h */,
+				AC96C34B1825100F00EB0D3F /* ScanTargetViewController.m */,
 				AC103D2D17FFF68000D143D9 /* TargetViewController.h */,
 				AC103D2E17FFF68000D143D9 /* TargetViewController.m */,
 			);
@@ -502,6 +507,7 @@
 				669C68B926B0DFC9CFFD47FA /* LogInViewController.m in Sources */,
 				669C6AE7886F8A6786F5DD05 /* CreatePlanViewController.m in Sources */,
 				669C6562E47F0931EE9F8800 /* CreateTargetViewController.m in Sources */,
+				AC96C34C1825100F00EB0D3F /* ScanTargetViewController.m in Sources */,
 				669C6F07CF023D542212390F /* AutoTask.m in Sources */,
 				669C68DB444D15D12FC61E04 /* Completion.m in Sources */,
 				669C6A42F625009E408FB24A /* Plan.m in Sources */,

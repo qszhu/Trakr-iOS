@@ -6,4 +6,5 @@ pod 'FormatterKit', '~> 1.2'
 pod 'ODRefreshControl', '~> 1.1'
 pod 'SVProgressHUD', '~> 0.9'
 pod 'SWTableViewCell', :git => 'https://github.com/qszhu/SWTableViewCell.git'
-
+pod 'ZXingObjC', '~> 2.2'
+pod 'AFNetworking', '~> 2.0'

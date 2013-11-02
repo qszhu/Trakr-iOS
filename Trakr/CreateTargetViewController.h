@@ -12,4 +12,5 @@
 
 - (IBAction)donePressed:(id)sender;
 - (IBAction)cancelPressed:(id)sender;
+- (IBAction)scanPressed:(id)sender;
 @end
