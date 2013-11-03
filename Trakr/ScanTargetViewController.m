@@ -38,8 +38,9 @@
 - (void)captureResult:(ZXCapture*)capture result:(ZXResult*)result {
     if (result) {
         if (result.barcodeFormat == kBarcodeFormatEan13) {
+            [self.capture.layer removeFromSuperlayer];
+            [self.capture stop];
             [self dismissViewControllerAnimated:YES completion:^{
-                [self.capture stop];
                 [[NSNotificationCenter defaultCenter] postNotificationName:kBarcodeScannedNotification object:result.text];
             }];
         }
